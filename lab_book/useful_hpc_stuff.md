@@ -11,67 +11,81 @@ Download files directly to HPC:
 ~~~
 
 Start interactive session in stanage/bessimer: 
+~~~
 srun --pty bash -i
+~~~
 Fastdata (because /fastdata/$user is too convenient): 
+~~~
 /mnt/parscratch/users/$user
-
+~~~
 Connect via mac: 
+~~~
 ssh $username@$cluster.shef.ac.uk
-
-Easy to read file sizes:
- ls -lah
-
+~~~
 check module availbity
+~~~
 module avail |& grep -i $modulename
-
-Submit job: 
+~~~
+Job control: 
+~~~
+# submit
 sbatch $script.sh
-
-Check job status: 
 squeue -u(user) or -–job(jobnumber)
-Cancel job: 
+# Cancel job: 
 scancel -u or –-job
-check job resource use
+# check job resource use
 seff $jobid
-
-HPC to local machine:
+~~~
+Download from HPC to local machine:
+~~~
 scp bip23bta@stanage.shef.ac.uk:/shared/wright_lab_hpc/Shared/2024_Stalkie_illumina/index.html /home/benalston/
-# do on local machine, not hpc
+# run command on local machine, not hpc
+~~~
 
 Tmux:
+~~~
 tmux new -s $session_name
 tmux attatch -t $session_name
 tmux ls
 ctrl + b  # to do things
-
-
+~~~
 Disk usage: 
-du -bch $directory (estimates filesize of dir and all subdirs)
+~~~
+du -bch $directory # estimates filesize of dir and all subdirs
+~~~
 
-Md5sums check:
- md5sum -c /filepath/to/md5checklist.txt
-#checklist provided by source, each line looks like: $md5sum  $filepath
-#Make sure filepath of data directory matches the provided checklist
-
+Md5sums check: m
+~~~
+d5sum -c /filepath/to/md5checklist.txt
+# checklist provided by source, each line looks like: $md5sum  $filepath
+# Make sure filepath of data directory matches the provided checklist
+~~~
 
 Conda environment
+~~~
 module load Anaconda3
 conda create -n $name bioconda::$package
 Conda activate $env
+~~~
 
 Find conda env package version
+~~~
 # activate environment
 source activate $env
 # list and search 
 conda list | grep $env
+~~~
+
 search a directory and subdirectory for a file:
+~~~
 find $dir_name -name '$name e.g., *.fastq.gz'
+~~~
 
 some stuff about array jobs
-good way of easily parralelizing stuff
-hpc documentation on this is poor
-#SBATCH --array 4-5%2
-${SLURM_ARRAY_TASK_ID} # corresponds to the current array job running, in this case 4 or 5
+~~~
+# good way of easily parralelizing stuff
+# hpc documentation on this is poor
+${SLURM_ARRAY_TASK_ID} # corresponds to the current array job running, e.g., 1 or 2 for $jobid_1 or $jobid_2
 # the problem comes from not being able to define non numeric slurm array ids
 # for my purposes, using bash arrays can fix this somewhat:
 
@@ -79,7 +93,7 @@ ${SLURM_ARRAY_TASK_ID} # corresponds to the current array job running, in this c
 #SBATCH --job-name=array_test
 #SBATCH --mem=1G
 #SBATCH --time=01:00:00
-#SBATCH --array 0-3%4 # change depending on how many assemblies you're making
+#SBATCH --array 0-3%4 # change depending on how many tasks you need doing
 #SBATCH -e error.txt
 
 inputs=('in1' 'in2' 'in3' 'in4')
@@ -91,5 +105,5 @@ done
 
 # this test script essentially matches the slurm array id with an element of an array ive defined ($inputs in this case)
 # we can then do a loop for each if needed 
-# just realised that loops aren't really needed here so i'll need to fix this
 # the UoS hpc documentation on this is shocking
+~~~
