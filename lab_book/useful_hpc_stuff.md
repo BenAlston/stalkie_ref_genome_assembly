@@ -1,12 +1,15 @@
 
 Download files directly to HPC: 
-```wget -r https://cgr.liv.ac.uk/pbio/200437_987ddbd846f6fba3/ -P /shared/wright_lab_hpc/Shared/2024_Stalkie_PacBio_HiFi
-# For some reason this sometimes gets an error 404, 
-# fix:
-wget -r https://cgr.liv.ac.uk/pbio/200437_987ddbd846f6fba3/ --header "cgr.liv.ac.uk" -P /shared/wright_lab_hpc/Shared/2024_Stalkie_PacBio_HiFi/
-# couldn't tell you why 
-# wget has also started ignoring the output directory, so had to set the target dir as working directory instead, again the reason escapes me
-```
+
+~~~
+ wget -r https://cgr.liv.ac.uk/pbio/200437_987ddbd846f6fba3/ -P /shared/wright_lab_hpc/Shared/2024_Stalkie_PacBio_HiFi
+ # For some reason this sometimes gets an error 404, 
+ # fix:
+ wget -r https://cgr.liv.ac.uk/pbio/200437_987ddbd846f6fba3/ --header "cgr.liv.ac.uk" -P /shared/wright_lab_hpc/Shared/2024_Stalkie_PacBio_HiFi/
+ # couldn't tell you why 
+ # wget has also started ignoring the output directory, so had to set the target dir as working directory instead, again the reason escapes me
+~~~
+
 Start interactive session in stanage/bessimer: 
 srun --pty bash -i
 Fastdata (because /fastdata/$user is too convenient): 
