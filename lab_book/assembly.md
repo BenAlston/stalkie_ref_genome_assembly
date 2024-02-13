@@ -21,7 +21,7 @@ Used [genomescope](http://qb.cshl.edu/genomescope/) to visualise the .histo file
 
 # **Assembly with Hifiasm**
 * [Documentation](https://github.com/chhylp123/hifiasm)
-
 * There are 7 samples, total 2 per species (1M, 1F), plus 1 additional T. whitei F (potential driver). Assemblies should be generated for each sample, so 7 assemblies total. Two .fastq.gz files per individual (so 4,4,6) per species.
-
-* Ran hifiasm.sh (V 0.16.1)
+* Ran [hifiasm.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/hifiasm.sh) (Hifiasm V 0.16.1)
+* Currently not working, was previously a memory issue, but now just seems stuck.
+  
