@@ -17,7 +17,7 @@ Used [genomescope](http://qb.cshl.edu/genomescope/) to visualise the .histo file
 - [_D. meigenii_ Female](http://genomescope.org/analysis.php?code=4tooUMZucAlqGmV0V0E8)
 - [_D. meigenii Male_](http://genomescope.org/analysis.php?code=ISWwt723ucFqtJJKRgrT) 
 <br><br>
-* Some seem acceptable, containing two peaks, others e.g., _D. meigenii_ F seem bad, could be contamination.
+* Some seem acceptable, containing two peaks, others e.g., _D. meigenii_ F have less distinct peaks, this should still be fine
 * However, est. genome size seems odd, being variable, and larger in females than males in _D. meigenii_ and _T. whitei_ and the opposite in _T. dalmanni_
 
 ## **2. Assembly with Hifiasm**
