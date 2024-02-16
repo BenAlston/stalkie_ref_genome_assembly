@@ -40,8 +40,9 @@ Used [genomescope](http://qb.cshl.edu/genomescope/) to visualise the .histo file
   - $prefix.bp.hap2.p_ctg.gfa: partially phased contig graph of haplotype2.
 
 ### **Used Quast for basic summary stats**
-* 
-* will probably add this script directly to the hifiasm one
+* ran [quast.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/quast.sh) on primary assembly for dalmanni_7
+* will probably add this script directly to the hifiasm one for the main assembly step
+* N50 of 600Mb is not great
 
 ## **Next Steps:**
 * quality assessment with [quast](https://github.com/ablab/quast)
