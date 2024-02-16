@@ -1,5 +1,6 @@
 
-# **Genome Size Estimation with Jellyfish**
+# **Reference Genome Assembly**
+## **1. Genome Size Estimation with Jellyfish**
 * memory decided via hash size (size of the genome plus seq error) T. dalmanni genome is 0.62 gb, so i'll assume 0.7 (nanoplot doesnt accept less than 1G so do that)
 * not sure what kmer size to use, 21 seems sensible 
 * jellyfish V 2.2.10
@@ -19,7 +20,7 @@ Used [genomescope](http://qb.cshl.edu/genomescope/) to visualise the .histo file
 * Some seem acceptable, containing two peaks, others e.g., _D. meigenii_ F seem bad, could be contamination.
 * However, est. genome size seems odd, being variable, and larger in females than males in _D. meigenii_ and _T. whitei_ and the opposite in _T. dalmanni_
 
-# **Assembly with Hifiasm**
+## **2. Assembly with Hifiasm**
 * [Documentation](https://github.com/chhylp123/hifiasm)
 * Samples:
 
@@ -39,7 +40,8 @@ Used [genomescope](http://qb.cshl.edu/genomescope/) to visualise the .histo file
   - $prefix.bp.hap2.p_ctg.gfa: partially phased contig graph of haplotype2.
 
 ## **Next Steps:**
-* BUSCO
+* quality assessment with [quast](https://github.com/ablab/quast)
+*  BUSCO
 * Jellyfish
 * purge_dups, if needed
 
