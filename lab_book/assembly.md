@@ -39,6 +39,10 @@ Used [genomescope](http://qb.cshl.edu/genomescope/) to visualise the .histo file
   - $prefix.bp.hap1.p_ctg.gfa: partially phased contig graph of haplotype1.
   - $prefix.bp.hap2.p_ctg.gfa: partially phased contig graph of haplotype2.
 
+### **Used Quast for basic summary stats**
+* 
+* will probably add this script directly to the hifiasm one
+
 ## **Next Steps:**
 * quality assessment with [quast](https://github.com/ablab/quast)
 *  BUSCO
