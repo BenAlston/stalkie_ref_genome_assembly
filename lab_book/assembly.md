@@ -22,7 +22,8 @@ Used [genomescope](http://qb.cshl.edu/genomescope/) to visualise the .histo file
 
 ## **2. Assembly with Hifiasm**
 * [Documentation](https://github.com/chhylp123/hifiasm)
-* Samples:
+
+### Samples:
 
   ~~~
   - 7 total, 2 per species (1M, 1F), plus 1 additional T. whitei F (potential driver).
@@ -31,10 +32,9 @@ Used [genomescope](http://qb.cshl.edu/genomescope/) to visualise the .histo file
   ~~~
 
 *  Ran [hifiasm.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/hifiasm.sh) (Hifiasm V 0.16.1)
-* Currently not working, was previously a memory issue, but now just seems stuck.
 
 ### **Hifiasm output**
-* output files documentation
+* [output files documentation](https://hifiasm.readthedocs.io/en/latest/interpreting-output.html)
   - $prefix.bp.p_ctg.gfa: assembly graph of primary contigs.
   - $prefix.bp.hap1.p_ctg.gfa: partially phased contig graph of haplotype1.
   - $prefix.bp.hap2.p_ctg.gfa: partially phased contig graph of haplotype2.
