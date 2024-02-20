@@ -107,3 +107,17 @@ done
 # we can then do a loop for each if needed 
 # the UoS hpc documentation on this is shocking
 ~~~
+Docker/apptainer
+~~~
+# Like a conda environment but less intuative, supposedly deals better with dependencies
+# Apptainer is the open source version of docker, and is used on sheffield HPCs
+
+# usage with docker hub (main repository for docker/apptainer containers)
+apptainer pull  docker://ezlabgva/busco:v5.6.1_cv1 # equivalent to calling a conda env
+
+# use in a script: (where you'd call a conda env)
+apptainer exec path/to/imgfile.img ls /
+~~~
+
+
+
