@@ -22,6 +22,7 @@ Used [genomescope](http://qb.cshl.edu/genomescope/) to visualise the .histo file
 
 ## **2. Assembly with Hifiasm**
 * [Documentation](https://github.com/chhylp123/hifiasm)
+* Ran [hifiasm.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/hifiasm.sh) (Hifiasm V 0.16.1)
 
 ### Samples:
 
@@ -31,7 +32,18 @@ Used [genomescope](http://qb.cshl.edu/genomescope/) to visualise the .histo file
   - Two HiFi .fastq.gz files per individual (so 4,4,6) per species.
   ~~~
 
-*  Ran [hifiasm.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/hifiasm.sh) (Hifiasm V 0.16.1)
+| Sample ID | file\_prefix | Species         | Sex    |
+| --------- | ------------ | --------------- | ------ |
+| ST1       | 200437\_1    | C.whitei        | Female |
+| ST2       | 200437\_2    | C.whitei        | Male   |
+| ST3       | 200437\_3    | C.whitei Driver | Female |
+| ST6       | 200437\_4    | D.meigenii      | Female |
+| ST7       | 200437\_5    | D.meigenii      | Male   |
+| ST8       | 200437\_6    | T.dalmanni      | Male   |
+| ST9       | 200437\_7    | T.dalmanni      | Female |
+
+
+
 
 ### **Hifiasm output**
 * [output files documentation](https://hifiasm.readthedocs.io/en/latest/interpreting-output.html)
