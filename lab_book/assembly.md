@@ -56,7 +56,7 @@ Used [genomescope](http://qb.cshl.edu/genomescope/) to visualise the .histo file
 
 ### Installed BUSCO
 * Had to use a docker/apptainer image for this
-* ran [busco.sh]()
+* ran [busco.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/busco.sh)
 
 ## **Next Steps:**
 * quality assessment with [quast](https://github.com/ablab/quast)
