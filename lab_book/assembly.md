@@ -52,9 +52,11 @@ Used [genomescope](http://qb.cshl.edu/genomescope/) to visualise the .histo file
 * ran [quast.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/quast.sh) on primary assembly for dalmanni_7
 * will probably add this script directly to the hifiasm one for the main assembly step
 * N50 of 600Mb is not great
+* busco does this so actually not needed
 
 ### Installed BUSCO
 * Had to use a docker/apptainer image for this
+* ran [busco.sh]()
 
 ## **Next Steps:**
 * quality assessment with [quast](https://github.com/ablab/quast)
