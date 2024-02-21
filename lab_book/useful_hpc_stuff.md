@@ -110,6 +110,7 @@ done
 Docker/apptainer
 ~~~
 # Like a conda environment but less intuative, supposedly deals better with dependencies
+# I only really use when something isn't available through conda
 # Apptainer is the open source version of docker, and is used on sheffield HPCs
 
 # usage with docker hub (main repository for docker/apptainer containers)
@@ -119,9 +120,9 @@ apptainer pull  docker://ezlabgva/busco:v5.6.1_cv1 # equivalent to creating a c
 apptainer shell /path/to/$image.sif
 
 # use in a script, accordhing to hpc documentation (where you'd call a conda env)
-apptainer exec path/to/imgfile.img ls /
-# havent tested yet but presumably need to call the file so should look like this instead:
-apptainer shell /path/to/$image.sif
+apptainer exec path/to/imgfile.img ls / # but this doesn't work
+# calling directly before command seems to work though e.g:
+apptainer exec path/to/busco_imgfile.img busco -c .....
 ~~~
 
 
