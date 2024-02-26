@@ -46,3 +46,6 @@ date
 echo starting hifiasm
 hifiasm -o ${species}_${assembly}.asm -t 48 *.fastq.gz
 date
+
+# convert gfa to fa
+awk '/^S/{print ">"$2"\n"$3}' ${species}_${assenbly}.asm.bp.p_ctg.gfa  | fold > ${assembly}_primary.fa
