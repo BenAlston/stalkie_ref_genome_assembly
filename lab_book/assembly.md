@@ -63,9 +63,10 @@ Used [genomescope](http://qb.cshl.edu/genomescope/) to visualise the .histo file
 * see [busco output](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/lab_book/Data/BUSCO_output)
 * very high duplication in T. dalmanni M, see if this is consistent across all species
 
-### **Blobtools**
+
+### **Blobtools**
 * [documentation](https://github.com/DRL/blobtools)
-* 
+
 
 ## **Next Steps:**
 *  [findZX](https://github.com/hsigeman/findZX) has potential, look through the paper
