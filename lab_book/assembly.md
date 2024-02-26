@@ -57,24 +57,29 @@ Used [genomescope](http://qb.cshl.edu/genomescope/) to visualise the .histo file
 * N50 of 600Mb is not great
 * busco does this so actually not needed
 
-### BUSCO
+### **BUSCO**
 * Had to use a docker/apptainer image for this
 * ran [busco.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/busco.sh)
+* see [busco output](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/lab_book/Data/BUSCO_output)
+* very high duplication in T. dalmanni M, see if this is consistent across all species
+
+### **Blobtools**
+* [documentation](https://github.com/DRL/blobtools)
 * 
 
 ## **Next Steps:**
-* quality assessment with [quast](https://github.com/ablab/quast)
-*  BUSCO
-* Jellyfish
-* purge_dups, if needed
-* identifying sex chromosomes:
-* once ref genomes are good
-*  map reads using a standard aligner
-*  look at coverage
-*  [findZX](https://github.com/hsigeman/findZX) has potential
-Alex's assembly
-* after hifiasm did jellyfish and busco
-* genome was too big: purge_dups
+*  [findZX](https://github.com/hsigeman/findZX) has potential, look through the paper
+
+1. run hifiasm on whitei and meigenii - _currently running_
+2. use blobtools to remove contamination 
+3. use inspector for qc
+4. extract mt genomes
+5. remap reads to genome
+6. run jellyfish again
+7. use samtools to determine proportion of reads that map
+8. map short-read data
+9. use samtools to look at coverage
+
 
 
 
