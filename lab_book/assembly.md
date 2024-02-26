@@ -67,7 +67,11 @@ Used [genomescope](http://qb.cshl.edu/genomescope/) to visualise the .histo file
 *  BUSCO
 * Jellyfish
 * purge_dups, if needed
-
+* identifying sex chromosomes:
+* once ref genomes are good
+*  map reads using a standard aligner
+*  look at coverage
+*  [findZX](https://github.com/hsigeman/findZX) has potential
 Alex's assembly
 * after hifiasm did jellyfish and busco
 * genome was too big: purge_dups
