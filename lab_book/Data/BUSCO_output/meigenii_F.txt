@@ -1,0 +1,30 @@
+# BUSCO version is: 5.6.1 
+# The lineage dataset is: diptera_odb10 (Creation date: 2024-01-08, number of genomes: 56, number of BUSCOs: 3285)
+# Summarized benchmarking in BUSCO notation for file /mnt/parscratch/users/bip23bta/ref_genomes/meigenii/02-hifiasm/4_hifiasm_output/4_primary.fa
+# BUSCO was run in mode: euk_genome_met
+# Gene predictor used: metaeuk
+
+	***** Results: *****
+
+	C:96.4%[S:67.8%,D:28.6%],F:0.9%,M:2.7%,n:3285	   
+	3168	Complete BUSCOs (C)			   
+	2227	Complete and single-copy BUSCOs (S)	   
+	941	Complete and duplicated BUSCOs (D)	   
+	29	Fragmented BUSCOs (F)			   
+	88	Missing BUSCOs (M)			   
+	3285	Total BUSCO groups searched		   
+
+Assembly Statistics:
+	3136	Number of scaffolds
+	3136	Number of contigs
+	694692253	Total length
+	0.000%	Percent gaps
+	463 KB	Scaffold N50
+	463 KB	Contigs N50
+
+
+Dependencies and versions:
+	hmmsearch: 3.1
+	bbtools: 39.01
+	metaeuk: 6.a5d39d9
+	busco: 5.6.1
