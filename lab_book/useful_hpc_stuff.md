@@ -56,7 +56,7 @@ Disk usage:
 du -bch $directory # estimates filesize of dir and all subdirs
 ~~~
 
-Md5sums check: m
+Md5sums check:
 ~~~
 d5sum -c /filepath/to/md5checklist.txt
 # checklist provided by source, each line looks like: $md5sum  $filepath
