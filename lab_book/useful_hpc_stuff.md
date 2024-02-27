@@ -65,7 +65,9 @@ Conda environment
 ~~~
 module load Anaconda3
 conda create -n $name bioconda::$package
-Conda activate $env
+conda activate $env
+# view a list of all installed conda envs:
+conda env list
 ~~~
 
 Find conda env package version
