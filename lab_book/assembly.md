@@ -54,15 +54,15 @@ Used [genomescope](http://qb.cshl.edu/genomescope/) to visualise the .histo file
 * N50 of 600Mb is not great
 * busco does this so actually not needed
 
-### **BUSCO**
+### **Inital QC with BUSCO**
 * Had to use a docker/apptainer image for this
 * ran [busco.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/busco.sh), takes ~10-20 mins
 * see [busco output](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/lab_book/Data/BUSCO_output)
 * very high duplication in T. dalmanni M, see if this is consistent across all species
 
 
-### **Blobtools**
-* [documentation](https://github.com/DRL/blobtools)
+### **Filtering with Blobtools2**
+* [documentation](https://github.com/blobtoolkit/blobtoolkit)
 
 
 ## **Next Steps:**
