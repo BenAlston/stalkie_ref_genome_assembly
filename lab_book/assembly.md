@@ -25,7 +25,7 @@ Used [genomescope](http://qb.cshl.edu/genomescope/) to visualise the .histo file
 
 ## **2. Assembly with Hifiasm**
 * [Documentation](https://github.com/chhylp123/hifiasm)
-* Ran [hifiasm.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/hifiasm.sh) (Hifiasm V 0.16.1)
+* Ran [hifiasm.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/hifiasm.sh) (Hifiasm V 0.16.1), takes ~10-12 hrs
 
 ### Samples:
 
@@ -47,9 +47,6 @@ Used [genomescope](http://qb.cshl.edu/genomescope/) to visualise the .histo file
 
 ### **Hifiasm output**
 * [output files documentation](https://hifiasm.readthedocs.io/en/latest/interpreting-output.html)
-  - $prefix.bp.p_ctg.gfa: assembly graph of primary contigs.
-  - $prefix.bp.hap1.p_ctg.gfa: partially phased contig graph of haplotype1.
-  - $prefix.bp.hap2.p_ctg.gfa: partially phased contig graph of haplotype2.
 
 ### **Used Quast for basic summary stats**
 * ran [quast.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/quast.sh) on primary assembly for dalmanni_7
@@ -59,7 +56,7 @@ Used [genomescope](http://qb.cshl.edu/genomescope/) to visualise the .histo file
 
 ### **BUSCO**
 * Had to use a docker/apptainer image for this
-* ran [busco.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/busco.sh)
+* ran [busco.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/busco.sh), takes ~10-20 mins
 * see [busco output](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/lab_book/Data/BUSCO_output)
 * very high duplication in T. dalmanni M, see if this is consistent across all species
 
