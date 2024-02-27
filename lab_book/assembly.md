@@ -47,18 +47,16 @@ Used [genomescope](http://qb.cshl.edu/genomescope/) to visualise the .histo file
 
 ### **Hifiasm output**
 * [output files documentation](https://hifiasm.readthedocs.io/en/latest/interpreting-output.html)
-
-### **Used Quast for basic summary stats**
-* ran [quast.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/quast.sh) on primary assembly for dalmanni_7
-* will probably add this script directly to the hifiasm one for the main assembly step
-* N50 of 600Mb is not great
-* busco does this so actually not needed
+* duplication looks very high across the board, not very contiguous
 
 ### **Inital QC with BUSCO**
-* Had to use a docker/apptainer image for this
+* Used a docker/apptainer image
 * ran [busco.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/busco.sh), takes ~10-20 mins
 * see [busco output](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/lab_book/Data/BUSCO_output)
 * very high duplication in T. dalmanni M, see if this is consistent across all species
+
+### **Alignment With Miniap2**
+* [Documentation](https://github.com/lh3/minimap2)
 
 
 ### **Filtering with Blobtools2**
@@ -68,7 +66,7 @@ Used [genomescope](http://qb.cshl.edu/genomescope/) to visualise the .histo file
 ## **Next Steps:**
 *  [findZX](https://github.com/hsigeman/findZX) has potential, look through the paper
 
-1. run hifiasm on whitei and meigenii - _currently running_
+1. running busco for whitei_F
 2. use blobtools to remove contamination 
 3. use inspector for qc
 4. extract mt genomes
