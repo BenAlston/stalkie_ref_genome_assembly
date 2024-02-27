@@ -123,10 +123,13 @@ apptainer pull  docker://ezlabgva/busco:v5.6.1_cv1 # equivalent to creating a c
 # load image. Analagous to <conda activate $env>
 apptainer shell /path/to/$image.sif
 
-# use in a script, accordhing to hpc documentation (where you'd call a conda env)
+# use in a script, accordhing to hpc documentation (In the part of the script where you'd normally call a conda env):
 apptainer exec path/to/imgfile.img ls / # but this doesn't work
 # calling directly before command seems to work though e.g:
+# when running busco, do this:
 apptainer exec path/to/busco_imgfile.img busco -c .....
+# instead of this:
+busco -c .....
 ~~~
 
 
