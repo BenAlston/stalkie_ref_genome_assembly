@@ -58,6 +58,17 @@ Used [genomescope](http://qb.cshl.edu/genomescope/) to visualise the .histo file
 ### **Alignment With Miniap2**
 * [Documentation](https://github.com/lh3/minimap2)
 
+| Sample ID | aligned | Species         | Sex    |
+| --------- | ------------ | --------------- | ------ |
+| 1       | y    | C.whitei        | Female |
+| 2       | n    | C.whitei        | Male   |
+| 3       | n    | C.whitei Driver | Female |
+| 4       | y    | D.meigenii      | Female |
+| 5       | n    | D.meigenii      | Male   |
+| 6       | y    | T.dalmanni      | Male   |
+| 7       | n    | T.dalmanni      | Female |
+
+
 
 ### **Filtering with Blobtools2**
 * [documentation](https://github.com/blobtoolkit/blobtoolkit)
