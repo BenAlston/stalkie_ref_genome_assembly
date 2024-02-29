@@ -72,7 +72,7 @@ Used [genomescope](http://qb.cshl.edu/genomescope/) to visualise the .histo file
 
 ### **Filtering with Blobtools2**
 * [documentation](https://github.com/blobtoolkit/blobtoolkit)
-
+* make a blobdir: containing the .fa file (symlinked), and a metadata .yaml file (optional)
 
 ## **Next Steps:**
 *  [findZX](https://github.com/hsigeman/findZX) has potential, look through the paper
