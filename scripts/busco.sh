@@ -35,7 +35,7 @@ database=diptera_odb10
 cd $wd/$species
 
 # call docker image before busco command
-apptainer shell /users/bip23bta/busco_v5.6.1_cv1.sif \
+apptainer exec /users/bip23bta/busco_v5.6.1_cv1.sif \
 busco -i ${data_path}/${species}_${genome}.asm.bp.p_ctg.fa \
 -l $database \
 -o ${output}/BUSCO_out_${genome} \
