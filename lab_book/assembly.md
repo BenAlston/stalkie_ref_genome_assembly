@@ -73,7 +73,8 @@ Used [genomescope](http://qb.cshl.edu/genomescope/) to visualise the .histo file
 ### **Filtering with Blobtools2**
 * [documentation](https://github.com/blobtoolkit/blobtoolkit)
 * make a blobdir: containing the .fa file (symlinked), and a metadata .yaml file (optional)
-
+* Blobtools has been a pain to get working, I have been able to filter dalmanni M, which makes the assembly more contiguous by ~500, and n50 has increased from 600kb to almost 1mb
+* however, im not sure i have done everything correctly, need to make sure scripts are readable then send to noah to check
 ## **Next Steps:**
 *  [findZX](https://github.com/hsigeman/findZX) has potential, look through the paper
 
