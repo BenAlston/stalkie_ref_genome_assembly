@@ -20,8 +20,16 @@ Used [genomescope](http://qb.cshl.edu/genomescope/) to visualise the .histo file
 - [_D. meigenii_ Female](http://genomescope.org/analysis.php?code=4tooUMZucAlqGmV0V0E8)
 - [_D. meigenii Male_](http://genomescope.org/analysis.php?code=ISWwt723ucFqtJJKRgrT) 
 <br><br>
-* Some seem acceptable, containing two peaks, others e.g., _D. meigenii_ F have less distinct peaks, this should still be fine
-* However, est. genome size seems odd, being variable, and larger in females than males in _D. meigenii_ and _T. whitei_ and the opposite in _T. dalmanni_
+
+| file prefix | sample         |     |
+| ------------ | --------------- | ------ |
+| 200437\_1    | whitei_F        |
+| 200437\_2    | whitei_M        | Male   |
+| 200437\_3    | whitei_F_driver | Female |
+| 200437\_4    | meigenii_F      | Female |
+| 200437\_5    | meigenii_M      | Male   |
+| 200437\_6    | dalmanni_M     | Male   |
+| 200437\_7    | dalmanni_F     | Female |
 
 ## **2. Assembly with Hifiasm**
 * [Documentation](https://github.com/chhylp123/hifiasm)
@@ -73,22 +81,28 @@ Used [genomescope](http://qb.cshl.edu/genomescope/) to visualise the .histo file
 ### **Filtering with Blobtoolkit**
 * [documentation](https://github.com/blobtoolkit/blobtoolkit)
 * make a blobdir: containing the .fa file (symlinked), and a metadata .yaml file (optional)
-* Blobtools has been a pain to get working, I have been able to filter dalmanni M, which makes the assembly more contiguous by ~500, and n50 has increased from 600kb to almost 1mb
-* with noting that the genome is around 90 mb shorter now
-* however, im not sure i have done everything correctly, need to make sure scripts are readable then send to noah to check
+* Blobtools has been a pain to get working, I have been able to filter dalmanni M, which makes the assembly more contiguous by ~500, and n50 has increased from 600kb to almost 1mb. The genome is around 90 mb shorter now.
+* however, im not sure i have done everything correctly, going to chat with noah about this next week.
+* For now, try and get megablast working, then focus on other stuff
+#### Blast
+* Remote searches take too long, so installing the Blast nt db
 
 ### **Alternatives to Blobtoolkit**
 * [FCS-GX](https://github.com/ncbi/fcs/wiki/FCS-GX) is NCBIs contaminant removal tool. Looks good but requires installing a 470GB reference dataset.
 
+## **Purge Dups**
+* [Documentation](https://github.com/dfguan/purge_dups)
+* First running this pipeline on whitei F (sample 1) since its busco dup is 35%
+
+
 ## **Next Steps:**
 *  [findZX](https://github.com/hsigeman/findZX) has potential, look through the paper
 
-1. running busco for whitei_F
-2. use blobtools to remove contamination 
+
+1. Get blobtools working
 3. use inspector for qc
 4. extract mt genomes
-5. remap reads to genome
-6. run jellyfish again
+6. running jellyfish again doesn't work, try harder to make it work
 7. use samtools to determine proportion of reads that map
 8. map short-read data
 9. use samtools to look at coverage
