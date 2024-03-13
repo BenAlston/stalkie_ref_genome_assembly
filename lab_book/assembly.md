@@ -110,7 +110,7 @@ source activate blast
 
 ln -s /mnt/parscratch/users/bip23bta/ref_genomes/dalmanni/02-hifiasm/6_hifiasm_output/6_primary
 
-# splits a given fasta file into 100 smaller ones
+# splits a given fasta file into 500 smaller ones
 fasta-splitter --n-parts 500 $input_file --nopad --out-dir split
 
 # count number of seqs in the output and make sure it sums to the same as original:
