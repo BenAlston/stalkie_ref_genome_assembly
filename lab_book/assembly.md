@@ -73,7 +73,7 @@ Used [genomescope](http://qb.cshl.edu/genomescope/) to visualise the .histo file
 * Used a docker/apptainer image
 * ran [busco.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/busco.sh), takes ~10-20 mins
 * see [busco output](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/lab_book/Data/BUSCO_output)
-* very high duplication in T. dalmanni M, see if this is consistent across all species
+* very high duplication across all species, completeness is ok
 
 ### **Alignment With Miniap2**
 * [Documentation](https://github.com/lh3/minimap2)
