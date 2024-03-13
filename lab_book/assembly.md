@@ -98,7 +98,7 @@ Used [genomescope](http://qb.cshl.edu/genomescope/) to visualise the .histo file
 * For now, try and get megablast working, then focus on other stuff
 #### Blast
 * Remote searches take too long, so installing the Blast nt db
-* only 500gb, installed using docker [image blast_nt_bd.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/scripts/blast_nt_db.sh)
+* only 500gb, installed using docker image [blast_nt_bd.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/scripts/blast_nt_db.sh)
 * Script ran overnight, has takes around an hour per seq, so would take tens of days for all 2400 contigs
 * need to parralelize
 
