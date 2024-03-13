@@ -57,6 +57,18 @@ Used [genomescope](http://qb.cshl.edu/genomescope/) to visualise the .histo file
 * [output files documentation](https://hifiasm.readthedocs.io/en/latest/interpreting-output.html)
 * duplication looks very high across the board, not very contiguous
 
+
+| sample          | est_size         | primary_assembly_size | busco_completeness | busco_dup | contigs |
+|-----------------|------------------|-----------------------|--------------------|-----------|---------|
+| whitei_f        |        597436869 | 761502157             | 95.8               | 35.6      | 7589    |
+| whitei_m        | 424970908        | 730392625             | 95.1               | 25.6      | 6466    |
+| whitei_f_driver |        584931232 | 731617842             | 95.7               | 42.3      | 6774    |
+| dalmani_f       |        533280821 | 609130602             | 97.3               | 4.9       | 2425    |
+| dalmani_m       | 657136228        | 700361654             | 97.8               | 25.7      | 2913    |
+| meigenii_f      |        694112101 | 694692253             | 96.4               | 28.6      | 3136    |
+| meigenii_m      | 477607885        | 742331081             | 96.3               | 16.9      | 3064    |
+
+
 ### **Inital QC with BUSCO**
 * Used a docker/apptainer image
 * ran [busco.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/busco.sh), takes ~10-20 mins
@@ -86,6 +98,34 @@ Used [genomescope](http://qb.cshl.edu/genomescope/) to visualise the .histo file
 * For now, try and get megablast working, then focus on other stuff
 #### Blast
 * Remote searches take too long, so installing the Blast nt db
+* only 500gb, installed using docker [image blast_nt_bd.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/scripts/blast_nt_db.sh)
+* Script ran overnight, has takes around an hour per seq, so would take tens of days for all 2400 contigs
+* need to parralelize
+
+Split assembly into 500 smaller fasta files:
+~~~
+module load Anaconda3/2022.05
+source activate blast
+
+
+ln -s /mnt/parscratch/users/bip23bta/ref_genomes/dalmanni/02-hifiasm/6_hifiasm_output/6_primary
+
+# splits a given fasta file into 100 smaller ones
+fasta-splitter --n-parts 500 $input_file --nopad --out-dir split
+
+# count number of seqs in the output and make sure it sums to the same as original:
+grep -c ">" out/6_primary.* | awk -F: '{total += $2} END {print "Total:", total}'
+~~~
+
+
+run blast on each using an array script, [blast_par.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/scripts/blast_par.sh)
+
+then condense into a single blast output file and remove temp files:
+~~~
+# when blast script has run concentrate all outputs into one file
+cat out/* >> all_blast.out
+# should also write a script to remove the temp files
+~~~
 
 ### **Alternatives to Blobtoolkit**
 * [FCS-GX](https://github.com/ncbi/fcs/wiki/FCS-GX) is NCBIs contaminant removal tool. Looks good but requires installing a 470GB reference dataset.
