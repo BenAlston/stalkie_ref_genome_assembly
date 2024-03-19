@@ -96,7 +96,9 @@ Used [genomescope](http://qb.cshl.edu/genomescope/) to visualise the .histo file
 * Blobtools has been a pain to get working, I have been able to filter dalmanni M, which makes the assembly more contiguous by ~500, and n50 has increased from 600kb to almost 1mb. The genome is around 90 mb shorter now.
 * however, im not sure i have done everything correctly, going to chat with noah about this next week.
 * For now, try and get megablast working, then focus on other stuff
-#### Blast
+* Made blast work and generated coverage files, these cant be added to the blobdir, "see blobtools not working.sh" for errors
+
+### **Blast**
 * Remote searches take too long, so installing the Blast nt db
 * only 500gb, installed using docker image [blast_nt_bd.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/scripts/blast_nt_db.sh)
 * Script ran overnight, has takes around an hour per seq, so would take tens of days for all 2400 contigs
