@@ -68,8 +68,15 @@ Conda environment
 module load Anaconda3
 conda create -n $name bioconda::$package
 conda activate $env
+
+# or
+conda create -n $name
+source activate $name
+conda install bioconda::package
+
 # view a list of all installed conda envs:
 conda env list
+
 ~~~
 
 Find conda env package version
