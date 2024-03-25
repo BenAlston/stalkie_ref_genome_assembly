@@ -140,9 +140,10 @@ cat out/* >> all_blast.out
 ## **Purge Dups**
 * [Documentation](https://github.com/dfguan/purge_dups)
 * First running this pipeline on whitei F (sample 1) since its busco dup is 35%
-
-* generate config file, ran 
-
+* generate config dir, ran [purge_dups_config.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/scripts/purge_dups_config.sh)
+  - seems to work, no error or output
+  - manually modified the 1_config.json file to increase available memory (uses minimap2 so should need quite a bit)
+* 
 
 
 ## **Next Steps:**
@@ -152,7 +153,6 @@ cat out/* >> all_blast.out
 1. Get blobtools working
 3. use inspector for qc
 4. extract mt genomes
-6. running jellyfish again doesn't work, try harder to make it work
 7. use samtools to determine proportion of reads that map
 8. map short-read data
 9. use samtools to look at coverage
