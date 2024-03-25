@@ -22,7 +22,7 @@ output_dir=whitei/03-QC/purge_dups/1_config
 cd $wd
 
 ~/purge_dups/scripts/pd_config.py \
--l $output_dir/ \
--s whitei/data/long_read/*_1-*/*.fastq.gz \
+-l $output_dir \
 -n $output_dir/1_config.json \
-whitei/02-hifiasm/1_hifiasm_output/1_primary.fa
+whitei/02-hifiasm/1_hifiasm_output/1_primary.fa \
+whitei/03-QC/purge_dups/pbfofn.fofn # text file containing the direct paths to pb reads
