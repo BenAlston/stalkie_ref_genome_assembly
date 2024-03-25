@@ -90,13 +90,18 @@ Used [genomescope](http://qb.cshl.edu/genomescope/) to visualise the .histo file
 
 
 
-### **Filtering with Blobtoolkit**
+## **Filtering with Blobtoolkit**
 * [documentation](https://github.com/blobtoolkit/blobtoolkit)
-* make a blobdir: containing the .fa file (symlinked), and a metadata .yaml file (optional)
-* Blobtools has been a pain to get working, I have been able to filter dalmanni M, which makes the assembly more contiguous by ~500, and n50 has increased from 600kb to almost 1mb. The genome is around 90 mb shorter now.
-* however, im not sure i have done everything correctly, going to chat with noah about this next week.
-* For now, try and get megablast working, then focus on other stuff
-* Made blast work and generated coverage files, these cant be added to the blobdir, "see blobtools not working.sh" for errors
+* essentially takes blast output, coverage, and busco output, and filters the dataset for contamination. This program has been quite tricky to get working, considering it isn't doing anything that complext. This is probably because it does a bunch of other stuff that isn't relevant.
+
+**Ongoing:**
+* BUSCO - done
+* Blast Hits file - done for dalmanni
+* coverage (long read remapped to primary assembly) - ongoing, running into issues, likely due to lack of memory
+Error:
+~~~
+segmentation fault
+~~~  
 
 ### **Blast**
 * Remote searches take too long, so installing the Blast nt db
@@ -107,7 +112,7 @@ Used [genomescope](http://qb.cshl.edu/genomescope/) to visualise the .histo file
 Split assembly into 500 smaller fasta files:
 ~~~
 module load Anaconda3/2022.05
-source activate blast
+source activate blast # conda env contains the package "fasta splitter"
 
 
 ln -s /mnt/parscratch/users/bip23bta/ref_genomes/dalmanni/02-hifiasm/6_hifiasm_output/6_primary
@@ -124,7 +129,7 @@ run blast on each using an array script, [blast_par.sh](https://github.com/BenAl
 
 then condense into a single blast output file and remove temp files:
 ~~~
-# when blast script has run concentrate all outputs into one file
+# when blast script has run, concentrate all outputs into one file
 cat out/* >> all_blast.out
 # should also write a script to remove the temp files
 ~~~
@@ -135,6 +140,9 @@ cat out/* >> all_blast.out
 ## **Purge Dups**
 * [Documentation](https://github.com/dfguan/purge_dups)
 * First running this pipeline on whitei F (sample 1) since its busco dup is 35%
+
+* generate config file, ran 
+
 
 
 ## **Next Steps:**
