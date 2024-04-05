@@ -108,10 +108,10 @@ segmentation fault
   - All fail at: [M::worker_pipeline::1667.413*15.91] mapped 5521 sequences
   - 🤔
   - pretty sure I know what the issue is: most of the genomes are too repetative, this makes minimap2 upset
-  - re run with whitei_3 and meigenni 5 to confirm 40 and 16% dup, respectivley.
-  - meigenii_5 is 2267958, whitei_3 is the other one
-  - the plot thickens, both test samples run fine, even whitei_3 at 40% duplication, dalmanni_6 is probably corrupted
-
+  - test runs with whitei_3 and meigenni_5 to confirm. 40 and 16% dup, respectivley.
+  - the plot thickens, both test samples run fine, even whitei_3 at 40% duplication, dalmanni_6.fa is probably corrupted
+  - remade the fasta, re running dalmanni 6
+  - if this fails, generate blast files for meigenni_5 and continue with that sample
 **Summary:**
 * Encontered errors in the mapping stage probably due to the high repeat content in the genome I was trying. It is probably worth reducing the duplication levels before continuing with this bit.
 
