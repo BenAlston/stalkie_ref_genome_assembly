@@ -112,6 +112,7 @@ segmentation fault
   - the plot thickens, both test samples run fine, even whitei_3 at 40% duplication, dalmanni_6.fa is probably corrupted
   - remade the fasta, re running dalmanni 6
   - if this fails, generate blast files for meigenni_5 and continue with that sample
+
 **Summary:**
 * Encontered errors in the mapping stage probably due to the high repeat content in the genome I was trying. It is probably worth reducing the duplication levels before continuing with this bit.
 
