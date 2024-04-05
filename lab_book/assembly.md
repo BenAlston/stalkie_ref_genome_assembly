@@ -94,7 +94,7 @@ Used [genomescope](http://qb.cshl.edu/genomescope/) to visualise the .histo file
 * [documentation](https://github.com/blobtoolkit/blobtoolkit)
 * essentially takes blast output, coverage, and busco output, and filters the dataset for contamination. This program has been quite tricky to get working, considering it isn't doing anything that complext. This is probably because it does a bunch of other stuff that isn't relevant.
 
-**Ongoing:**
+## **Ongoing:**
 * BUSCO - done
 * Blast Hits file - done for dalmanni
 * coverage (long read remapped to primary assembly) - ongoing, running into issues, likely due to lack of memory
@@ -102,6 +102,19 @@ Error:
 ~~~
 segmentation fault
 ~~~  
+* Figured this was likley due to lack of memory so ran with 256 GB of ram and 32 cores
+   Still fails with segmentation fault error
+  - 83% core usage, only 12/256GB memory usage (though could be a sharp peak not recorded by the hpc)
+  - All fail at: [M::worker_pipeline::1667.413*15.91] mapped 5521 sequences
+  - 🤔
+  - pretty sure I know what the issue is: most of the genomes are too repetative, this makes minimap2 upset
+  - re run with whitei_3 and meigenni 5 to confirm 40 and 16% dup, respectivley.
+  - meigenii_5 is 2267958, whitei_3 is the other one
+  - the plot thickens, both test samples run fine, even whitei_3 at 40% duplication, dalmanni_6 is probably corrupted
+
+**Summary:**
+* Encontered errors in the mapping stage probably due to the high repeat content in the genome I was trying. It is probably worth reducing the duplication levels before continuing with this bit.
+
 
 ### **Blast**
 * Remote searches take too long, so installing the Blast nt db
