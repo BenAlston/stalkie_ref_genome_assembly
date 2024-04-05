@@ -156,7 +156,9 @@ cat out/* >> all_blast.out
 * generate config dir, ran [purge_dups_config.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/scripts/purge_dups_config.sh)
   - seems to work, no error or output
   - manually modified the 1_config.json file to increase available memory (uses minimap2 so should need quite a bit)
-* 
+
+* Got it to run, although the automatic busco doesnt work for some reason, and the output purged assembly has very clearly gone horribly wrong (40% completeness). It would be nice if the output was explained in the documentation.
+  - there dont seem to be issues with the data going in, so i probably need to tweak the parameters until the output looks good, to do this i'll need to set up the pipeline manually (instead of just running run_purge_dups.py on the config dir) this will take time
 
 
 ## **Next Steps:**
