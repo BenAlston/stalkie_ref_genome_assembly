@@ -92,7 +92,7 @@ Used [genomescope](http://qb.cshl.edu/genomescope/) to visualise the .histo file
 
 ## **Filtering with Blobtoolkit**
 * [documentation](https://github.com/blobtoolkit/blobtoolkit)
-* essentially takes blast output, coverage, and busco output, and filters the dataset for contamination. This program has been quite tricky to get working, considering it isn't doing anything that complext. This is probably because it does a bunch of other stuff that isn't relevant.
+* essentially takes blast output, coverage, and busco output, and filters the dataset for contamination. This program has been quite tricky to get working, considering it isn't doing anything that complext. This is probably because it does a bunch of other stuff that isn't relevant for what I'm doing.
 
 ## **Ongoing:**
 * BUSCO - done
@@ -114,8 +114,9 @@ segmentation fault
   - if this fails, generate blast files for meigenni_5 and continue with that sample
 
 **Summary:**
-* Encontered errors in the mapping stage probably due to the high repeat content in the genome I was trying. It is probably worth reducing the duplication levels before continuing with this bit.
-
+* Encontered errors in the mapping stage in dalmanni_6, potentially corrupted .fa file. Rerunning with a new .fa didn't fix, it seems to be from some mismatch between the dalmanni_6 .bam and .fa
+* will try the blobtools step with another assembly and see if it works
+  - blast has been run for whitei_1,2&3, so i'll try these assemblies instead
 
 ### **Blast**
 * Remote searches take too long, so installing the Blast nt db
