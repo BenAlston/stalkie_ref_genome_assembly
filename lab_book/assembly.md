@@ -97,30 +97,24 @@ Used [genomescope](http://qb.cshl.edu/genomescope/) to visualise the .histo file
 ## **Ongoing:**
 * BUSCO - done
 * Blast Hits file - done for dalmanni
-* coverage (long read remapped to primary assembly) - ongoing, running into issues, likely due to lack of memory
-Error:
-~~~
-segmentation fault
-~~~  
-* Figured this was likley due to lack of memory so ran with 256 GB of ram and 32 cores
+* coverage (long read remapped to primary assembly) - ongoing, running into issues, figured this was likley due to lack of memory so ran with 256 GB of ram and 32 cores
    Still fails with segmentation fault error
-  - 83% core usage, only 12/256GB memory usage (though could be a sharp peak not recorded by the hpc)
+  - 83% core usage, only 4% memory usage (though there could still be a sharp peak in memory usage not recorded by the hpc)
   - All fail at: [M::worker_pipeline::1667.413*15.91] mapped 5521 sequences
   - 🤔
   - pretty sure I know what the issue is: most of the genomes are too repetative, this makes minimap2 upset
   - test runs with whitei_3 and meigenni_5 to confirm. 40 and 16% dup, respectivley.
-  - the plot thickens, both test samples run fine, even whitei_3 at 40% duplication, dalmanni_6.fa is probably corrupted
+  - the plot thickens, both test samples run fine, even whitei_3 at 40% duplication, it is not due to exessive duplication, potentially dalmanni_6.fa is corrupted
   - remade the fasta, re running dalmanni 6
-  - if this fails, generate blast files for meigenni_5 and continue with that sample
-* Adding coverage - done
+  - this fails, could be an more complex issue with this sample, not going to worry for now, going to proceed using whitei_2 instead
+* **Adding coverage** - done
 * **adding blast hits** - does not work, error output is unhelpful, no one else has encountered this issue, i genuinley have no idea and have run out of stuff to try, its starting to look like i've just wasted a month trying to get this to work.
-  - rerun with a different whitei sample to see if that fixes anything
-  - no luck trying with a different sample, options: (1) try reinstalling blobtoolkit (2) redo blast, maybe i did the wrong type or version of BLAST, go over documentation and try again.
+  - rerun with a different whitei sample to see if that fixes anything - fails
+  - Options: (1) try reinstalling blobtoolkit (2) redo blast, maybe i did the wrong type or version of BLAST, go over documentation and try again
 
 **Summary:**
 * Encontered errors in the mapping stage in dalmanni_6, potentially corrupted .fa file. Rerunning with a new .fa didn't fix, it seems to be from some mismatch between the dalmanni_6 .bam and .fa
-* will try the blobtools step with another assembly and see if it works
-  - blast has been run for whitei_1,2&3, so i'll try these assemblies instead
+* Progress with whitei_2, but running into issues adding blast hits.
 
 ### **Blast**
 * Remote searches take too long, so installing the Blast nt db
