@@ -112,6 +112,10 @@ segmentation fault
   - the plot thickens, both test samples run fine, even whitei_3 at 40% duplication, dalmanni_6.fa is probably corrupted
   - remade the fasta, re running dalmanni 6
   - if this fails, generate blast files for meigenni_5 and continue with that sample
+* Adding coverage - done
+* **adding blast hits** - does not work, error output is unhelpful, no one else has encountered this issue, i genuinley have no idea and have run out of stuff to try, its starting to look like i've just wasted a month trying to get this to work.
+  - rerun with a different whitei sample to see if that fixes anything
+  - no luck trying with a different sample, options: (1) try reinstalling blobtoolkit (2) redo blast, maybe i did the wrong type or version of BLAST, go over documentation and try again.
 
 **Summary:**
 * Encontered errors in the mapping stage in dalmanni_6, potentially corrupted .fa file. Rerunning with a new .fa didn't fix, it seems to be from some mismatch between the dalmanni_6 .bam and .fa
@@ -162,6 +166,8 @@ cat out/* >> all_blast.out
 * Got it to run, although the automatic busco doesnt work for some reason, and the output purged assembly has very clearly gone horribly wrong (40% completeness). It would be nice if the output was explained in the documentation.
   - there dont seem to be issues with the data going in, so i probably need to tweak the parameters until the output looks good, to do this i'll need to set up the pipeline manually (instead of just running run_purge_dups.py on the config dir) this will take time
 
+**Manual pipeline**
+* Issues generating .paf files
 
 ## **Next Steps:**
 *  [findZX](https://github.com/hsigeman/findZX) has potential, look through the paper
