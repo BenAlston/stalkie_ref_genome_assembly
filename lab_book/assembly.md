@@ -162,6 +162,7 @@ cat out/* >> all_blast.out
 
 **Manual pipeline**
 * Issues generating .paf files
+* running paf_gen.sh, very simple, with direct filepaths, check output
 
 ## **Next Steps:**
 *  [findZX](https://github.com/hsigeman/findZX) has potential, look through the paper
