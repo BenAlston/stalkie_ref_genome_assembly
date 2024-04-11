@@ -96,7 +96,7 @@ Used [genomescope](http://qb.cshl.edu/genomescope/) to visualise the .histo file
 
 ## **Ongoing:**
 * BUSCO - done
-* Blast Hits file - done for dalmanni
+* Blast Hits - done for dalmanni and whitei
 * coverage (long read remapped to primary assembly) - ongoing, running into issues, figured this was likley due to lack of memory so ran with 256 GB of ram and 32 cores
    Still fails with segmentation fault error
   - 83% core usage, only 4% memory usage (though there could still be a sharp peak in memory usage not recorded by the hpc)
