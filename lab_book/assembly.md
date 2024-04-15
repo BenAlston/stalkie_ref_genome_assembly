@@ -136,7 +136,7 @@ cat out/* >> all_blast.out
 * **Filtering whitei_1**
 - Got blobtoolkit to filter my assemlby for only seqs matching the eukaryote blast db
 - potentially overpurging, the genome (the current T. dalmanni ref it 0.38Gb, so should be aprox this). Filtering takes my output from 0.7Gb to 0.26Gb, busco completeness also drops from 95% to 40%. Not a known issue, ask noah, make a post
-- could be a blast issue? also why filtering only Euk seqs results in 0.26GB, filtering non-Euk seqs gets 0.06Gb. 0.26 + 0.06 != 0.7 (unfiltered assembly size) 🤔
+- could be a blast issue? also filtering only Euk seqs results in 0.26GB, filtering non-Euk seqs gets 0.06Gb. 0.26 + 0.06 != 0.7 (unfiltered assembly size) 🤔
 
 **Summary:**
 * Can't add coverage for Dalmanni_6
