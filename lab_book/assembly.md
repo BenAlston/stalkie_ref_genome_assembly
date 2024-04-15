@@ -95,26 +95,15 @@ Used [genomescope](http://qb.cshl.edu/genomescope/) to visualise the .histo file
 * essentially takes blast output, coverage, and busco output, and filters the dataset for contamination. This program has been quite tricky to get working, considering it isn't doing anything that complext. This is probably because it does a bunch of other stuff that isn't relevant for what I'm doing.
 
 ## **Ongoing:**
-* BUSCO - done
-* Blast Hits - done for dalmanni and whitei
-* coverage (long read remapped to primary assembly) - ongoing, running into issues, figured this was likley due to lack of memory so ran with 256 GB of ram and 32 cores
-   Still fails with segmentation fault error
-  - 83% core usage, only 4% memory usage (though there could still be a sharp peak in memory usage not recorded by the hpc)
-  - All fail at: [M::worker_pipeline::1667.413*15.91] mapped 5521 sequences
-  - 🤔
-  - pretty sure I know what the issue is: most of the genomes are too repetative, this makes minimap2 upset
-  - test runs with whitei_3 and meigenni_5 to confirm. 40 and 16% dup, respectivley.
-  - the plot thickens, both test samples run fine, even whitei_3 at 40% duplication, it is not due to exessive duplication, potentially dalmanni_6.fa is corrupted
-  - remade the fasta, re running dalmanni 6
-  - this fails, could be an more complex issue with this sample, not going to worry for now, going to proceed using whitei_2 instead
-* **Adding coverage** - done
-* **adding blast hits** - does not work, error output is unhelpful, no one else has encountered this issue, i genuinley have no idea and have run out of stuff to try, its starting to look like i've just wasted a month trying to get this to work.
-  - rerun with a different whitei sample to see if that fixes anything - fails
-  - Options: (1) try reinstalling blobtoolkit (2) redo blast, maybe i did the wrong type or version of BLAST, go over documentation and try again
-
-**Filtering whitei_1**
-* Got blobtoolkit to filter my assemlby for only seqs matching the eukaryote blast db
-* potentially overpurging, the genome (should be 0.3-0.5Gb) and goes from 0.7Gb to 0.26Gb, busco completeness also drops from 95% to 40%
+* ran [btk.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/edit/main/scripts/btk.sh) (work in progress)
+* **Add BUSCO** - done
+* **Add Blast Hits** - done for dalmanni and whitei
+* **Add coverage **(long read remapped to primary assembly) - done for whitei_1
+  -  does not work for dalmanni_6, ruled out corrupted .fa, could complex issue with this sample, not going to worry for now, going to proceed using whitei_2 instead
+* **adding blast hits** - Done for whitei_2, but will need reworking to run efficiently on all samples
+* **Filtering whitei_1**
+- Got blobtoolkit to filter my assemlby for only seqs matching the eukaryote blast db
+- potentially overpurging, the genome (the current T. dalmanni ref it 0.38Gb, so should be aprox this). Filtering takes my output from 0.7Gb to 0.26Gb, busco completeness also drops from 95% to 40%. Not a known issue, ask noah, make a post
 
 
 **Summary:**
