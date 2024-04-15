@@ -94,23 +94,8 @@ Used [genomescope](http://qb.cshl.edu/genomescope/) to visualise the .histo file
 * [documentation](https://github.com/blobtoolkit/blobtoolkit)
 * essentially takes blast output, coverage, and busco output, and filters the dataset for contamination. This program has been quite tricky to get working, considering it isn't doing anything that complext. This is probably because it does a bunch of other stuff that isn't relevant for what I'm doing.
 
-## **Ongoing:**
-* ran [btk.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/edit/main/scripts/btk.sh) (work in progress)
-* **Add BUSCO** - done
-* **Add Blast Hits** - done for dalmanni and whitei
-* **Add coverage **(long read remapped to primary assembly) - done for whitei_1
-  -  does not work for dalmanni_6, ruled out corrupted .fa, could complex issue with this sample, not going to worry for now, going to proceed using whitei_2 instead
-* **adding blast hits** - Done for whitei_2, but will need reworking to run efficiently on all samples
-* **Filtering whitei_1**
-- Got blobtoolkit to filter my assemlby for only seqs matching the eukaryote blast db
-- potentially overpurging, the genome (the current T. dalmanni ref it 0.38Gb, so should be aprox this). Filtering takes my output from 0.7Gb to 0.26Gb, busco completeness also drops from 95% to 40%. Not a known issue, ask noah, make a post
-
-
-**Summary:**
-* Encontered errors in the mapping stage in dalmanni_6, potentially corrupted .fa file. Rerunning with a new .fa didn't fix, it seems to be from some mismatch between the dalmanni_6 .bam and .fa
-* Filtered the assembly, but more seqs than expexted are removed
-
 ### **Blast**
+* Needed for the filtering stage of btk
 * Remote searches take too long, so installing the Blast nt db
 * only 500gb, installed using docker image [blast_nt_bd.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/scripts/blast_nt_db.sh)
 * Script ran overnight, has takes around an hour per seq, so would take tens of days for all 2400 contigs
@@ -140,6 +125,24 @@ then condense into a single blast output file and remove temp files:
 cat out/* >> all_blast.out
 # should also write a script to remove the temp files
 ~~~
+
+### **Blobtoolkit pipeline:**
+* ran [btk.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/edit/main/scripts/btk.sh) (work in progress)
+* **Add BUSCO** - done
+* **Add Blast Hits** - done for dalmanni and whitei
+* **Add coverage **(long read remapped to primary assembly) - done for whitei_1
+  -  does not work for dalmanni_6, ruled out corrupted .fa, could complex issue with this sample, not going to worry for now, going to proceed using whitei_2 instead
+* **adding blast hits** - Done for whitei_2, but will need reworking to run efficiently on all samples
+* **Filtering whitei_1**
+- Got blobtoolkit to filter my assemlby for only seqs matching the eukaryote blast db
+- potentially overpurging, the genome (the current T. dalmanni ref it 0.38Gb, so should be aprox this). Filtering takes my output from 0.7Gb to 0.26Gb, busco completeness also drops from 95% to 40%. Not a known issue, ask noah, make a post
+- could be a blast issue? also why filtering only Euk seqs results in 0.26GB, filtering non-Euk seqs gets 0.06Gb. 0.26 + 0.06 != 0.7 (unfiltered assembly size) 🤔
+
+**Summary:**
+* Can't add coverage for Dalmanni_6
+* Filtered the assembly, but more seqs than expexted are removed
+
+
 
 ### **Alternatives to Blobtoolkit**
 * [FCS-GX](https://github.com/ncbi/fcs/wiki/FCS-GX) is NCBIs contaminant removal tool. Looks good but requires installing a 470GB reference dataset.
