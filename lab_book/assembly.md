@@ -112,9 +112,14 @@ Used [genomescope](http://qb.cshl.edu/genomescope/) to visualise the .histo file
   - rerun with a different whitei sample to see if that fixes anything - fails
   - Options: (1) try reinstalling blobtoolkit (2) redo blast, maybe i did the wrong type or version of BLAST, go over documentation and try again
 
+**Filtering whitei_1**
+* Got blobtoolkit to filter my assemlby for only seqs matching the eukaryote blast db
+* potentially overpurging, the genome (should be 0.3-0.5Gb) and goes from 0.7Gb to 0.26Gb, busco completeness also drops from 95% to 40%
+
+
 **Summary:**
 * Encontered errors in the mapping stage in dalmanni_6, potentially corrupted .fa file. Rerunning with a new .fa didn't fix, it seems to be from some mismatch between the dalmanni_6 .bam and .fa
-* Progress with whitei_2, but running into issues adding blast hits.
+* Filtered the assembly, but more seqs than expexted are removed
 
 ### **Blast**
 * Remote searches take too long, so installing the Blast nt db
