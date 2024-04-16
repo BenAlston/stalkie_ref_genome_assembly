@@ -3,8 +3,10 @@
 
 [Useful resource](https://github.com/alexjvr1/T.dalmanni_Genomics_of_meiotic_drive/blob/main/Electronic_Lab_Book.md#1-genome-assembly)
 
+Current _T. dalmanni_ ref is ~0.383 Gb and 3 chromosomes
+
 ## **1. Genome Size Estimation with Jellyfish**
-* memory decided via hash size (size of the genome plus seq error) T. dalmanni genome is 0.62 gb, so i'll assume 0.7 (nanoplot doesnt accept less than 1G so do that)
+* memory decided via hash size (size of the genome plus seq error) wilkinson T. dalmanni genome is 0.62 gb (edit: did not have access to the pom one at this stage) , so i'll assume 0.7 (nanoplot doesnt accept less than 1G so do that)
 * not sure what kmer size to use, 21 seems sensible 
 * jellyfish V 2.2.10
 
