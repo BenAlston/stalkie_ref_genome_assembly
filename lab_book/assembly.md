@@ -50,7 +50,7 @@ Used [genomescope](http://qb.cshl.edu/genomescope/) to visualise the .histo file
 * duplication looks very high across the board, not very contiguous
 
 
-| sample          | est_size         | primary_assembly_size | busco_completeness | busco_dup | contigs | N50 |
+| sample          | est_size         | primary_assembly_size | busco_completeness | busco_dup | contigs | N50 (Kb) |
 |-----------------|------------------|-----------------------|--------------------|-----------|---------|-----|
 | whitei_f        |        597436869 | 761502157             | 95.8               | 35.6      | 7589    | 156 |
 | whitei_m        | 424970908        | 730392625             | 95.1               | 25.6      | 6466    | 178 |
