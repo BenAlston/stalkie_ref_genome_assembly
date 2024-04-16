@@ -23,15 +23,15 @@ Used [genomescope](http://qb.cshl.edu/genomescope/) to visualise the .histo file
 - [_D. meigenii Male_](http://genomescope.org/analysis.php?code=ISWwt723ucFqtJJKRgrT) 
 <br><br>
 
-| file prefix | sample         |     |
-| ------------ | --------------- | ------ |
+| file prefix | sample         |
+| ------------ | --------------- |
 | 200437\_1    | whitei_F        |
-| 200437\_2    | whitei_M        | Male   |
-| 200437\_3    | whitei_F_driver | Female |
-| 200437\_4    | meigenii_F      | Female |
-| 200437\_5    | meigenii_M      | Male   |
-| 200437\_6    | dalmanni_M     | Male   |
-| 200437\_7    | dalmanni_F     | Female |
+| 200437\_2    | whitei_M        |
+| 200437\_3    | whitei_F_driver |
+| 200437\_4    | meigenii_F      |
+| 200437\_5    | meigenii_M      |
+| 200437\_6    | dalmanni_M     |
+| 200437\_7    | dalmanni_F     |
 
 ## **2. Assembly with Hifiasm**
 * [Documentation](https://github.com/chhylp123/hifiasm)
