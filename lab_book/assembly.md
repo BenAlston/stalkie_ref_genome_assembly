@@ -130,6 +130,20 @@ cat out/* >> all_blast.out
   - potentially overpurging, the genome (the current T. dalmanni ref it 0.38Gb, so should be aprox this). Filtering takes my output from 0.7Gb to 0.26Gb, busco completeness also drops from 95% to 40%. Not a known issue, ask noah, make a post
   - could be a blast issue? also filtering only Euk seqs results in 0.26GB, filtering non-Euk seqs gets 0.06Gb. 0.26 + 0.06 != 0.7 (unfiltered assembly size) 🤔
 
+#### **Setting Filter Parameters**
+* Need to select taxanomic level
+
+
+| Clade      | Size (Gb) | Contigs | Completeness | Duplication|
+|------------|-----------|---------|--------------|------------|
+| Unfiltered | 0.762     | 7598    | 95.8         | 35.6       |
+| Eukaryota  | 0.748     |  7481   | 95.7         | 35.6       |
+| Arthropoda | 0.742     | 7363    | 95.6         | 35.5       |
+| Diptera    | 0.715     | 6933    | 95.3         | 35.3       | 
+
+
+
+
 **Summary:**
 * Can't add coverage for Dalmanni_6
 * Filtered the assembly, but more seqs than expexted are removed
