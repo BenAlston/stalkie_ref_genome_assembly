@@ -133,7 +133,7 @@ cat out/* >> all_blast.out
 #### **Setting Filter Parameters**
 * Need to select taxanomic level
 
-
+Assemblies filtered for reads with blast hits in specific clades
 | Clade      | Size (Gb) | Contigs | Completeness | Duplication|
 |------------|-----------|---------|--------------|------------|
 | Unfiltered | 0.762     | 7598    | 95.8         | 35.6       |
