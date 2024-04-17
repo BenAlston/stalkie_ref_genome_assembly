@@ -126,9 +126,9 @@ cat out/* >> all_blast.out
   -  does not work for dalmanni_6, ruled out corrupted .fa, could complex issue with this sample, not going to worry for now, going to proceed using whitei_2 instead
 * **adding blast hits** - Done for whitei_2, but will need reworking to run efficiently on all samples
 * **Filtering whitei_1**
-- Got blobtoolkit to filter my assemlby for only seqs matching the eukaryote blast db
-- potentially overpurging, the genome (the current T. dalmanni ref it 0.38Gb, so should be aprox this). Filtering takes my output from 0.7Gb to 0.26Gb, busco completeness also drops from 95% to 40%. Not a known issue, ask noah, make a post
-- could be a blast issue? also filtering only Euk seqs results in 0.26GB, filtering non-Euk seqs gets 0.06Gb. 0.26 + 0.06 != 0.7 (unfiltered assembly size) 🤔
+  - Got blobtoolkit to filter my assemlby for only seqs matching the eukaryote blast db
+  - potentially overpurging, the genome (the current T. dalmanni ref it 0.38Gb, so should be aprox this). Filtering takes my output from 0.7Gb to 0.26Gb, busco completeness also drops from 95% to 40%. Not a known issue, ask noah, make a post
+  - could be a blast issue? also filtering only Euk seqs results in 0.26GB, filtering non-Euk seqs gets 0.06Gb. 0.26 + 0.06 != 0.7 (unfiltered assembly size) 🤔
 
 **Summary:**
 * Can't add coverage for Dalmanni_6
