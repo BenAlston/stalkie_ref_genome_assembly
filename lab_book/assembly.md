@@ -132,8 +132,7 @@ cat out/* >> all_blast.out
 
 #### **Setting Filter Parameters**
 * Need to select taxanomic level
-
-Assemblies filtered for reads with blast hits in specific clades
+* The below table was generated with: --param bestsum_$clade_rank--keys=no-hit,$clade # this keeps only reads with blast hits from that clade, and reads with no blast hits
 | Clade      | Size (Gb) | Contigs | Completeness | Duplication|
 |------------|-----------|---------|--------------|------------|
 | Unfiltered | 0.762     | 7598    | 95.8         | 35.6       |
@@ -141,12 +140,12 @@ Assemblies filtered for reads with blast hits in specific clades
 | Arthropoda | 0.742     | 7363    | 95.6         | 35.5       |
 | Diptera    | 0.715     | 6933    | 95.3         | 35.3       | 
 
-
+* mannually looked at filtered contigs (both those retained and removed), looks like blobtools is doing what it is supposed to
 
 
 **Summary:**
 * Can't add coverage for Dalmanni_6
-* Filtered the assembly, but more seqs than expexted are removed
+* Filtered the assembly to retain only euk and no blast match reads
 
 
 
