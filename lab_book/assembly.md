@@ -61,11 +61,16 @@ Used [genomescope](http://qb.cshl.edu/genomescope/) to visualise the .histo file
 | meigenii_m      | 477607885        | 742331081             | 96.3               | 16.9      | 3064    | 576 |
 
 
-### **Inital QC with BUSCO**
+### **BUSCO**
 * Used a docker/apptainer image
 * ran [busco.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/busco.sh), takes ~10-20 mins
 * see [busco output](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/lab_book/Data/BUSCO_output)
 * very high duplication across all species, completeness is ok
+
+### **Coverage**
+* genomescope plots are no longer working, will need redoing
+* Hifiasm outputs have been misplaced, rerruning for meigenii and make sure it's all working, saving the outputs somewhere sensible this time
+
 
 ### **Alignment With Miniap2**
 * [Documentation](https://github.com/lh3/minimap2)
