@@ -1,4 +1,3 @@
-
 #!/bin/bash
 #SBATCH --job-name=blast
 #SBATCH --mem=6G
@@ -10,12 +9,17 @@
 
 wd=/mnt/parscratch/users/bip23bta/ref_genomes
 species=whitei
-assembly=1
+assembly=2
+blastdb=/mnt/parscratch/users/bip23bta/ref_genomes/blast_dbs/blast_nt_db/nt
+
 
 cd $wd/$species/03-QC/blast/${assembly}_primary
 
 apptainer exec ~/blast_latest.sif \
-        blastn -db ${wd}/blast_nt_db/nt \
+        blastn -db ${blastdb} \
        -query split/${assembly}_primary.part-${SLURM_ARRAY_TASK_ID}.fa \
        -outfmt "6 qseqid staxids bitscore std" \
+       -max_target_seqs 10 \
+       -max_hsps 1 \
+       -evalue 1e-25 \
        -out blast_out/${SLURM_ARRAY_TASK_ID}_blast.out
