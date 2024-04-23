@@ -138,6 +138,7 @@ cat out/* >> all_blast.out
 #### **Setting Filter Parameters**
 * Need to select taxanomic level
 * The below table was generated with: --param bestsum_$clade_rank--keys=no-hit,$clade # this keeps only reads with blast hits from that clade, and reads with no blast hits
+
 | Clade      | Size (Gb) | Contigs | Completeness | Duplication|
 |------------|-----------|---------|--------------|------------|
 | Unfiltered | 0.762     | 7598    | 95.8         | 35.6       |
@@ -169,7 +170,9 @@ cat out/* >> all_blast.out
 
 **Manual pipeline**
 * Issues generating .paf files
-* running paf_gen.sh, very simple, with direct filepaths, check output
+* running paf_gen.sh - works
+* 
+
 
 ## **Next Steps:**
 *  [findZX](https://github.com/hsigeman/findZX) has potential, look through the paper
