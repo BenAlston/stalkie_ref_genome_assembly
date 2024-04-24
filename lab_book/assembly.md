@@ -98,23 +98,8 @@ Used [genomescope](http://qb.cshl.edu/genomescope/) to visualise the .histo file
 * Script ran overnight, has takes around an hour per seq, so would take tens of days for all 2400 contigs
 * need to parralelize
 
-Split assembly into 500 smaller fasta files:
-~~~
-module load Anaconda3/2022.05
-source activate blast # conda env contains the package "fasta splitter"
-
-
-ln -s /mnt/parscratch/users/bip23bta/ref_genomes/dalmanni/02-hifiasm/6_hifiasm_output/6_primary
-
-# splits a given fasta file into 500 smaller ones
-fasta-splitter --n-parts 500 $input_file --nopad --out-dir split
-
-# count number of seqs in the output and make sure it sums to the same as original:
-grep -c ">" out/6_primary.* | awk -F: '{total += $2} END {print "Total:", total}'
-~~~
-
-
-run blast on each using an array script, [blast_par.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/scripts/blast_par.sh)
+* split fasta into 500 smaller files: ran [fasta_splitter.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/fasta_splitter.sh)
+* ran blast on each using an array script, [blast_par.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/scripts/blast_par.sh)
 
 then condense into a single blast output file and remove temp files:
 ~~~
