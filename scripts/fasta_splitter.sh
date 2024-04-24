@@ -17,7 +17,6 @@
 module load Anaconda3/2022.05
 source activate blast # conda env contains the package "fasta splitter"
 
-
 species=whitei
 assembly=2
 wd=/mnt/parscratch/users/bip23bta/ref_genomes/$species
@@ -33,3 +32,6 @@ ln -s $INPUT_ASSEMBLY
 
 # splits a given fasta file into 500 smaller ones
 fasta-splitter --n-parts 500 $(basename $INPUT_ASSEMBLY) --nopad --out-dir split
+
+# make output directory for blast_par.sh. This next script will fail if you do not do this.
+mkdir blast_out
