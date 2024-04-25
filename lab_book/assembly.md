@@ -113,7 +113,7 @@ cat out/* >> all_blast.out
 * **Add BUSCO** - done
 * **Add Blast Hits** - done for dalmanni and whitei
 * **Add coverage** (long read remapped to primary assembly) - done for whitei_1
-  -  does not work for dalmanni_6, ruled out corrupted .fa, could complex issue with this sample, not going to worry for now, going to proceed using whitei_2 instead
+  -  does not work for dalmanni_6, ruled out corrupted .fa, could be a complex issue with this sample, not going to worry for now, going to proceed using whitei_2 instead
 * **adding blast hits** - Done for whitei_2, but will need reworking to run efficiently on all samples
 * **Filtering whitei_1**
   - Got blobtoolkit to filter my assemlby for only seqs matching the eukaryote blast db
@@ -156,8 +156,11 @@ cat out/* >> all_blast.out
 **Manual pipeline**
 * Issues generating .paf files
 * running paf_gen.sh - works
-* 
+* ran the pipeline, on whitei_1
 
+|              | length | contigs | dup (%)| Conpleteness (%) | n50 |
+| pre purging  | 
+| post purging | 0.475 | 4653     | 3.3    | 90.9             | 161 |
 
 ## **Next Steps:**
 *  [findZX](https://github.com/hsigeman/findZX) has potential, look through the paper
