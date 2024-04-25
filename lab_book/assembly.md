@@ -158,8 +158,10 @@ cat out/* >> all_blast.out
 * running paf_gen.sh - works
 * ran the pipeline, on whitei_1
 
-|              | length | contigs | dup (%)| Conpleteness (%) | n50 |
-| pre purging  | 
+whitei_1 pre and post purge_dups_manual.sh
+|              | length (gb) | contigs | dup (%)| Conpleteness (%) | n50 |
+| -------------|-------|---------|--------|------------------|-----|
+| pre purging  | 0.762  | 7589     |  35.6  |   95.8            | 156 |
 | post purging | 0.475 | 4653     | 3.3    | 90.9             | 161 |
 
 ## **Next Steps:**
