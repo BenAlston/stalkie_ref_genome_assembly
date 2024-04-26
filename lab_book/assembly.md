@@ -69,9 +69,11 @@ Current _T. dalmanni_ ref is ~0.383 Gb and 3 chromosomes
 ## **Filtering Contamination with Blobtoolkit**
 * [documentation](https://github.com/blobtoolkit/blobtoolkit)
 * essentially takes blast output, coverage, and busco output, and filters the dataset for contamination
-
+* Needs:
+  - blast.out file (generated in [blast_par.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/scripts/blast_par.sh))
+  - coverage (generated in [blobtoolkit.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/edit/main/scripts/blobtoolkit.sh))
+  - busco (generated in [blast_par.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/scripts/busco.sh))
 ### **Blast**
-* Needed for the filtering stage of btk
 
 **Installing local blast database**
 * Remote searches take too long, so installed the local Blast nt db ([using blast_nt_db.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/blast_nt_db.sh)), this takes up ~500GB of space
