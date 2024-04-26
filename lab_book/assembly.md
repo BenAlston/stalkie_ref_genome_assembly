@@ -50,15 +50,17 @@ Used [genomescope](http://qb.cshl.edu/genomescope/) to visualise the .histo file
 * duplication looks very high across the board, not very contiguous
 
 
-| sample          | est_size         | primary_assembly_size | busco_completeness | busco_dup | contigs | N50 (Kb) |
-|-----------------|------------------|-----------------------|--------------------|-----------|---------|-----|
-| whitei_f        |        597436869 | 761502157             | 95.8               | 35.6      | 7589    | 156 |
-| whitei_m        | 424970908        | 730392625             | 95.1               | 25.6      | 6466    | 178 |
-| whitei_f_driver |        584931232 | 731617842             | 95.7               | 42.3      | 6774    | 178 |
-| dalmani_f       |        533280821 | 609130602             | 97.3               | 4.9       | 2425    | 998 |
-| dalmani_m       | 657136228        | 700361654             | 97.8               | 25.7      | 2913    | 687 |
-| meigenii_f      |        694112101 | 694692253             | 96.4               | 28.6      | 3136    | 463 |
-| meigenii_m      | 477607885        | 742331081             | 96.3               | 16.9      | 3064    | 576 |
+|sample| info         | est_size         | primary_assembly_size | busco_completeness | busco_dup | contigs | N50 (Kb) |
+|-----|-----------------|------------------|-----------------------|--------------------|-----------|---------|-----|
+| whitei_1 | female       |        597436869 | 761502157             | 95.8               | 35.6      | 7589    | 156 |
+| whitei_2 | male       | 424970908        | 730392625             | 95.1               | 25.6      | 6466    | 178 |
+| whitei_3 | female,potential driver |        584931232 | 731617842             | 95.7               | 42.3      | 6774    | 178 |
+| meigenii_4 | female      |        694112101 | 694692253             | 96.4               | 28.6      | 3136    | 463 |
+| meigenii_5 | male     | 477607885        | 742331081             | 96.3               | 16.9      | 3064    | 576 |
+|dalmanni_6 | male       | 657136228        | 700361654             | 97.8               | 25.7      | 2913    | 687 |
+| dalmanni_7 | female       |        533280821 | 609130602             | 97.3               | 4.9       | 2425    | 998 |
+
+
 
 
 ### **BUSCO**
@@ -128,6 +130,7 @@ cat out/* >> all_blast.out
 |------------|-----------|---------|--------------|------------|
 | Unfiltered | 0.762     | 7598    | 95.8         | 35.6       |
 | Eukaryota  | 0.748     |  7481   | 95.7         | 35.6       |
+| Metazoa    | 0.
 | Arthropoda | 0.742     | 7363    | 95.6         | 35.5       |
 | Diptera    | 0.715     | 6933    | 95.3         | 35.3       | 
 
@@ -136,9 +139,7 @@ cat out/* >> all_blast.out
 
 **Summary:**
 * Can't add coverage for Dalmanni_6
-* Filtered the assembly to retain only euk and no blast match reads
-
-
+* ran [blobtoolkit.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/new/main/scripts/blobtoolkit.sh), filtered the assembly to retain only metazoan and no blast match reads
 
 ### **Alternatives to Blobtoolkit**
 * [FCS-GX](https://github.com/ncbi/fcs/wiki/FCS-GX) is NCBIs contaminant removal tool. Looks good but requires installing a 470GB reference dataset.
@@ -173,8 +174,6 @@ in purge_dups_man_1 & 2.sh, the line: 'minimap2 -xasm5 -DP ${REF}.split ${REF}.s
 *  [findZX](https://github.com/hsigeman/findZX) has potential, look through the paper
 
 
-1. Get blobtools working
-3. use inspector for qc
 4. extract mt genomes
 7. use samtools to determine proportion of reads that map
 8. map short-read data
