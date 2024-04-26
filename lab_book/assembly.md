@@ -72,7 +72,7 @@ Current _T. dalmanni_ ref is ~0.383 Gb and 3 chromosomes
 * Needs:
   - blast.out file (generated in [blast_par.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/scripts/blast_par.sh))
   - coverage (generated in [blobtoolkit.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/edit/main/scripts/blobtoolkit.sh))
-  - busco (generated in [blast_par.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/scripts/busco.sh))
+  - busco (generated in [busco.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/scripts/busco.sh))
 ### **Blast**
 
 **Installing local blast database**
