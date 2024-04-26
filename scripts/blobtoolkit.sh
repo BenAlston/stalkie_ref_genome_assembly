@@ -5,6 +5,14 @@
 #SBATCH -e reports/error_blobtoolkit.%J.txt
 #SBATCH -o reports/output_blobtoolkit.%J.txt
 
+#########################################################################################
+#	Script Name: blobtoolkit.sh
+#	Description: Runs blobtoolkit and filters an assembly to retain only contigs with metazoan blast hits or no blast hits
+#                   Then runs BUSCO on the output
+#	Author:      Ben Alston
+#	Date:        April 2024
+#########################################################################################
+
 # needed modules: blobtoolkit2/3.1.6 samtools/1.17 minimap2/2.22-r1101
 # blobtoolkit itself is called by an apptainer image (due to issues installing through conda)
 
