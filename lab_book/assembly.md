@@ -13,7 +13,7 @@ Current _T. dalmanni_ ref is ~0.383 Gb and 3 chromosomes
 * [genomescope plots](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/lab_book/Data/jellyfish_histos%20)
 
 
-## **Assembly with Hifiasm**
+# **Assembly with Hifiasm**
 * [Documentation](https://github.com/chhylp123/hifiasm)
 * Ran [hifiasm.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/hifiasm.sh) (Hifiasm V 0.16.1), takes ~10-12 hrs
 
@@ -63,7 +63,7 @@ Current _T. dalmanni_ ref is ~0.383 Gb and 3 chromosomes
 * genomescope plots are no longer working, will need redoing
 * Hifiasm outputs have been misplaced, rerruning for meigenii and make sure it's all working, saving the outputs somewhere sensible this time
 
-## Cleaning Assemblies
+# Cleaning Assemblies
 * The current plan is to remove contamination using blobtoolkit, then remove duplicated haplotypes using purge_dups
 
 ## **Filtering Contamination with Blobtoolkit**
