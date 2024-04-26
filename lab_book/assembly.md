@@ -158,12 +158,16 @@ cat out/* >> all_blast.out
 * running paf_gen.sh - works
 * ran the pipeline, on whitei_1
 
-whitei_1 pre and post purge_dups_manual.sh
-|              | length (gb) | contigs | dup (%)| Conpleteness (%) | n50 |
+whitei_1 pre and post purge_dups_manual.sh so only one round of purge_dups, running 2nd round with purge_dups_manual_2.sh to see if this improves things
+|              | length (gb) | contigs | dup (%)| Conpleteness (%) | n50 (kb) |
 | -------------|-------|---------|--------|------------------|-----|
 | pre purging  | 0.762  | 7589     |  35.6  |   95.8            | 156 |
 | post purging | 0.475 | 4653     | 3.3    | 90.9             | 161 |
 
+in purge_dups_man_1 & 2.sh, the line: 'minimap2 -xasm5 -DP ${REF}.split ${REF}.split | gzip -c - > $(basename $REF).split.self.paf.gz', check -xasm5 is correct here
+
+
+* this is promising, but will need to change parameters to find the right balance of puring and completeness
 ## **Next Steps:**
 *  [findZX](https://github.com/hsigeman/findZX) has potential, look through the paper
 
