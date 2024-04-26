@@ -35,9 +35,9 @@ Current _T. dalmanni_ ref is ~0.383 Gb and 3 chromosomes
 | ST8       | 200437\_6    | T.dalmanni      | Male   |
 | ST9       | 200437\_7    | T.dalmanni      | Female |
 
-### **Hifiasm output**
+### **Initial Hifiasm Assemblies**
 * [output files documentation](https://hifiasm.readthedocs.io/en/latest/interpreting-output.html)
-* duplication looks very high across the board, not very contiguous
+* duplication looks very high across the board, not very contiguous, also a lot larger than expected
 
 
 |sample| info         | est_size         | primary_assembly_size | busco_completeness | busco_dup | contigs | N50 (Kb) |
@@ -59,25 +59,12 @@ Current _T. dalmanni_ ref is ~0.383 Gb and 3 chromosomes
 * see [busco output](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/lab_book/Data/BUSCO_output)
 * very high duplication across all species, completeness is ok
 
-### **Coverage**
+### **Checking Coverage is as Expected**
 * genomescope plots are no longer working, will need redoing
 * Hifiasm outputs have been misplaced, rerruning for meigenii and make sure it's all working, saving the outputs somewhere sensible this time
 
-
-### **Alignment With Miniap2**
-* [Documentation](https://github.com/lh3/minimap2)
-
-| Sample ID | aligned | Species         | Sex    |
-| --------- | ------------ | --------------- | ------ |
-| 1       | y    | C.whitei        | Female |
-| 2       | n    | C.whitei        | Male   |
-| 3       | n    | C.whitei Driver | Female |
-| 4       | y    | D.meigenii      | Female |
-| 5       | n    | D.meigenii      | Male   |
-| 6       | y    | T.dalmanni      | Male   |
-| 7       | n    | T.dalmanni      | Female |
-
-
+## Cleaning Assemblies
+* The current plan is to remove contamination using blobtoolkit, then remove duplicated haplotypes using purge_dups
 
 ## **Filtering Contamination with Blobtoolkit**
 * [documentation](https://github.com/blobtoolkit/blobtoolkit)
@@ -88,12 +75,12 @@ Current _T. dalmanni_ ref is ~0.383 Gb and 3 chromosomes
 
 **Installing local blast database**
 * Remote searches take too long, so installed the local Blast nt db ([using blast_nt_db.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/blast_nt_db.sh)), this takes up ~500GB of space
-* Blasting all 2-3000 contigs in my assemblies takes too long unless it is parallelised
+* Blasting my highly contiguous assemblies will take too long unless it is parallelised
 
 **Parallelising Blast**
 * split my assembly fasta into 500 smaller files: ran [fasta_splitter.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/fasta_splitter.sh)
 * ran blast on each using an array script, [blast_par.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/scripts/blast_par.sh)
-# Then I condensed these blast output files into a single file:
+* Then I condensed these blast output files into a single file:
 ~~~
 cat out/* >> all_blast.out
 ~~~
