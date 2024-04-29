@@ -62,7 +62,9 @@ Current _T. dalmanni_ ref is ~0.383 Gb and 3 chromosomes
 ### **Checking Coverage is as Expected**
 * genomescope plots are no longer working, will need redoing
 * Hifiasm outputs have been misplaced, rerruning for meigenii and make sure it's all working, saving the outputs somewhere sensible this time
+* meigenii_4: peak_hom: 29; peak_het: 16, matches my jellyfish output, i'll check the other ones to make sure as well
 
+* 
 # Cleaning Assemblies
 * The current plan is to remove contamination using blobtoolkit, then remove duplicated haplotypes using purge_dups
 
