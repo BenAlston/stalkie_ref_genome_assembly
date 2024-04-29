@@ -116,12 +116,9 @@ cat out/* >> all_blast.out
 ## **Purge Dups**
 * [Documentation](https://github.com/dfguan/purge_dups)
 * First running this pipeline on whitei F (sample 1) since its busco dup is 35%
-* generate config dir, ran [purge_dups_config.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/scripts/purge_dups_config.sh)
-  - seems to work, no error or output
-  - manually modified the 1_config.json file to increase available memory (uses minimap2 so should need quite a bit)
-
-* Got it to run, although the automatic busco doesnt work for some reason, and the output purged assembly has very clearly gone horribly wrong (40% completeness). It would be nice if the output was explained in the documentation.
-  - there dont seem to be issues with the data going in, so i probably need to tweak the parameters until the output looks good, to do this i'll need to set up the pipeline manually (instead of just running run_purge_dups.py on the config dir) this will take time
+*
+* Ran through generating a config directory (using [purge_dups_config.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/scripts/purge_dups_config.sh)), the output purged assembly has very clearly gone horribly wrong (40% completeness). It would be nice if the output was explained in the documentation.
+* Ran the manual pipeline instead, so I can manually control parameters.
 
 **Manual pipeline**
 * Issues generating .paf files
