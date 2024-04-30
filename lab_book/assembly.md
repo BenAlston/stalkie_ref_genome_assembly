@@ -63,8 +63,8 @@ Current _T. dalmanni_ ref is ~0.383 Gb and 3 chromosomes
 * genomescope plots are no longer working, will need redoing
 * Hifiasm outputs have been misplaced, rerruning for meigenii and make sure it's all working, saving the outputs somewhere sensible this time
 * meigenii_4: peak_hom: 29; peak_het: 16, matches my jellyfish output, i'll check the other ones to make sure as well
+* meigenii_5: running
 
-* 
 # Cleaning Assemblies
 * The current plan is to remove contamination using blobtoolkit, then remove duplicated haplotypes using purge_dups
 
@@ -123,7 +123,8 @@ cat out/* >> all_blast.out
 **Manual pipeline**
 * Issues generating .paf files
 * running paf_gen.sh - works
-* ran the pipeline, on whitei_1
+* ran the pipeline, on whitei_1 - sort of
+  - the round 2 cutoffs and coverage information are empty, cannot generate a histogram from it. This may be a scripting issue, planning on running each step seperatley to confirm the issue, starting with remapping, the round 2 .paf.gz files look far too small, redo this step first.
 
 whitei_1 pre and post purge_dups_manual.sh
 |              | length (gb) | contigs | dup (%)| Conpleteness (%) | n50 (kb) |
