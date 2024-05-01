@@ -63,7 +63,9 @@ Current _T. dalmanni_ ref is ~0.383 Gb and 3 chromosomes
 * genomescope plots are no longer working, will need redoing
 * Hifiasm outputs have been misplaced, rerruning for meigenii and make sure it's all working, saving the outputs somewhere sensible this time
 * meigenii_4: peak_hom: 29; peak_het: 16, matches my jellyfish output, i'll check the other ones to make sure as well
-* meigenii_5: running
+* dalmanni_7 is also fine.
+* meigenii_5: issues:  peak_hom: 23; peak_het: -1. Wat. Will need to look into this
+* dalmanni_6: similar issues, but also will not generate an assembly, rerruning to double check
 
 # Cleaning Assemblies
 * The current plan is to remove contamination using blobtoolkit, then remove duplicated haplotypes using purge_dups
@@ -75,6 +77,8 @@ Current _T. dalmanni_ ref is ~0.383 Gb and 3 chromosomes
   - blast.out file (generated in [blast_par.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/scripts/blast_par.sh))
   - coverage (generated in [blobtoolkit.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/edit/main/scripts/blobtoolkit.sh))
   - busco (generated in [busco.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/scripts/busco.sh))
+* the script is now up and running and ready to be used on any sample
+
 ### **Blast**
 
 **Installing local blast database**
@@ -115,8 +119,9 @@ cat out/* >> all_blast.out
 
 ## **Purge Dups**
 * [Documentation](https://github.com/dfguan/purge_dups)
+* purges haplotigs using coverage and sequence similarity info
 * First running this pipeline on whitei F (sample 1) since its busco dup is 35%
-*
+
 * Ran through generating a config directory (using [purge_dups_config.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/scripts/purge_dups_config.sh)), the output purged assembly has very clearly gone horribly wrong (40% completeness). It would be nice if the output was explained in the documentation.
 * Ran the manual pipeline instead, so I can manually control parameters.
 
@@ -124,7 +129,7 @@ cat out/* >> all_blast.out
 * Issues generating .paf files
 * running paf_gen.sh - works
 * ran the pipeline, on whitei_1 - sort of
-  - the round 2 cutoffs and coverage information are empty, cannot generate a histogram from it. This may be a scripting issue, planning on running each step seperatley to confirm the issue, starting with remapping, the round 2 .paf.gz files look far too small, redo this step first.
+  - the round 2 cutoffs and coverage information are empty, cannot generate a histogram from it. This may be a scripting issue, planning on running each step seperatley to confirm the issue, starting with remapping, the round 2 .paf.gz files look far too small, redo this step first. - running
 
 whitei_1 pre and post purge_dups_manual.sh
 |              | length (gb) | contigs | dup (%)| Conpleteness (%) | n50 (kb) |
@@ -133,10 +138,12 @@ whitei_1 pre and post purge_dups_manual.sh
 | purge_dups round 1  | 0.475    | 4653      | 3.3    | 90.9     | 161 |
 | purge_dups round 2  | 0.542    | 5156      | 1.2    | 95.4     | 177 |
 
-in purge_dups_man_1 & 2.sh, the line: 'minimap2 -xasm5 -DP ${REF}.split ${REF}.split | gzip -c - > $(basename $REF).split.self.paf.gz', check -xasm5 is correct here
-* need to make sure purge_dups is doing everything correctly
-* set up the script to run on all sampes
-* running job  2488718
+in purge_dups_man_1 & 2.sh, the line: 'minimap2 -xasm5 -DP ${REF}.split ${REF}.split | gzip -c - > $(basename $REF).split.self.paf.gz', 
+
+**Summary**
+* pipeline runs but cutoff and coverage files are empty for round 2, potentially an issue with mapping reads to the round_1 ref
+* need to decide on cutoffs - reread the forum post, get the script working (so i know the issues im having arent user error), then email the dev
+
 ## **Next Steps:**
 *  [findZX](https://github.com/hsigeman/findZX) has potential, look through the paper
 
