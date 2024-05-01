@@ -142,6 +142,7 @@ in purge_dups_man_1 & 2.sh, the line: 'minimap2 -xasm5 -DP ${REF}.split ${REF}.s
 
 **Summary**
 * pipeline runs but cutoff and coverage files are empty for round 2, potentially an issue with mapping reads to the round_1 ref
+  - the filessizes and names for the lr mapping files seem off, im remapping eveything manually to see if it fixes anything
 * need to decide on cutoffs - reread the forum post, get the script working (so i know the issues im having arent user error), then email the dev
 
 ## **Next Steps:**
