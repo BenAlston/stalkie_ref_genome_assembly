@@ -1,6 +1,22 @@
 
 # **Useful HPC Stuff**
 
+Install a text editor that is not awful
+~~~
+# nano has limited features and vim requires too much time investment to use efficiently
+# micro seems like a nice compromise
+# in your home dir:
+mkdir ~/bin && cd
+curl https://getmic.ro | bash
+cd ..
+# then edit your .bashrc file (also in home dir)
+nano .bashrc
+# add this line to the file:
+export PATH=$PATH:~/bin
+# now micro can be called anywhere with:
+micro $file
+~~~
+
 Download files directly to HPC: 
 
 ~~~
