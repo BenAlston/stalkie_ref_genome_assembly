@@ -1,7 +1,7 @@
 
 # **Useful HPC Stuff**
 
-Install a text editor that is not awful
+Installing a text editor that is not awful
 ~~~
 # nano has limited features and vim requires too much time investment to use efficiently
 # micro seems like a nice compromise
