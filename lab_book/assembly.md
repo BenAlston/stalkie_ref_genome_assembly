@@ -67,6 +67,7 @@ Current _T. dalmanni_ ref is ~0.383 Gb and 3 chromosomes
 * meigenii_5: issues:  peak_hom: 23; peak_het: -1. Wat. Will need to look into this
 * dalmanni_6: similar issues, but also will not generate an assembly, rerruning to double check
   - forums suggested this was due to low coverage, but my coverage extimate of 59 suggests this isn't the case
+  - now re running a very old hifiasm script that worked initially, this may help me narrow down the issue - forgot to add enough memory cause I am stupid, rerunning again.
 
 # Cleaning Assemblies
 * The current plan is to remove contamination using blobtoolkit, then remove duplicated haplotypes using purge_dups
