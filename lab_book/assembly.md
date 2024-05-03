@@ -68,6 +68,7 @@ Current _T. dalmanni_ ref is ~0.383 Gb and 3 chromosomes
 * dalmanni_6: similar issues, but also will not generate an assembly, rerruning to double check
   - forums suggested this was due to low coverage, but my coverage extimate of 59 suggests this isn't the case
   - now re running a very old hifiasm script that worked initially, this may help me narrow down the issue - forgot to add enough memory cause I am stupid, rerunning again.
+* -1 het peak shouldn't be an issue. [see this thread](https://github.com/chhylp123/hifiasm/issues/245)
 
 # Cleaning Assemblies
 * The current plan is to remove contamination using blobtoolkit, then remove duplicated haplotypes using purge_dups
@@ -104,6 +105,10 @@ cat out/* >> all_blast.out
 #### **Setting Filter Parameters**
 * Need to select appropriate taxanomic level to filter
 * The below table was generated with: --param bestsum_$clade_rank--keys=no-hit,$clade # this keeps only reads with blast hits from that clade, and reads with no blast hits
+  - the filessizes and names for the lr mapping files seem off, im remapping eveything manually to see if it fixes anything
+  - floating point error when generating calcuts, probably due to PB.stats containing only 0s
+* need to decide on cutoffs - reread the forum post, get the script working (so i know the issues im having arent user error), then email the dev
+
 
 | Clade      | Size (Gb) | Contigs | Completeness | Duplication|
 |------------|-----------|---------|--------------|------------|
@@ -132,6 +137,9 @@ cat out/* >> all_blast.out
 * running paf_gen.sh - works
 * ran the pipeline, on whitei_1 - sort of
   - the round 2 cutoffs and coverage information are empty, cannot generate a histogram from it. This may be a scripting issue, planning on running each step seperatley to confirm the issue, starting with remapping, the round 2 .paf.gz files look far too small, redo this step first. - running
+  - generated round_1 read mapped .paf files as one, cause thats what alex's script does. seeing if this gives me coverage info - it does not
+  - rerunning with different mapping parameters: -xasm20 instead of map-hifi since that is what is in the documentaiton
+  - looks like the issue might be the -a argument (which specifies output is a .sam), so my .paf files were actually .sam files in disguise. Rerunning with this flag removed
 
 whitei_1 pre and post purge_dups_manual.sh
 |              | length (gb) | contigs | dup (%)| Conpleteness (%) | n50 (kb) |
@@ -144,9 +152,7 @@ in purge_dups_man_1 & 2.sh, the line: 'minimap2 -xasm5 -DP ${REF}.split ${REF}.s
 
 **Summary**
 * pipeline runs but cutoff and coverage files are empty for round 2, potentially an issue with mapping reads to the round_1 ref
-  - the filessizes and names for the lr mapping files seem off, im remapping eveything manually to see if it fixes anything
-  - floating point error when generating calcuts, probably due to PB.stats containing only 0s
-* need to decide on cutoffs - reread the forum post, get the script working (so i know the issues im having arent user error), then email the dev
+
 
 ## **Next Steps:**
 *  [findZX](https://github.com/hsigeman/findZX) has potential, look through the paper
