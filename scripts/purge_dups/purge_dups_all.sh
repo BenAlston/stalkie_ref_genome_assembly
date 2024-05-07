@@ -6,13 +6,6 @@
 #SBATCH -e reports/error_purge_dups_man_all.txt
 #SBATCH -o reports/output_purge_dups_man_all.txt
 
-#########################################################################################
-#	Script Name: purge_dups
-#	Description: Runs both rounds of purge_dups, filters an assembly for duplicate haplotypes
-#	Author:      Ben Alston
-#	Date:        April 2024
-#########################################################################################
-
 # load packages
 module load Anaconda3/2022.05
 source activate purge_dups
@@ -21,7 +14,7 @@ minimap2='apptainer exec /users/bip23bta/minimap2_latest.sif minimap2'
 
 # sample variables
 SPECIES=whitei
-ASSEMBLY=2
+ASSEMBLY=1
 
 #filepaths
 wd=/mnt/parscratch/users/bip23bta/ref_genomes/${SPECIES}/03-QC/purge_dups/${ASSEMBLY}_primary
@@ -37,7 +30,7 @@ cd round_1
 # map reads 
 for i in $READS
 do
-  	$minimap2 -a -x map-hifi $REF_1 $i | gzip -c - > $(basename $i).paf.gz
+  	$minimap2 -xasm20 $REF_1 $i | gzip -c - > $(basename $i).paf.gz
 done
 
 # generate cutoffs
@@ -69,7 +62,7 @@ cd round_2
 # map reads
 for i in $READS
 do
-  	$minimap2 -a -x map-hifi $REF_2 $i | gzip -c - > $(basename $i).paf.gz
+  	$minimap2 -xasm20 $REF_2 $i | gzip -c - > $(basename $i).paf.gz
 done
 
 # generate cutoffs
