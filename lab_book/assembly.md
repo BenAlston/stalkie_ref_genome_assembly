@@ -61,13 +61,14 @@ Current _T. dalmanni_ ref is ~0.383 Gb and 3 chromosomes
 
 ### **Checking Coverage is as Expected**
 * genomescope plots are no longer working, will need redoing
-* Hifiasm outputs have been misplaced, rerruning for meigenii and make sure it's all working, saving the outputs somewhere sensible this time
 * meigenii_4: peak_hom: 29; peak_het: 16, matches my jellyfish output, i'll check the other ones to make sure as well
-* dalmanni_7 is also fine.
+* dalmanni_7 is also fine
 * meigenii_5: issues:  peak_hom: 23; peak_het: -1. Wat. Will need to look into this
 * dalmanni_6: similar issues, but also will not generate an assembly, rerruning to double check
-  - forums suggested this was due to low coverage, but my coverage extimate of 59 suggests this isn't the case
-  - now re running a very old hifiasm script that worked initially, this may help me narrow down the issue - forgot to add enough memory cause I am stupid, rerunning again.
+  - forums suggested this was due to low coverage, but my coverage estimate of 59 suggests this isn't the case
+  - re-ran with an old hifiasm script, did not work
+  - re-coppied input reads (may be corrupted) - md5sums ok
+  - running hifiasm.sh again
 * -1 het peak shouldn't be an issue. [see this thread](https://github.com/chhylp123/hifiasm/issues/245)
 
 # Cleaning Assemblies
@@ -145,13 +146,13 @@ whitei_1 pre and post purge_dups_manual.sh
 |              | length (gb) | contigs | dup (%)| Conpleteness (%) | n50 (kb) |
 | -------------|-------------|---------|--------|------------------|----------|
 | pre-purging  | 0.762 | 7589   |  35.6|   95.8         | 156 |
-| purge_dups round 1  | 0.475    | 4653      | 3.3    | 90.9     | 161 |
-| purge_dups round 2  | 0.542    | 5156      | 1.2    | 95.4     | 177 |
+| purge_dups round 2 (default cutoffs) | 0.548    | 4718      | 2.5    | 94.5     | 187 |
 
 in purge_dups_man_1 & 2.sh, the line: 'minimap2 -xasm5 -DP ${REF}.split ${REF}.split | gzip -c - > $(basename $REF).split.self.paf.gz', 
 
 **Summary**
-* pipeline runs but cutoff and coverage files are empty for round 2, potentially an issue with mapping reads to the round_1 ref
+* pipeline runs but cutoff and coverage files are empty for round 2, potentially an issue with mapping reads to the round_1 ref - caused by "-a" flag on mapping step, making .sam files disguised as .paf files.
+* Purge dups now runs, but ideally completeness should be higher, should probably manually tweak cutoffs.
 
 
 ## **Next Steps:**
