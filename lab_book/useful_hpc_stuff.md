@@ -141,18 +141,25 @@ Docker/apptainer
 # Apptainer is the open source version of docker, and is used on sheffield HPCs
 
 # usage with docker hub (main repository for docker/apptainer containers)
-# make the image (downloads a .sif file to wd):
-apptainer pull  docker://ezlabgva/busco:v5.6.1_cv1 # equivalent to creating a conda env
-# load image. Analagous to <conda activate $env>
+# make the apptainer image (downloads a .sif file to wd):
+apptainer pull  docker://ezlabgva/busco:v5.6.1_cv1# equivalent to creating a conda env
+
+# load image. Analagous to <conda activate $env>:
 apptainer shell /path/to/$image.sif
 
-# use in a script, accordhing to hpc documentation (In the part of the script where you'd normally call a conda env):
-apptainer exec path/to/imgfile.img ls / # but this doesn't work
-# calling directly before command seems to work though e.g:
+# use in a script, according to hpc documentation:
+apptainer exec path/to/imgfile.img ls /
+# the above doesn't actually work
+
+# but the below method does:
 # when running busco, do this:
-apptainer exec path/to/busco_imgfile.img busco -c .....
-# instead of this:
-busco -c .....
+apptainer exec /users/bip24bta/busco_v5.6.1_cv1.sif busco -i $GENOME \
+-l diptera_odb10 \
+-o $OUT \
+-m genome \
+-f \
+-c 20
+
 ~~~
 
 
