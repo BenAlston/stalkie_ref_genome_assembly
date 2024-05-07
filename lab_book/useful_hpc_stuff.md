@@ -136,8 +136,8 @@ done
 ~~~
 Docker/apptainer
 ~~~
-# Like a conda environment but less intuative, supposedly deals better with dependencies
-# I only really use when something isn't available through conda
+# docker images are like conda environments but less intuative, but deal much better with dependencies
+# I tend to use when something isn't available through conda, or the only conda env available is really outdated
 # Apptainer is the open source version of docker, and is used on sheffield HPCs
 
 # usage with docker hub (main repository for docker/apptainer containers)
