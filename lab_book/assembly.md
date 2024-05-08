@@ -1,9 +1,7 @@
 
 # **Reference Genome Assembly**
 
-[Useful resource](https://github.com/alexjvr1/T.dalmanni_Genomics_of_meiotic_drive/blob/main/Electronic_Lab_Book.md#1-genome-assembly)
-
-Current _T. dalmanni_ ref is ~0.383 Gb and 3 chromosomes
+From [Alex's pipeline](https://github.com/alexjvr1/T.dalmanni_Genomics_of_meiotic_drive/blob/main/Electronic_Lab_Book.md#1-genome-assembly), the current _T. dalmanni_ ref is ~0.383 Gb and 3 chromosomes
 
 ## **Genome Size Estimation with Jellyfish**
 * version V 2.2.10
