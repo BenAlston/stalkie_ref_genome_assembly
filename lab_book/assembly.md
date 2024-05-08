@@ -53,7 +53,7 @@ From [Alex's pipeline](https://github.com/alexjvr1/T.dalmanni_Genomics_of_meioti
 * Remove contamination using blobtoolkit, then remove duplicated haplotigs using purge_dups
 
 ## **Filtering Contamination with Blobtoolkit**
-* [documentation](https://github.com/blobtoolkit/blobtoolkit)
+* [Blobtoolkit v3.1.6 ](https://github.com/blobtoolkit/blobtoolkit)
 * Essentially takes blast output, coverage, and busco output, and filters the dataset for contamination
 * Needs:
   - blast.out file (generated in [blast_par.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/scripts/blast_par.sh))
@@ -99,7 +99,7 @@ cat out/* >> all_blast.out
 * Metazoan and no blast matches seem to be the most sensible contigs to retain.
 
 ## **Purge Dups**
-* [Documentation](https://github.com/dfguan/purge_dups)
+* [purge_dups v1.2.5](https://github.com/dfguan/purge_dups)
 * Purges haplotigs using coverage and sequence similarity info
 * First running this pipeline on whitei F (sample 1) since its busco dup is 35%
 
