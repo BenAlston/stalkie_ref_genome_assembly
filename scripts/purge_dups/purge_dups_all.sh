@@ -40,7 +40,7 @@ cd round_1
 # map input reads to assembly
 for i in $READS
 do
-  	$minimap2 -xasm20 $REF_1 $i | gzip -c - > $(basename $i).paf.gz
+  	$minimap2 -x map-hifi $REF_1 $i | gzip -c - > $(basename $i).paf.gz
 done
 
 # generate cutoffs
@@ -72,7 +72,7 @@ cd round_2
 # map input reads to round 1 purged assembly
 for i in $READS
 do
-  	$minimap2 -xasm20 $REF_2 $i | gzip -c - > $(basename $i).paf.gz
+  	$minimap2 -x map-hifi $REF_2 $i | gzip -c - > $(basename $i).paf.gz
 done
 
 # generate cutoffs 
