@@ -1,7 +1,14 @@
 
 # **Stalkie Reference Genome Assembly**
-
 From [Alex's pipeline](https://github.com/alexjvr1/T.dalmanni_Genomics_of_meiotic_drive/blob/main/Electronic_Lab_Book.md#1-genome-assembly), the current _T. dalmanni_ ref is ~0.383 Gb and 3 chromosomes
+
+### Samples & data
+ Samples
+  ~~~
+  - 7 total, 2 per species (1M, 1F), plus 1 additional T. whitei F (potential driver).
+  - Assemblies should be generated for each sample, so 7 assemblies total.
+  - Two HiFi .fastq.gz files per individual (so 4,4,6) per species.
+  ~~~
 
 ## **Genome Size Estimation with Jellyfish**
 * [Jellyfish v2.2.10](https://github.com/gmarcais/Jellyfish)
@@ -14,13 +21,6 @@ From [Alex's pipeline](https://github.com/alexjvr1/T.dalmanni_Genomics_of_meioti
 * [hifiasm v0.16.1-r375](https://github.com/chhylp123/hifiasm)
 * Ran [hifiasm.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/hifiasm.sh) (Hifiasm V 0.16.1), takes ~10-12 hrs
 
-### Samples:
-
-  ~~~
-  - 7 total, 2 per species (1M, 1F), plus 1 additional T. whitei F (potential driver).
-  - Assemblies should be generated for each sample, so 7 assemblies total.
-  - Two HiFi .fastq.gz files per individual (so 4,4,6) per species.
-  ~~~
 
 ### **Initial Hifiasm Assemblies**
 * [output files documentation](https://hifiasm.readthedocs.io/en/latest/interpreting-output.html)
