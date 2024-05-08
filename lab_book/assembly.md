@@ -11,7 +11,7 @@ From [Alex's pipeline](https://github.com/alexjvr1/T.dalmanni_Genomics_of_meioti
 
 
 # **Assembly with Hifiasm**
-* [Documentation](https://github.com/chhylp123/hifiasm)
+* [hifiasm v0.16.1-r375](https://github.com/chhylp123/hifiasm)
 * Ran [hifiasm.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/hifiasm.sh) (Hifiasm V 0.16.1), takes ~10-12 hrs
 
 ### Samples:
