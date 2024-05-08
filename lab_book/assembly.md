@@ -1,5 +1,5 @@
 
-# **Reference Genome Assembly**
+# **Stalkie Reference Genome Assembly**
 
 From [Alex's pipeline](https://github.com/alexjvr1/T.dalmanni_Genomics_of_meiotic_drive/blob/main/Electronic_Lab_Book.md#1-genome-assembly), the current _T. dalmanni_ ref is ~0.383 Gb and 3 chromosomes
 
