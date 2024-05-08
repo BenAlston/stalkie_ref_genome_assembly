@@ -6,11 +6,21 @@
 #SBATCH -e reports/error_purge_dups_man_all.txt
 #SBATCH -o reports/output_purge_dups_man_all.txt
 
+#########################################################################################
+#	Script Name: purge_dups_all.sh
+#	Description: Runs purge dups on an assembly. Requires imput .fa, and the reads used to 
+# 			       Generate the assembly
+#	Author:      Ben Alston
+#	Date:        May 2024
+#########################################################################################
+
+# purge_dups v1.2.5, minimap2 v2.27-r1193
+
 # load packages
 module load Anaconda3/2022.05
 source activate purge_dups
-bin=/users/bip23bta/purge_dups/bin
-minimap2='apptainer exec /users/bip23bta/minimap2_latest.sif minimap2'
+bin=/users/bip23bta/purge_dups/bin # specifies location of pure dups scripts
+minimap2='apptainer exec /users/bip23bta/minimap2_latest.sif minimap2' # using an apptainer image to call minimapup
 
 # sample variables
 SPECIES=whitei
@@ -27,7 +37,7 @@ cd $wd
 mkdir round_1
 cd round_1
 
-# map reads 
+# map input reads to assembly
 for i in $READS
 do
   	$minimap2 -xasm20 $REF_1 $i | gzip -c - > $(basename $i).paf.gz
@@ -59,13 +69,13 @@ cd $wd
 mkdir round_2
 cd round_2
 
-# map reads
+# map input reads to round 1 purged assembly
 for i in $READS
 do
   	$minimap2 -xasm20 $REF_2 $i | gzip -c - > $(basename $i).paf.gz
 done
 
-# generate cutoffs
+# generate cutoffs 
 ${bin}/pbcstat *.paf.gz # (produces PB.base.cov and PB.stat files)
 ${bin}/calcuts PB.stat > cutoffs 2>calcults.log
 
