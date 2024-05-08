@@ -26,7 +26,7 @@ From [Alex's pipeline](https://github.com/alexjvr1/T.dalmanni_Genomics_of_meioti
 * [output files documentation](https://hifiasm.readthedocs.io/en/latest/interpreting-output.html)
 * duplication looks very high across the board, not very contiguous, also a lot larger than expected
 
-**Table 1:** Assembly number corresponds with the identifier in the hifi read filenames (e.g., assembly 6 is derived from 200437_6-Cell1, which contains _T. dalmanni_ male reads)
+**Table 1:** Assembly number corresponds with the identifier in the hifi read filenames (e.g., assembly 6 is derived from 200437_6-Cell1, which contains _T. dalmanni_ male reads). Est size from jellyfish.
 | species | assembly | info         | est_size         | primary_assembly_size | busco_completeness | busco_dup | contigs | N50 (Kb) |
 |-----|-----|-----------------|------------------|-----------------------|--------------------|-----------|---------|-----|
 | whitei | 1 | female       |        597436869 | 761502157             | 95.8               | 35.6      | 7589    | 156 |
