@@ -25,69 +25,50 @@ Current _T. dalmanni_ ref is ~0.383 Gb and 3 chromosomes
   - Two HiFi .fastq.gz files per individual (so 4,4,6) per species.
   ~~~
 
-| Sample ID | file\_prefix | Species         | Sex    |
-| --------- | ------------ | --------------- | ------ |
-| ST1       | 200437\_1    | C.whitei        | Female |
-| ST2       | 200437\_2    | C.whitei        | Male   |
-| ST3       | 200437\_3    | C.whitei Driver | Female |
-| ST6       | 200437\_4    | D.meigenii      | Female |
-| ST7       | 200437\_5    | D.meigenii      | Male   |
-| ST8       | 200437\_6    | T.dalmanni      | Male   |
-| ST9       | 200437\_7    | T.dalmanni      | Female |
-
 ### **Initial Hifiasm Assemblies**
 * [output files documentation](https://hifiasm.readthedocs.io/en/latest/interpreting-output.html)
 * duplication looks very high across the board, not very contiguous, also a lot larger than expected
 
-
-|sample| info         | est_size         | primary_assembly_size | busco_completeness | busco_dup | contigs | N50 (Kb) |
-|-----|-----------------|------------------|-----------------------|--------------------|-----------|---------|-----|
-| whitei_1 | female       |        597436869 | 761502157             | 95.8               | 35.6      | 7589    | 156 |
-| whitei_2 | male       | 424970908        | 730392625             | 95.1               | 25.6      | 6466    | 178 |
-| whitei_3 | female,potential driver |        584931232 | 731617842             | 95.7               | 42.3      | 6774    | 178 |
-| meigenii_4 | female      |        694112101 | 694692253             | 96.4               | 28.6      | 3136    | 463 |
-| meigenii_5 | male     | 477607885        | 742331081             | 96.3               | 16.9      | 3064    | 576 |
-|dalmanni_6 | male       | 657136228        | 700361654             | 97.8               | 25.7      | 2913    | 687 |
-| dalmanni_7 | female       |        533280821 | 609130602             | 97.3               | 4.9       | 2425    | 998 |
-
-
+**Table 1**
+| species | assembly | info         | est_size         | primary_assembly_size | busco_completeness | busco_dup | contigs | N50 (Kb) |
+|-----|-----|-----------------|------------------|-----------------------|--------------------|-----------|---------|-----|
+| whitei | 1 | female       |        597436869 | 761502157             | 95.8               | 35.6      | 7589    | 156 |
+| whitei | 2 | male       | 424970908        | 730392625             | 95.1               | 25.6      | 6466    | 178 |
+| whitei| 3 | female, potential driver |        584931232 | 731617842             | 95.7               | 42.3      | 6774    | 178 |
+| meigenii| 4 | female      |        694112101 | 694692253             | 96.4               | 28.6      | 3136    | 463 |
+| meigenii| 5 | male     | 477607885        | 742331081             | 96.3               | 16.9      | 3064    | 576 |
+| dalmanni| 6 | male       | 657136228        | 700361654             | 97.8               | 25.7      | 2913    | 687 |
+|dalmanni | 7 | female       |        533280821 | 609130602             | 97.3               | 4.9       | 2425    | 998 |
 
 
 ### **BUSCO**
-* Used a docker/apptainer image
-* ran [busco.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/busco.sh), takes ~10-20 mins
-* see [busco output](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/lab_book/Data/BUSCO_output)
+* Ran [busco.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/busco.sh), takes ~10-20 mins
+* See [busco output](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/lab_book/Data/BUSCO_output)
 * very high duplication across all species, completeness is ok
 
 ### **Checking Coverage is as Expected**
-* genomescope plots are no longer working, will need redoing
-* meigenii_4: peak_hom: 29; peak_het: 16, matches my jellyfish output, i'll check the other ones to make sure as well
-* dalmanni_7 is also fine
-* meigenii_5: issues:  peak_hom: 23; peak_het: -1. Wat. Will need to look into this
-* dalmanni_6: similar issues, but also will not generate an assembly, rerruning to double check
-  - forums suggested this was due to low coverage, but my coverage estimate of 59 suggests this isn't the case
-  - re-ran with an old hifiasm script, did not work
-  - re-coppied input reads (may be corrupted) - md5sums ok
-  - running hifiasm.sh again
-* -1 het peak shouldn't be an issue. [see this thread](https://github.com/chhylp123/hifiasm/issues/245)
+* Check the coverage in hifiasm output matches that in the jellyfish estimation. This has been checked for meigenii_4, dalmanni_7
+* Issue with meigenii_5:  peak_hom: 23; peak_het: -1 similar issue with dalmanni_6.
+  - this is a solvable issue, [see this thread](https://github.com/chhylp123/hifiasm/issues/245)
+* dalmanni_6 reads also somehow became corrupted, re-coppied.
 
 # Cleaning Assemblies
-* The current plan is to remove contamination using blobtoolkit, then remove duplicated haplotypes using purge_dups
+* Remove contamination using blobtoolkit, then remove duplicated haplotigs using purge_dups
 
 ## **Filtering Contamination with Blobtoolkit**
 * [documentation](https://github.com/blobtoolkit/blobtoolkit)
-* essentially takes blast output, coverage, and busco output, and filters the dataset for contamination
+* Essentially takes blast output, coverage, and busco output, and filters the dataset for contamination
 * Needs:
   - blast.out file (generated in [blast_par.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/scripts/blast_par.sh))
   - coverage (generated in [blobtoolkit.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/edit/main/scripts/blobtoolkit.sh))
   - busco (generated in [busco.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/scripts/busco.sh))
-* the script is now up and running and ready to be used on any sample
+* the scripts are now up and running and ready to be used on any sample
 
 ### **Blast**
 
 **Installing local blast database**
-* Remote searches take too long, so installed the local Blast nt db ([using blast_nt_db.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/blast_nt_db.sh)), this takes up ~500GB of space
-* Blasting my highly contiguous assemblies will take too long unless it is parallelised
+* Remote searches are not feasible for large queries, so installed the local Blast nt db ([using blast_nt_db.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/blast_nt_db.sh)), this takes up ~450GB of space
+* Even with the local blast nt db, blasting my highly contiguous assemblies will take too long unless it is parallelised
 
 **Parallelising Blast**
 * split my assembly fasta into 500 smaller files: ran [fasta_splitter.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/fasta_splitter.sh)
@@ -99,7 +80,7 @@ cat out/* >> all_blast.out
 
 ## **Blobtoolkit pipeline:**
 * Ran [blobtoolkit.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/edit/main/scripts/blobtoolkit.sh)
-* This script takes the blast output I just generated, busco output from [busco.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/edit/main/scripts/busco.sh), calculates coverage. It then filters the assembly for contamination, I am able to specify which taxanomic rank blast matches I want removed.
+* This script calculates coverage, takes the blast output I just generated, and the busco output from [busco.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/edit/main/scripts/busco.sh). It then filters the assembly for contamination, I am able to specify which taxanomic rank blast matches I want removed.
 * **<Important>** generating coverage using minimap2 does not work for dalmanni_6, this is likely an issue to to with the HiFi reads being to long.
 * This analysis has currently been run on whitei_1 and whitei_2 only.
 
@@ -115,32 +96,21 @@ cat out/* >> all_blast.out
 |------------|-----------|---------|--------------|------------|
 | Unfiltered | 0.762     | 7598    | 95.8         | 35.6       |
 | Eukaryota  | 0.748     |  7481   | 95.7         | 35.6       |
-| Metazoa    | 0.
+| Metazoa    | 0.742     | 7368    | 95.6         | 35.5       |
 | Arthropoda | 0.742     | 7363    | 95.6         | 35.5       |
 | Diptera    | 0.715     | 6933    | 95.3         | 35.3       | 
 * Metazoan and no blast matches seem to be the most sensible contigs to retain.
 
-
-**Summary:**
-* Can't add coverage for Dalmanni_6
-* ran [blobtoolkit.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/new/main/scripts/blobtoolkit.sh), filtered the assembly to retain only metazoan and no blast match reads
-
 ## **Purge Dups**
 * [Documentation](https://github.com/dfguan/purge_dups)
-* purges haplotigs using coverage and sequence similarity info
+* Purges haplotigs using coverage and sequence similarity info
 * First running this pipeline on whitei F (sample 1) since its busco dup is 35%
 
-* Ran through generating a config directory (using [purge_dups_config.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/scripts/purge_dups_config.sh)), the output purged assembly has very clearly gone horribly wrong (40% completeness). It would be nice if the output was explained in the documentation.
-* Ran the manual pipeline instead, so I can manually control parameters.
+* Runing the pipeline manually to have more control over the parameters.
 
 **Manual pipeline**
-* Issues generating .paf files
-* running paf_gen.sh - works
-* ran the pipeline, on whitei_1 - sort of
-  - the round 2 cutoffs and coverage information are empty, cannot generate a histogram from it. This may be a scripting issue, planning on running each step seperatley to confirm the issue, starting with remapping, the round 2 .paf.gz files look far too small, redo this step first. - running
-  - generated round_1 read mapped .paf files as one, cause thats what alex's script does. seeing if this gives me coverage info - it does not
-  - rerunning with different mapping parameters: -xasm20 instead of map-hifi since that is what is in the documentaiton
-  - looks like the issue might be the -a argument (which specifies output is a .sam), so my .paf files were actually .sam files in disguise. Rerunning with this flag removed
+
+* Note changed -xasm20 to -x map-hifi, have not tested yet
 
 whitei_1 pre and post purge_dups_manual.sh
 |              | length (gb) | contigs | dup (%)| Conpleteness (%) | n50 (kb) |
@@ -148,21 +118,15 @@ whitei_1 pre and post purge_dups_manual.sh
 | pre-purging  | 0.762 | 7589   |  35.6|   95.8         | 156 |
 | purge_dups round 2 (default cutoffs) | 0.548    | 4718      | 2.5    | 94.5     | 187 |
 
-in purge_dups_man_1 & 2.sh, the line: 'minimap2 -xasm5 -DP ${REF}.split ${REF}.split | gzip -c - > $(basename $REF).split.self.paf.gz', 
 
-**Summary**
-* pipeline runs but cutoff and coverage files are empty for round 2, potentially an issue with mapping reads to the round_1 ref - caused by "-a" flag on mapping step, making .sam files disguised as .paf files.
 * Purge dups now runs, but ideally completeness should be higher, should probably manually tweak cutoffs.
-
+* Have emailed the creator of purge_dups to ask about cutoffs:
+![PB_1 cov](https://github.com/BenAlston/stalkie_ref_genome_assembly/assets/159305266/240949cb-0eae-4b67-a478-9ecd0d1e9c4a)
+* These seem sensible, valley between het and hom peaks has been identified, but I am unsure if the upper and lower cutoffs are in the correct places
 
 ## **Next Steps:**
 *  [findZX](https://github.com/hsigeman/findZX) has potential, look through the paper
 
-
-4. extract mt genomes
-7. use samtools to determine proportion of reads that map
-8. map short-read data
-9. use samtools to look at coverage
 
 
 
