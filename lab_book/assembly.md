@@ -51,7 +51,7 @@ From [Alex's pipeline](https://github.com/alexjvr1/T.dalmanni_Genomics_of_meioti
   - Potentially caused by the sample being highly heterozygous. Hifiasm only identifies one peak peak (the het peak) and misidentifies it as the hom peak. For meigenii_5, it should be "peak_het: 23, peak_hom: 46"
   - This is not consistent with est coverage (total read length/est genome size). However I don't trust the jellyfish est genome sizes
  * Can fix the -1 hom peak issue two ways:
-   - 1: by specifying haploid genome size: -hg-size 0.4g. hg size from jellyfish of dalmanni estimations? probably the latter as theres still contamination and dups in there.
+   - 1: by specifying haploid genome size: --hg-size 0.4g. hg size from jellyfish of dalmanni estimations? probably the latter as theres still contamination and dups in there.
    - 2: setting -D 10 (default is -D 5)
 
 **Log**
