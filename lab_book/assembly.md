@@ -20,7 +20,7 @@ From [Alex's pipeline](https://github.com/alexjvr1/T.dalmanni_Genomics_of_meioti
 # **Assembly with Hifiasm**
 * [hifiasm v0.16.1-r375](https://github.com/chhylp123/hifiasm)
 * Ran [hifiasm.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/hifiasm.sh) (Hifiasm V 0.16.1), takes ~10-12 hrs
-
+* made hifiasm_hic.sh, for when hi-c arrives
 
 ### **Initial Hifiasm Assemblies**
 * [output files documentation](https://hifiasm.readthedocs.io/en/latest/interpreting-output.html)
@@ -44,10 +44,19 @@ From [Alex's pipeline](https://github.com/alexjvr1/T.dalmanni_Genomics_of_meioti
 * very high duplication across all species, completeness is ok
 
 ### **Checking Coverage is as Expected**
-* Check the coverage in hifiasm output matches that in the jellyfish estimation. This has been checked for meigenii_4, dalmanni_7
-* Issue with meigenii_5:  peak_hom: 23; peak_het: -1 similar issue with dalmanni_6.
+* Check the coverage in hifiasm output matches that in the jellyfish estimation.
+  - This is true for meigenii_4, dalmanni_7
+* Issue with meigenii_5 and dalmanni_6:  "peak_hom: 23; peak_het: -1"
   - this is a solvable issue, [see this thread](https://github.com/chhylp123/hifiasm/issues/245)
-* dalmanni_6 reads also somehow became corrupted, re-coppied.
+  - Potentially caused by the sample being highly heterozygous. Hifiasm only identifies one peak peak (the het peak) and misidentifies it as the hom peak. For meigenii_5, it should be "peak_het: 23, peak_hom: 46"
+  - This is not consistent with est coverage (total read length/est genome size). However I don't trust the jellyfish est genome sizes
+ * Can fix the -1 hom peak issue two ways:
+   - 1: by specifying haploid genome size: -hg-size 0.4g. hg size from jellyfish of dalmanni estimations? probably the latter as theres still contamination and dups in there.
+   - 2: setting -D 10 (default is -D 5)
+
+**Log**
+ * Ran hifiasm.sh with -D 10, did not solve the issue
+ * Trying with predicted size 0.476g (jellyfish predicted size), not sure if I trust this, could go with the current dalmanni ref size instead (0.383g).
 
 # Cleaning Assemblies
 * Remove contamination using blobtoolkit, then remove duplicated haplotigs using purge_dups
