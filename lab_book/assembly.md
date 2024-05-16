@@ -55,8 +55,11 @@ From [Alex's pipeline](https://github.com/alexjvr1/T.dalmanni_Genomics_of_meioti
    - 2: setting -D 10 (default is -D 5)
 
 **Log**
- * Ran hifiasm.sh with -D 10, did not solve the issue
- * Trying with predicted size 0.476g (jellyfish predicted size), not sure if I trust this, could go with the current dalmanni ref size instead (0.383g).
+ * Ran hifiasm.sh with -D 10 - did not solve the issue
+ * Ran with predicted size 0.476g (jellyfish predicted size) - did not solve the issue
+ * Ran with --min-hist-cnt 6 - ignore counts below the number -
+ * Ran with --purge-cov 46 - manually set hom peak - does not work, outdated 
+ * Running with option --hom-cov 46 - manually set hom peak
 
 # Cleaning Assemblies
 * Remove contamination using blobtoolkit, then remove duplicated haplotigs using purge_dups
