@@ -57,9 +57,10 @@ From [Alex's pipeline](https://github.com/alexjvr1/T.dalmanni_Genomics_of_meioti
 **Log**
  * Ran hifiasm.sh with -D 10 - did not solve the issue
  * Ran with predicted size 0.476g (jellyfish predicted size) - did not solve the issue
- * Ran with --min-hist-cnt 6 - ignore counts below the number -
+ * Ran with --min-hist-cnt 6 - ignore counts below the number - does not work - output the same as standard
  * Ran with --purge-cov 46 - manually set hom peak - does not work, outdated 
- * Running with option --hom-cov 46 - manually set hom peak
+ * Running with option --hom-cov 46 - manually set hom peak - does not work - output the same as standard
+ * "It will probably be fine"
 
 # Cleaning Assemblies
 * Remove contamination using blobtoolkit, then remove duplicated haplotigs using purge_dups
