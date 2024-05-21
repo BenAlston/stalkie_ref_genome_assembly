@@ -5,9 +5,9 @@ From [Alex's pipeline](https://github.com/alexjvr1/T.dalmanni_Genomics_of_meioti
 ### Samples & data
  Samples
   ~~~
-  - 7 total, 2 per species (1M, 1F), plus 1 additional T. whitei F (potential driver).
-  - Assemblies should be generated for each sample, so 7 assemblies total.
-  - Two HiFi .fastq.gz files per individual (so 4,4,6) per species.
+  - sequence data for 7 individuals, 1M, 1F per species plus 1 additional T. whitei F (potential driver).
+  - Assemblies should be generated for each sample, so 7 assemblies total, enabling sex chromosome identification
+  - Two HiFi .fastq.gz files per individual
   ~~~
 
 ## **Genome Size Estimation with Jellyfish**
@@ -56,9 +56,9 @@ From [Alex's pipeline](https://github.com/alexjvr1/T.dalmanni_Genomics_of_meioti
 **Table 2:** Does default hifiasn identify the correct peak, and can this be fixed by running with the "-k 19" parameter
 |assembly|hifiasm identifies correct peak?| Fixed with -k 19? |
 |:----|:----|:---|
-|whitei_1|na|na|
-|whitei_2|na|na|
-|whitei_3|na|na|
+|whitei_1|?|?|
+|whitei_2|?|?|
+|whitei_3|?|?|
 |meigenii_4|yes|na|
 |meigenii_5|no|yes|
 |dalmanni_6|no|running|
@@ -128,11 +128,9 @@ cat out/* >> all_blast.out
 * [purge_dups v1.2.5](https://github.com/dfguan/purge_dups)
 * Purges haplotigs using coverage and sequence similarity info
 * First running this pipeline on whitei F (sample 1) since its busco dup is 35%
-
 * Runing the pipeline manually to have more control over the parameters.
 
 **Manual pipeline**
-
 * Note changed -xasm20 to -x map-hifi, have not tested yet
 
 whitei_1 pre and post purge_dups_manual.sh
@@ -141,11 +139,11 @@ whitei_1 pre and post purge_dups_manual.sh
 | pre-purging  | 0.762 | 7589   |  35.6|   95.8         | 156 |
 | purge_dups round 2 (default cutoffs) | 0.548    | 4718      | 2.5    | 94.5     | 187 |
 
-
 * Purge dups now runs, but ideally completeness should be higher, should probably manually tweak cutoffs.
 * Have emailed the creator of purge_dups to ask about cutoffs:
 ![PB_1 cov](https://github.com/BenAlston/stalkie_ref_genome_assembly/assets/159305266/240949cb-0eae-4b67-a478-9ecd0d1e9c4a)
 * These seem sensible, valley between het and hom peaks has been identified, but I am unsure if the upper and lower cutoffs are in the correct places
+  - goint to re run with cutoffs 3 61 240 - see if outcome is improved
 
 ## **Sex Chromosome Identification**
 * Differences in coverage and heterozygosity can be used to identify the XY chromosomes
