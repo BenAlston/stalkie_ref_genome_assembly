@@ -1,22 +1,6 @@
 
 # **Useful HPC Stuff**
 
-Installing a text editor that is not awful
-~~~
-# nano has limited features and vim requires too much time investment to use efficiently
-# micro seems like a nice compromise
-# in your home dir:
-mkdir ~/bin && cd
-curl https://getmic.ro | bash
-cd ..
-# then edit your .bashrc file (also in home dir)
-nano .bashrc
-# add this line to the file:
-export PATH=$PATH:~/bin
-# now micro can be called anywhere with:
-micro $file
-~~~
-
 Download files directly to HPC: 
 
 ~~~
@@ -56,7 +40,7 @@ seff $jobid # can use this and trial and error to work out how many resources a 
 ~~~
 Download from HPC to local machine:
 ~~~
-scp bip23bta@stanage.shef.ac.uk:/shared/wright_lab_hpc/Shared/2024_Stalkie_illumina/index.html /home/benalston/
+scp bip23bta@stanage.shef.ac.uk:/mnt/parscratch/users/bip23bta/ref_genomes/whitei/03-QC/purge_dups/1_primary/round_1_man_cutoffs/man_cov_hist_1.png /Downloads/
 # run command on local machine, not hpc
 ~~~
 
