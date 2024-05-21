@@ -53,12 +53,14 @@ From [Alex's pipeline](https://github.com/alexjvr1/T.dalmanni_Genomics_of_meioti
  * Can fix the -1 hom peak issue a few ways:
 
 **Log**
- * Ran hifiasm.sh with -D 10 - did not solve the issue
- * Ran with predicted size 0.476g (jellyfish predicted size) - did not solve the issue
- * Ran with --min-hist-cnt 6 - ignore counts below the number - does not work - output the same as standard
- * Ran with --purge-cov 46 - manually set hom peak - does not work, outdated 
- * Running with option --hom-cov 46 - manually set hom peak - does not work - output the same as standard
- * "It will probably be fine"
+ * Ran hifiasm.sh with -D 10 - **did not solve the issue**
+ * Ran with predicted size 0.476g (jellyfish predicted size) - **did not solve the issue**
+ * Ran with --min-hist-cnt 6 - ignore counts below the number - **does not work** - output the same as standard
+ * Ran with --purge-cov 46 - manually set hom peak - **does not work**, outdated 
+ * Ran with option --hom-cov 46 - manually set hom peak - **does not work** - output the same as standard
+ * running with -k 19 (kmer lenght) - works, hifiasm detects the peaks correctly in meigenii_5
+   - Although i'm not sure what -k is actually doing
+   
 
 # Cleaning Assemblies
 * Remove contamination using blobtoolkit, then remove duplicated haplotigs using purge_dups
