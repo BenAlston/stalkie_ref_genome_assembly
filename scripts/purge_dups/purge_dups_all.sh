@@ -19,8 +19,8 @@
 # load packages
 module load Anaconda3/2022.05
 source activate purge_dups
-bin=/users/bip23bta/purge_dups/bin # specifies location of pure dups scripts
-minimap2='apptainer exec /users/bip23bta/minimap2_latest.sif minimap2' # using an apptainer image to call minimapup
+bin=/users/bip23bta/purge_dups/bin # specifies location of purge_dups scripts
+minimap2='apptainer exec /users/bip23bta/minimap2_latest.sif minimap2' # using an apptainer image to call minimap
 
 # sample variables
 SPECIES=whitei
