@@ -3,7 +3,7 @@
 #SBATCH --mem=180G
 #SBATCH -c 48
 #SBATCH --time=96:00:00
-#SBATCH -e reports/error%j_hifiasm.txt
+#SBATCH -e reports/error.%j_hifiasm.txt
 #SBATCH -o reports/output.%j_hifiasm.txt
 
 
@@ -35,8 +35,10 @@ cd ${WD}/$SPECIES/02-hifiasm/${ASSEMBLY}_hifiasm_output
 # symbolic links to input reads - for some reason it wont run if the input reads aren't in the wd
 bash -c "ln -s ${DATA} ./"
 
-# hifiasm ----------
+# run hifiasm ----------
 hifiasm -o ${SPECIES}_${ASSEMBLY}.asm -t 48 $DATA
+# if hifiasm fails to detect the hom_peak (output looks like: peak_hom: 81; peak_het: -1) run with the argument: -k 19
+
 
 # convert .gfa to .fa
 awk '/^S/{print ">"$2"\n"$3}' ${SPECIES}_${ASSEMBLY}.asm.bp.p_ctg.gfa  | fold > ${ASSEMBLY}_primary.fa
