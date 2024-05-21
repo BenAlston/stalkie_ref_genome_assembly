@@ -143,7 +143,7 @@ whitei_1 pre and post purge_dups_manual.sh
 * Have emailed the creator of purge_dups to ask about cutoffs:
 ![PB_1 cov](https://github.com/BenAlston/stalkie_ref_genome_assembly/assets/159305266/240949cb-0eae-4b67-a478-9ecd0d1e9c4a)
 * These seem sensible, valley between het and hom peaks has been identified, but I am unsure if the upper and lower cutoffs are in the correct places
-  - goint to re run with cutoffs 3 61 240 - see if outcome is improved
+  - goint to re run with cutoffs 3 61 240 - see if outcome is improved - busco is running
 
 ## **Sex Chromosome Identification**
 * Differences in coverage and heterozygosity can be used to identify the XY chromosomes
