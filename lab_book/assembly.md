@@ -34,6 +34,7 @@ From [Alex's pipeline](https://github.com/alexjvr1/T.dalmanni_Genomics_of_meioti
 | whitei| 3 | female, potential driver |        584931232 | 731617842             | 95.7               | 42.3      | 6774    | 178 |
 | meigenii| 4 | female      |        694112101 | 694692253             | 96.4               | 28.6      | 3136    | 463 |
 | meigenii| 5 | male     | 477607885        | 742331081             | 96.3               | 16.9      | 3064    | 576 |
+| meigenii| 5 | male, ran with -k 19 | 477607885 | 716000585 | 96.4 | 12.6 | 2816 | 587 |
 | dalmanni| 6 | male       | 657136228        | 700361654             | 97.8               | 25.7      | 2913    | 687 |
 |dalmanni | 7 | female       |        533280821 | 609130602             | 97.3               | 4.9       | 2425    | 998 |
 
@@ -44,13 +45,24 @@ From [Alex's pipeline](https://github.com/alexjvr1/T.dalmanni_Genomics_of_meioti
 * very high duplication across all species, completeness is ok
 
 ### **Checking Coverage is as Expected**
-* Check the coverage in hifiasm output matches that in the jellyfish estimation.
+* Check hifiasm correctly identifies the homozygous and heterozygous peaks in the kmer plots, compare this to the jellyfish kmer plots as a sanity check.
   - This is true for meigenii_4, dalmanni_7
 * Issue with meigenii_5 and dalmanni_6:  "peak_hom: 23; peak_het: -1"
   - this is a solvable issue, [see this thread](https://github.com/chhylp123/hifiasm/issues/245)
   - Potentially caused by the sample being highly heterozygous. Hifiasm only identifies one peak (the het peak) and misidentifies it as the hom peak. For meigenii_5, it should be "peak_het: 23, peak_hom: 46"
   - This is not consistent with est coverage (total read length/est genome size). However I don't trust the jellyfish est genome sizes
  * Can fix the -1 hom peak issue a few ways:
+
+**Table 2:** Does default hifiasn identify the correct peak, and can this be fixed by running with the "-k 19" parameter
+|assembly|hifiasm identifies correct peak?| Fixed with -k 19? |
+|:----|:----|:---|
+|whitei_1|na|na|
+|whitei_2|na|na|
+|whitei_3|na|na|
+|meigenii_4|yes|na|
+|meigenii_5|no|yes|
+|dalmanni_6|no|running|
+|dalmanni_7|yes|na|
 
 **Log**
  * Ran hifiasm.sh with -D 10 - **did not solve the issue**
@@ -60,6 +72,7 @@ From [Alex's pipeline](https://github.com/alexjvr1/T.dalmanni_Genomics_of_meioti
  * Ran with option --hom-cov 46 - manually set hom peak - **does not work** - output the same as standard
  * running with -k 19 (kmer lenght) - works, hifiasm detects the peaks correctly in meigenii_5
    - Although i'm not sure what -k is actually doing
+   - interestingly the new assembly is sligntly better than the old one, 
    
 
 # Cleaning Assemblies
