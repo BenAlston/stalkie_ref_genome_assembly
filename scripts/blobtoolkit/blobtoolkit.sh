@@ -77,7 +77,7 @@ cat $INPUT_ASSEMBLY \
 # filter the fasta
 # keys=keep only the following. In this case, this keeps contigs with metazoan blast matches or no blast matches.
 $blobtools filter \
-    --param bestsum_kindom--Keys=no-hit,Metazoa \
+    --param bestsum_kingdom--Keys=no-hit,Metazoa \
     --fasta filtered_fastas/${assembly}_primary.fa\
     $blobdir
 
