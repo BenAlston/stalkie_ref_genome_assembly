@@ -78,22 +78,10 @@ cat $INPUT_ASSEMBLY \
 # keys=keep only the following. In this case, this keeps contigs with metazoan blast matches or no blast matches.
 $blobtools filter \
     --param bestsum_kingdom--Keys=no-hit,Metazoa \
-    --fasta filtered_fastas/${assembly}_primary.fa\
+    --fasta filtered_fastas/${assembly}_primary.fa \
+    --invert \
     $blobdir
 
-# --- Run BUSCO
-
-export PATH="/path/to/AUGUSTUS/augustus-3.2.3/bin:$PATH"
-export PATH="/path/to/AUGUSTUS/augustus-3.2.3/scripts:$PATH"
-export AUGUSTUS_CONFIG_PATH="/path/to/AUGUSTUS/augustus-3.2.3/config/"
-
-
-apptainer exec /users/bip23bta/busco_v5.6.1_cv1.sif busco -i filtered_fastas/${assembly}_primary.filtered.fa \
--l diptera_odb10 \
--o busco_out/${assembly}_metazoa_no-hit \
--m genome \
--f \
--c 20
 
 
 
