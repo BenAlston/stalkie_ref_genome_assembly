@@ -73,7 +73,10 @@ From [Alex's pipeline](https://github.com/alexjvr1/T.dalmanni_Genomics_of_meioti
  * running with -k 19 (kmer lenght) - works, hifiasm detects the peaks correctly in meigenii_5
    - Although i'm not sure what -k is actually doing
    - interestingly the new assembly is sligntly better than the old one, 
-   
+
+Dalmanni_6 job id:2782656
+- For some reason -k now makes it take ages, probably cause the defauls -k is 51, smaller kmer size is less efficient.
+- Remains to be seen if it's too slow to be practical
 
 # Cleaning Assemblies
 * Remove contamination using blobtoolkit, then remove duplicated haplotigs using purge_dups
@@ -138,6 +141,10 @@ whitei_1 pre and post purge_dups_manual.sh
 | -------------|-------------|---------|--------|------------------|----------|
 | pre-purging  | 0.762 | 7589   |  35.6|   95.8         | 156 |
 | purge_dups round 2 (default cutoffs) | 0.548    | 4718      | 2.5    | 94.5     | 187 |
+| purge_dups round 2 (manual cutoffs) | 0.553 | 4755 | 2.9 | 94.6 | 188 |
+
+* Manual cutoffs male a slightly better assembly, but it's pretty marginal, it would be nice is busco completeness was above 95%, I could increase the upper cuttoff until i hit this?
+* I reckon the default settings are generally fine, but I should have the script plot a histogram so I can sanity check it and adjust if neccessary
 
 * Purge dups now runs, but ideally completeness should be higher, should probably manually tweak cutoffs.
 * Have emailed the creator of purge_dups to ask about cutoffs:
