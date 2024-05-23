@@ -50,8 +50,9 @@ From [Alex's pipeline](https://github.com/alexjvr1/T.dalmanni_Genomics_of_meioti
 * Issue with meigenii_5 and dalmanni_6:  "peak_hom: 23; peak_het: -1"
   - this is a solvable issue, [see this thread](https://github.com/chhylp123/hifiasm/issues/245)
   - Potentially caused by the sample being highly heterozygous. Hifiasm only identifies one peak (the het peak) and misidentifies it as the hom peak. For meigenii_5, it should be "peak_het: 23, peak_hom: 46"
-  - This is not consistent with est coverage (total read length/est genome size). However I don't trust the jellyfish est genome sizes
- * Can fix the -1 hom peak issue a few ways:
+  - This can be fixed by specifying -k 19 (kmer length, def 51, must be <64)
+  - this fix makes the script take ages to run, also [this person](https://github.com/chhylp123/hifiasm/issues/55) found that doing this made hifiasm output both haplotypes into the primary assembly, leaving a too small alternate assembly - make sure it isn't doing this.
+  - Also no indication as to why they chose this kmer length
 
 **Table 2:** Does default hifiasn identify the correct peak, and can this be fixed by running with the "-k 19" parameter
 |assembly|hifiasm identifies correct peak?| Fixed with -k 19? |
