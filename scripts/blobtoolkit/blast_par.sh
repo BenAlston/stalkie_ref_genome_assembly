@@ -14,7 +14,7 @@
 #	Date:        April 2024
 #########################################################################################
 
-# Uses BLAST+ V2.15.0
+# Uses BLAST+/2.15.0
 
 wd=/mnt/parscratch/users/bip23bta/ref_genomes
 species=whitei
