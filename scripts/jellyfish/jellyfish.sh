@@ -12,6 +12,7 @@
 #	Date:        Feb 2024
 #########################################################################################
 
+# jellyfish/2.2.10
 module load Anaconda3
 source activate jellyfish
 
