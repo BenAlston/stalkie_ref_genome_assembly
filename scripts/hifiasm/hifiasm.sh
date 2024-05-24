@@ -14,7 +14,7 @@
 #	Date:        April 2024
 #########################################################################################
 
-# uses Hifiasm v0.16.1-r375
+# uses Hifiasm/0.16.1-r375
 module load Anaconda3
 source activate hifiasm
 
