@@ -13,7 +13,7 @@
 #       Date:        Feb 2024
 #########################################################################################
 
-# BUSCO v5.6.1
+# BUSCO/5.6.1
 busco ='apptainer exec /users/bip23bta/busco_v5.6.1_cv1.sif busco'
 
 # Paths
@@ -25,6 +25,7 @@ export AUGUSTUS_CONFIG_PATH="/path/to/AUGUSTUS/augustus-3.2.3/config/"
 GENOME=/mnt/parscratch/users/bip23bta/ref_genomes/whitei/03-QC/purge_dups/1_primary/round_2/purged.fa
 OUT=/mnt/parscratch/users/bip23bta/ref_genomes/whitei/03-QC/purge_dups/1_primary/round_2/
 
+mkdir $OUT
 
 $busco
   -i ${GENOME} \
