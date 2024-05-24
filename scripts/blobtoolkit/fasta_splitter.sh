@@ -15,7 +15,7 @@
 
 
 module load Anaconda3/2022.05
-source activate blast # conda env contains the package "fasta splitter"
+source activate blast # conda env contains the package: fasta-splitter/0.2.6
 
 species=whitei
 assembly=2
