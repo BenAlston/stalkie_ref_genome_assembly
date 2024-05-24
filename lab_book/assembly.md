@@ -76,8 +76,7 @@ From [Alex's pipeline](https://github.com/alexjvr1/T.dalmanni_Genomics_of_meioti
    - interestingly the new assembly is sligntly better than the old one, 
 
 Dalmanni_6 job id:2782656
-- For some reason -k now makes it take ages, probably cause the defauls -k is 51, smaller kmer size is less efficient.
-- Remains to be seen if it's too slow to be practical
+- For some reason -k now makes it take ages, probably cause the defauls -k is 51, smaller kmer size is less efficient. At 180GB, runs out of memmory, increasing kmer size to 31 and running again. Jobid: **2932092**
 
 # Cleaning Assemblies
 * Remove contamination using blobtoolkit, then remove duplicated haplotigs using purge_dups
