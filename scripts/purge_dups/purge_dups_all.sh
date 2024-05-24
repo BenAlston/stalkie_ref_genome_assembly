@@ -14,7 +14,7 @@
 #	Date:        May 2024
 #########################################################################################
 
-# purge_dups v1.2.5, minimap2 v2.27-r1193
+# purge_dups/1.2.5, minimap2/2.27-r1193
 
 # load packages
 module load Anaconda3/2022.05
