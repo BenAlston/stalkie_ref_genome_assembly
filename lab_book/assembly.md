@@ -52,31 +52,8 @@ From [Alex's pipeline](https://github.com/alexjvr1/T.dalmanni_Genomics_of_meioti
   - Potentially caused by the sample being highly heterozygous. Hifiasm only identifies one peak (the het peak) and misidentifies it as the hom peak. For meigenii_5, it should be "peak_het: 23, peak_hom: 46"
   - This can be fixed by specifying -k 19 (kmer length, def 51, must be <64)
   - this fix makes the script take ages to run, also [this person](https://github.com/chhylp123/hifiasm/issues/55) found that doing this made hifiasm output both haplotypes into the primary assembly, leaving a too small alternate assembly - make sure it isn't doing this.
-  - Also no indication as to why they chose this kmer length
-
-**Table 2:** Does default hifiasn identify the correct peak, and can this be fixed by running with the "-k 19" parameter
-|assembly|hifiasm identifies correct peak?| Fixed with -k 19? |
-|:----|:----|:---|
-|whitei_1|?|?|
-|whitei_2|?|?|
-|whitei_3|?|?|
-|meigenii_4|yes|na|
-|meigenii_5|no|yes|
-|dalmanni_6|no|running|
-|dalmanni_7|yes|na|
-
-**Log**
- * Ran hifiasm.sh with -D 10 - **did not solve the issue**
- * Ran with predicted size 0.476g (jellyfish predicted size) - **did not solve the issue**
- * Ran with --min-hist-cnt 6 - ignore counts below the number - **does not work** - output the same as standard
- * Ran with --purge-cov 46 - manually set hom peak - **does not work**, outdated 
- * Ran with option --hom-cov 46 - manually set hom peak - **does not work** - output the same as standard
- * running with -k 19 (kmer lenght) - works, hifiasm detects the peaks correctly in meigenii_5
-   - Although i'm not sure what -k is actually doing
-   - interestingly the new assembly is sligntly better than the old one, 
-
-Dalmanni_6 job id:2782656
-- For some reason -k now makes it take ages, probably cause the defauls -k is 51, smaller kmer size is less efficient. At 180GB, runs out of memmory, increasing kmer size to 31 and running again. Jobid: **2932092**
+  - Also no indication as to why they chose this kmer length 
+- For some reason -k now makes it take ages, probably cause the defauls -k is 51, smaller kmer size is less efficient. At 180GB, runs out of memmory, increasing kmer size to 31 and running again. Jobid: **2932092**. runs but does not fix the issue.
 
 # Cleaning Assemblies
 * Remove contamination using blobtoolkit, then remove duplicated haplotigs using purge_dups
