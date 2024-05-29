@@ -129,10 +129,45 @@ whitei_1 pre and post purge_dups_manual.sh
 * These seem sensible, valley between het and hom peaks has been identified, but I am unsure if the upper and lower cutoffs are in the correct places
   - goint to re run with cutoffs 3 61 240 - see if outcome is improved - busco is running
 
-## **Sex Chromosome Identification**
+# **Sex Chromosome Identification**
 * Differences in coverage and heterozygosity can be used to identify the XY chromosomes
 * Illumina short read data for the three species, 5 individuals per sex
+* this pipeline with be initially run on whitei only
 
+## **1. Trimming & QC**
+QC has already been done on the samples. Details of QC used by liverpool:
+_The raw Fastq files are trimmed for the presence of Illumina adapter sequences using Cutadapt version 1.2.1. The option -O 3 was used, so the 3' end of any reads which match the adapter sequence for 3 bp. or more are trimmed._
+
+_The reads are further trimmed using Sickle version 1.200 with a minimum window quality score of 20. Reads shorter than 15 bp. after trimming were removed. If only one of a read pair passed this filter, it is included in the R0 file. The output files from Cutadapt and Sickle are available here._
+
+* Can run trimmomatic on the raw samples if needed, but the liverpool trimmed samples look good 
+
+
+## **2. Mapping with minimap2**
+* Mapping male and female short reads seperately to the female ref (in this case whitei_1)
+* Can also use bwa, need to specify 0 mismatches
+
+~~~
+female:A01,A02,A03,A04,A05
+male:A06,A07,A08, A09, A10
+
+
+~~~
+* run Minimap2 with --MD to output the MD tag (MD = String encoding mismatched and deleted reference bases)
+* Paired end reads: two .fastq.gz files per sample (R1 & R2) plus R0, an small file containing unpaired reads, disgarded.
+* not sure minimap2 will do multiple paired end reads at once, could try hisat2 or bowtie2
+* 
+
+## **3. extract per site coverage**
+* Averaged across windows (potentially ~5kb) - bedtools or soapcov
+* Calculate log ratio of male to female coverage (per window)
+
+samtools: 
+~~~
+$samtools coverage data_files/$(basename $INPUT_ASSEMBLY).reads.bam > data_files/$(basename $INPUT_ASSEMBLY).coverage.txt
+# this gives per contig coverage
+# not sure it will do cov acrrcross windows
+~~~
  **Options**
 * Construct own pipeline
 * Use [findZX](https://github.com/hsigeman/findZX)
