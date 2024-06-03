@@ -153,10 +153,11 @@ male:A06,A07,A08, A09, A10
 
 
 ~~~
-* run Minimap2 with --MD to output the MD tag (MD = String encoding mismatched and deleted reference bases)
 * Paired end reads: two .fastq.gz files per sample (R1 & R2) plus R0, an small file containing unpaired reads, disgarded.
-* not sure minimap2 will do multiple paired end reads at once, could try hisat2 or bowtie2
-* 
+* Run bowtie2 with --mp 10000 (effectivley removes missmatches by setting a high penalty for them)
+* Ran [bowtie2_indexer.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/bowtie2_index.sh)
+* Running [bowtie2_alignment](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/bowtie2_alignment.sh)
+* Currently running job 3030383
 
 ## **3. extract per site coverage**
 * Averaged across windows (potentially ~5kb) - bedtools or soapcov
