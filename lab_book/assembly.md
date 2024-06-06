@@ -161,6 +161,7 @@ male:A06,A07,A08, A09, A10
 
 ## **3. extract per site coverage**
 * Averaged across windows (potentially ~5kb) - bedtools or soapcov
+* samtools can output a file containing per base coverage
 * Calculate log ratio of male to female coverage (per window)
 
 samtools: 
@@ -169,7 +170,12 @@ $samtools coverage data_files/$(basename $INPUT_ASSEMBLY).reads.bam > data_files
 # this gives per contig coverage
 # not sure it will do cov acrrcross windows
 ~~~
- **Options**
+current ideas:
+* modify bowtie to output bam file (samtools view)
+* generate bed file (using bedtools bamtobed) and split into 5kb using bedtools makewindows
+* use bedtools multicov to report number of alignments from a given bam file to the bed file split into windows
+
+**Options**
 * Construct own pipeline
 * Use [findZX](https://github.com/hsigeman/findZX)
 
