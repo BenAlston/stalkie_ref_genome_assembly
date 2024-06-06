@@ -77,6 +77,9 @@ conda install bioconda::package
 # view a list of all installed conda envs:
 conda env list
 
+# search available versions
+conda search $package
+
 ~~~
 
 Find conda env package version
