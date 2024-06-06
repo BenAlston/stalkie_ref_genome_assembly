@@ -75,16 +75,16 @@ From [Alex's pipeline](https://github.com/alexjvr1/T.dalmanni_Genomics_of_meioti
 * Even with the local blast nt db, blasting my highly contiguous assemblies will take too long unless it is parallelised
 
 **Parallelising Blast**
-* split my assembly fasta into 500 smaller files: ran [fasta_splitter.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/fasta_splitter.sh)
-* ran blast on each using an array script, [blast_par.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/scripts/blast_par.sh)
+* split my assembly fasta into 500 smaller files: ran [fasta_splitter.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/blobtoolkit/fasta_splitter.sh)
+* ran blast on each using an array script, [blast_par.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/blobtoolkit/blast_par.sh)
 * Then I condensed these blast output files into a single file:
 ~~~
 cat out/* >> all_blast.out
 ~~~
 
 ## **Blobtoolkit pipeline:**
-* Ran [blobtoolkit.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/edit/main/scripts/blobtoolkit.sh)
-* This script calculates coverage, takes the blast output I just generated, and the busco output from [busco.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/edit/main/scripts/busco.sh). It then filters the assembly for contamination, I am able to specify which taxanomic rank blast matches I want removed.
+* Ran [blobtoolkit.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/edit/main/scripts/blobtoolkit/blobtoolkit.sh)
+* This script calculates coverage, takes the blast output I just generated, and the busco output from [busco.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/edit/main/scripts/utility/busco.sh). It then filters the assembly for contamination, I am able to specify which taxanomic rank blast matches I want removed.
 * **<Important>** generating coverage using minimap2 does not work for dalmanni_6, this is likely an issue to to with the HiFi reads being to long.
 * This analysis has currently been run on whitei_1 and whitei_2 only.
 
