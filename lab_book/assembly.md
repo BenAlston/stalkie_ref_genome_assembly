@@ -54,6 +54,7 @@ From [Alex's pipeline](https://github.com/alexjvr1/T.dalmanni_Genomics_of_meioti
   - this fix makes the script take ages to run, also [this person](https://github.com/chhylp123/hifiasm/issues/55) found that doing this made hifiasm output both haplotypes into the primary assembly, leaving a too small alternate assembly - make sure it isn't doing this.
   - Also no indication as to why they chose this kmer length 
 - For some reason -k now makes it take ages, probably cause the defauls -k is 51, smaller kmer size is less efficient. At 180GB, runs out of memmory, increasing kmer size to 31 and running again. Jobid: **2932092**. runs but does not fix the issue.
+* Putting this issue on hold as it'll likely be fixed by the Hi-C data
 
 # Cleaning Assemblies
 * Remove contamination using blobtoolkit, then remove duplicated haplotigs using purge_dups
