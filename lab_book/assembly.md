@@ -63,15 +63,15 @@ From [Alex's pipeline](https://github.com/alexjvr1/T.dalmanni_Genomics_of_meioti
 * [Blobtoolkit v3.1.6 ](https://github.com/blobtoolkit/blobtoolkit)
 * Essentially takes blast output, coverage, and busco output, and filters the dataset for contamination
 * Needs:
-  - blast.out file (generated in [blast_par.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/scripts/blast_par.sh))
-  - coverage (generated in [blobtoolkit.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/edit/main/scripts/blobtoolkit.sh))
-  - busco (generated in [busco.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/scripts/busco.sh))
+  - blast.out file (generated in [blast_par.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/scripts/blobtoolkit/blast_par.sh))
+  - coverage (generated in [blobtoolkit.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/edit/main/scripts/blobtoolkit/blobtoolkit.sh))
+  - busco (generated in [busco.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/scripts/utility/busco.sh))
 * the scripts are now up and running and ready to be used on any sample
 
 ### **Blast**
 
 **Installing local blast database**
-* Remote searches are not feasible for large queries, so installed the local Blast nt db ([using blast_nt_db.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/blast_nt_db.sh)), this takes up ~450GB of space
+* Remote searches are not feasible for large queries, so installed the local Blast nt db ([using blast_nt_db.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/blobtoolkit/blast_nt_db.sh)), this takes up ~450GB of space
 * Even with the local blast nt db, blasting my highly contiguous assemblies will take too long unless it is parallelised
 
 **Parallelising Blast**
@@ -169,16 +169,13 @@ samtools:
 ~~~
 $samtools coverage data_files/$(basename $INPUT_ASSEMBLY).reads.bam > data_files/$(basename $INPUT_ASSEMBLY).coverage.txt
 # this gives per contig coverage
-# not sure it will do cov acrrcross windows
+# not sure it will do cov across windows
 ~~~
 current ideas:
 * modify bowtie to output bam file (samtools view)
 * generate bed file (using bedtools bamtobed) and split into 5kb using bedtools makewindows
 * use bedtools multicov to report number of alignments from a given bam file to the bed file split into windows
 
-**Options**
-* Construct own pipeline
-* Use [findZX](https://github.com/hsigeman/findZX)
 
 
 
