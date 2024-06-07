@@ -141,12 +141,10 @@ _The raw Fastq files are trimmed for the presence of Illumina adapter sequences 
 
 _The reads are further trimmed using Sickle version 1.200 with a minimum window quality score of 20. Reads shorter than 15 bp. after trimming were removed. If only one of a read pair passed this filter, it is included in the R0 file. The output files from Cutadapt and Sickle are available here._
 
-* Can run trimmomatic on the raw samples if needed, but the liverpool trimmed samples look good 
+* Redoing qc so read length cuttoff can be 50
+* Ran trimmomatic ([trim.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/QC/trim.sh)) with read cuttoff of 50
+* [Multiqc report](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/lab_book/Data/multiqc_reports)
 
-
-## **2. Mapping with minimap2**
-* Mapping male and female short reads seperately to the female ref (in this case whitei_1)
-* Can also use bwa, need to specify 0 mismatches
 
 ~~~
 female:A01,A02,A03,A04,A05
@@ -154,11 +152,11 @@ male:A06,A07,A08, A09, A10
 
 
 ~~~
+## **.2 mapping with bowtie2**
 * Paired end reads: two .fastq.gz files per sample (R1 & R2) plus R0, an small file containing unpaired reads, disgarded.
 * Run bowtie2 with --mp 10000 (effectivley removes missmatches by setting a high penalty for them)
 * Ran [bowtie2_indexer.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/bowtie2_index.sh)
 * Running [bowtie2_alignment](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/bowtie2_alignment.sh)
-* Currently running job 3030383
 
 ## **3. extract per site coverage**
 * Averaged across windows (potentially ~5kb) - bedtools or soapcov
