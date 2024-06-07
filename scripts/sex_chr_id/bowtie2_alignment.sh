@@ -1,7 +1,7 @@
 #!/bin/bash
 #BATCH --job-name=bowtie2_align
 #SBATCH --mem=16G
-#SBATCH -c 4
+#SBATCH -c 8
 #SBATCH --time=96:00:00
 #SBATCH -e reports/bowtie_align.error.%j.txt
 #SBATCH -o reports/bowtie_align.output.%j.txt
