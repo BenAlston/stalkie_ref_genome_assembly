@@ -16,6 +16,9 @@
 module load Anaconda3
 source activate qc
 
+# fastqc/0.12.1 multiqc/1.0
+
+
 READS=/mnt/parscratch/users/bip23bta/ref_genomes/whitei/data/short_read/Trimmed_trimmomatic/*.paired.fastq
 OUTPUT=/mnt/parscratch/users/bip23bta/ref_genomes/whitei/data/short_read/Trimmed_trimmomatic/
  
