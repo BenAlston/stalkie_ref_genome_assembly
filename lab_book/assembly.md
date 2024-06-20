@@ -156,12 +156,16 @@ male:A06,A07,A08, A09, A10
 * Paired end reads: two .fastq.gz files per sample (R1 & R2) plus R0, an small file containing unpaired reads, disgarded.
 * Run bowtie2 with --mp 10000 (effectivley removes missmatches by setting a high penalty for them)
 * Ran [bowtie2_indexer.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/bowtie2_index.sh)
-* Running [bowtie2_alignment](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/bowtie2_alignment.sh)
-
+* Ran [bowtie2_alignment](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/bowtie2_alignment.sh)
+  - this script takes >3 days, see if there is a way of speeding it up
+ 
 ## **3. extract per site coverage**
-* Averaged across windows (potentially ~5kb) - bedtools or soapcov
-* samtools can output a file containing per base coverage
-* Calculate log ratio of male to female coverage (per window)
+* [cov_calc.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/cov_calc.sh) (ongoing)
+* Averaged across 5 kb windows using bedtools multicov
+* samtools stats per site coverage would also be an option
+
+## **4. Coverage ratio**
+* In R, calculate log ratio of male to female coverage (per window)
 
 samtools: 
 ~~~
