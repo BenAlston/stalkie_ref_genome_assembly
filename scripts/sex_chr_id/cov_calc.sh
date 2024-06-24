@@ -20,22 +20,18 @@ source activate cov_calc
 cd /mnt/parscratch/users/bip23bta/ref_genomes/whitei/04-sex_chromosomes/
 
 # sort and index the .bam file
-samtools sort female_whitei.bam -o female_whitei_sorted.bam
-samtools index female_whitei_sorted.bam
+samtools sort male_whitei.bam -o male_whitei_sorted.bam
+samtools index male_whitei_sorted.bam
+
+# generates .bed file from .bam
+bedtools bamtobed -i male_whitei_sorted.bam > male_whitei_sorted.bam.bed
 
 # merges all features of the .bed file into one
 # will need to check if this is the right way of doing it
-bedtools merge -i female_whitei_sorted.bam.bed > female_whitei_sorted_merged.bed
+bedtools merge -i male_whitei_sorted.bam.bed > male_whitei_sorted_merged.bed
 
-#bedtools bamtobed -i female_whitei_sorted.bam | bedtools makewindows -b - -w 5000 -s 5000 > female_whitei_windows.bed
-
-# generates .bed file from .bam
-bedtools bamtobed -i female_whitei_sorted.bam > female_whitei_sorted.bam.bed
-
-bedtools makewindows -b female_whitei_sorted_merged.bed -w 5000
+# makewindows
+bedtools makewindows -b male_whitei_sorted_merged.bed -w 5000 > male_whitei_windows.bed
 
 # counts the number of alignments that overlap with the intervals specified by the .bed file
-bedtools multicov -bams female_whitei_sorted.bam -bed female_whitei_windows.bed > female_cov.csv
-
-
-
+bedtools multicov -bams male_whitei_sorted.bam -bed male_whitei_windows.bed > male_cov.tsv
