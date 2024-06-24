@@ -163,20 +163,12 @@ male:A06,A07,A08, A09, A10
 * [cov_calc.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/cov_calc.sh) (ongoing)
 * Averaged across 5 kb windows using bedtools multicov
 * samtools stats per site coverage would also be an option
+* for whatever reson the genomic windows do not line up between male and female cov outputs. Maybe some of each genome is lost due to reads absent in one sex. This shouldnt happen so I've probably done this bit wrong.
+* rerunning the multicov step but using the male_whitei_windows.bed file for both male and female, since this in theory contains the entire X and Y. In future will probably need to merge the two
+* things shoud be aligned to the male ref not females so will have to do it all again
 
 ## **4. Coverage ratio**
 * In R, calculate log ratio of male to female coverage (per window)
-
-samtools: 
-~~~
-$samtools coverage data_files/$(basename $INPUT_ASSEMBLY).reads.bam > data_files/$(basename $INPUT_ASSEMBLY).coverage.txt
-# this gives per contig coverage
-# not sure it will do cov across windows
-~~~
-current ideas:
-* modify bowtie to output bam file (samtools view)
-* generate bed file (using bedtools bamtobed) and split into 5kb using bedtools makewindows
-* use bedtools multicov to report number of alignments from a given bam file to the bed file split into windows
 
 
 
