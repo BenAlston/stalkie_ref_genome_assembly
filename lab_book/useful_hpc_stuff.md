@@ -120,6 +120,28 @@ done
 # this test script essentially matches the slurm array id with an element of an array ive defined ($inputs in this case)
 # we can then do a loop for each if needed 
 # the UoS hpc documentation on this is shocking
+
+# another (better?) way:
+# make file of line sepparated file names or prefixes, e.g.:
+cat filenames.txt
+A01
+A02
+A03
+
+# read this as an array (a specific kind of unix object, kinda like vectors in R)
+
+readarray -t array < filenames.txt
+
+# now i can access anything in the array using numbers 0-2, e.g.,
+echo "${array[1]}"
+A02
+
+# so each sample now correstponds to a different slurm array task id (which go from 0-however many you specify)
+FILENAME="${array[$SLURM_ARRAY_TASK_ID]}
+
+# for SLURM_ARRAY_TASK_ID=0:
+echo $FILENAME
+A01
 ~~~
 Docker/apptainer
 ~~~
