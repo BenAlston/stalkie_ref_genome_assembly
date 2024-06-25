@@ -40,7 +40,7 @@ seff $jobid # can use this and trial and error to work out how many resources a 
 ~~~
 Download from HPC to local machine:
 ~~~
-scp bip23bta@stanage.shef.ac.uk:/mnt/parscratch/users/bip23bta/ref_genomes/whitei/03-QC/purge_dups/1_primary/round_1_man_cutoffs/man_cov_hist_1.png /Downloads/
+scp bip23bta@stanage.shef.ac.uk:/mnt/parscratch/users/bip23bta/ref_genomes/whitei/03-QC/purge_dups/1_primary/round_1_man_cutoffs/man_cov_hist_1.png Downloads/
 # run command on local machine, not hpc
 ~~~
 
