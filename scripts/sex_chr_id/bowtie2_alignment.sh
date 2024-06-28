@@ -8,7 +8,7 @@
 
 #########################################################################################
 #       Script Name: bowtie2_align.sh
-#       Description: Aligns short reads to female ref, outputing a .sam file
+#       Description: Aligns short reads to female ref, converting to a .bam file
 #       Author:      Ben Alston
 #       Date:        May 2024
 #########################################################################################
