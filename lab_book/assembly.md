@@ -130,47 +130,6 @@ whitei_1 pre and post purge_dups_manual.sh
 * These seem sensible, valley between het and hom peaks has been identified, but I am unsure if the upper and lower cutoffs are in the correct places
   - goint to re run with cutoffs 3 61 240 - see if outcome is improved - busco is running
 
-# **Sex Chromosome Identification**
-* Differences in coverage and heterozygosity can be used to identify the XY chromosomes
-* Illumina short read data for the three species, 5 individuals per sex
-* this pipeline with be initially run on whitei only
-
-## **1. Trimming & QC**
-QC has already been done on the samples. Details of QC used by liverpool:
-_The raw Fastq files are trimmed for the presence of Illumina adapter sequences using Cutadapt version 1.2.1. The option -O 3 was used, so the 3' end of any reads which match the adapter sequence for 3 bp. or more are trimmed._
-
-_The reads are further trimmed using Sickle version 1.200 with a minimum window quality score of 20. Reads shorter than 15 bp. after trimming were removed. If only one of a read pair passed this filter, it is included in the R0 file. The output files from Cutadapt and Sickle are available here._
-
-* Redoing qc so read length cuttoff can be 50
-* Ran trimmomatic ([trim.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/QC/trim.sh)) with read cuttoff of 50
-* [Multiqc report](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/lab_book/Data/multiqc_reports)
-
-
-~~~
-female:A01,A02,A03,A04,A05
-male:A06,A07,A08, A09, A10
-
-
-~~~
-## **.2 mapping with bowtie2**
-* Paired end reads: two .fastq.gz files per sample (R1 & R2) plus R0, an small file containing unpaired reads, disgarded.
-* Run bowtie2 with --mp 10000 (effectivley removes missmatches by setting a high penalty for them)
-* Ran [bowtie2_indexer.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/bowtie2_index.sh)
-* Ran [bowtie2_alignment](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/bowtie2_alignment.sh)
-  - this script takes >3 days, see if there is a way of speeding it up
- 
-## **3. extract per site coverage**
-* [cov_calc.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/cov_calc.sh) (ongoing)
-* Averaged across 5 kb windows using bedtools multicov
-* samtools stats per site coverage would also be an option
-* for whatever reson the genomic windows do not line up between male and female cov outputs. Maybe some of each genome is lost due to reads absent in one sex. This shouldnt happen so I've probably done this bit wrong.
-* rerunning the multicov step but using the male_whitei_windows.bed file for both male and female, since this in theory contains the entire X and Y. In future will probably need to merge the two
-* things shoud be aligned to the male ref not females so will have to do it all again
-
-## **4. Coverage ratio**
-* In R, calculate log ratio of male to female coverage (per window)
-
-
 
 
 
