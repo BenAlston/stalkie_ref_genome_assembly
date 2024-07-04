@@ -26,7 +26,7 @@ male:A06,A07,A08, A09, A10
 
 
 
-### **.1 mapping with bowtie2**
+### **1. mapping with bowtie2**
 * Paired end reads: two .fastq.gz files per sample (R1 & R2) plus R0, an small file containing unpaired reads, disgarded.
 * Run bowtie2 with --mp 10000 (effectivley removes missmatches by setting a high penalty for them)
 * Ran [bowtie2_indexer.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/bowtie2_index.sh) on the female ref
@@ -45,7 +45,7 @@ male:A06,A07,A08, A09, A10
 # **Y identification: Degenerate Region**
 * WHen mapping M and F reads to the M ref, regions where male read map only will be Y linked. This is done in a similar way to the F reads
 
-### **.1 mapping with bowtie2**
+### **1. mapping with bowtie2**
 * Ran [bowtie2_indexer.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/bowtie2_index.sh) on male ref
 * Ran [bowtie2_alignment](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/bowtie2_alignment.sh)
 * mapped each of the individuals seperately to the male ref
