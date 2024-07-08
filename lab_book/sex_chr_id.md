@@ -22,10 +22,7 @@ male:A06,A07,A08, A09, A10
 ~~~
 
 
-**# Y chromosome Identification**
-
-
-
+**# X chromosome Identification**
 ### **1. mapping with bowtie2**
 * Paired end reads: two .fastq.gz files per sample (R1 & R2) plus R0, an small file containing unpaired reads, disgarded.
 * Run bowtie2 with --mp 10000 (effectivley removes missmatches by setting a high penalty for them)
@@ -42,6 +39,10 @@ male:A06,A07,A08, A09, A10
 * In R, calculate log ratio of female to male coverage (per window) with dplyr
 * used this to identify the X-linked reads
 
+### **weird outlier peaks on the coverage graph**
+* [coverage histogram for whitei](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/lab_book/Data/sex_chr/whitei_cov_hist.jpg)
+* symetrical outlier peaks on either side of the main peak are caused by regions with very low coverage, usually 1-4 per individual, symetry is determined by if its m or f coverage.
+
 # **Y identification: Degenerate Region**
 * WHen mapping M and F reads to the M ref, regions where male read map only will be Y linked. This is done in a similar way to the F reads
 
@@ -56,6 +57,5 @@ male:A06,A07,A08, A09, A10
 
 ### **3. Coverage ratio**
 * In R, calculate log ratio of female to male coverage (per window)
-* used this to identify the Y-linked reads
 
-# **Y identification: Pseudoautosomal region**
+# **Y identification:**
