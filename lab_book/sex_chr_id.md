@@ -59,4 +59,6 @@ male:A06,A07,A08, A09, A10
 ### **3. Coverage ratio**
 * In R, calculate log ratio of female to male coverage (per window)
 
-# **Y identification:**
+# **Y identification PAR**
+* Remap to female ref with default mapping threshold (remove -mp 10000)
+* SNP calling cross genome 
