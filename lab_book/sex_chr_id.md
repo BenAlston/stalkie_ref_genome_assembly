@@ -17,8 +17,6 @@ _The reads are further trimmed using Sickle version 1.200 with a minimum window 
 ~~~
 female:A01,A02,A03,A04,A05
 male:A06,A07,A08, A09, A10
-
-
 ~~~
 
 
