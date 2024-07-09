@@ -16,7 +16,7 @@ Start interactive session in stanage/bessimer:
 ~~~
 srun --pty bash -i
 ~~~
-Fastdata (because /fastdata/$user is too convenient): 
+Fastdata: 
 ~~~
 /mnt/parscratch/users/$user
 ~~~
