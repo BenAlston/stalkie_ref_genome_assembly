@@ -3,6 +3,9 @@
 * This pipeline _will_ generate reference genomes for _Teleopsis dalmanni_, _Teleopsis whitei_ and _Diasemopsis meigenii_. PacBio HiFi data for assembly, Omni-C for Scaffolding, and RNA ISO-seq for annotation.
 From [Alex's pipeline](https://github.com/alexjvr1/T.dalmanni_Genomics_of_meiotic_drive/blob/main/Electronic_Lab_Book.md#1-genome-assembly), we know the current _T. dalmanni_ ref is ~0.383 Gb and 3 chromosomes 
 
+### Overview of pipeline: 
+![pipeline_1.png](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/lab_book/figures/pipeline_1.png)
+
 ### Samples & data
   ~~~
   - sequence data for 6 individuals, 1M, 1F per species.
