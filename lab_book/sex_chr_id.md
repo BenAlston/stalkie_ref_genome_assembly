@@ -59,4 +59,7 @@ male:A06,A07,A08, A09, A10
 
 # **Y identification PAR**
 * Remap to female ref with default mapping threshold (remove -mp 10000)
-* SNP calling cross genome 
+* SNP calling cross genome
+
+# **Coverage Ratio**
+* could do something like the mank lab did with [permutation tests](https://github.com/manklab/Darolti_etal_2022_guppy_sexchromo/blob/main/coverage_analysis/method_adapted_from_Bergero_etal_2019_PNAS/plot_coverage.R).
