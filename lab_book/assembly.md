@@ -124,6 +124,11 @@ whitei_1 pre and post purge_dups_manual.sh
 * [sex chromosome identification](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/lab_book/sex_chr_id.md)
 * Incorporate Omni-C and determine what qc still needs to be run
 
+### **Trimm adapters and reassemble?**
+* Hifi reads arent supposed to have adapter content. However, adapter contamination doesn't seen to be that uncommon, [see this paper](https://bmcgenomics.biomedcentral.com/articles/10.1186/s12864-022-08375-1).
+* Unfortunatley, the paper above suggests that removing adapter contamination likely wont solve my issues
+* Adapter content is in excess of 30% for some of my samples
+
 
 
 
