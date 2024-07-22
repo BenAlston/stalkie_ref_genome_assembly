@@ -8,7 +8,7 @@
 
 #########################################################################################
 #       Script Name: bowtie2_align.sh
-#       Description: Aligns illumina paired reads to a ref. Swap between males and females with find and replace
+#       Description: Aligns illumina paired reads to a ref
 #       Author:      Ben Alston
 #       Date:        May 2024
 #########################################################################################
