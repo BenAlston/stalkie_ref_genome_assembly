@@ -4,7 +4,7 @@
 From [Alex's pipeline](https://github.com/alexjvr1/T.dalmanni_Genomics_of_meiotic_drive/blob/main/Electronic_Lab_Book.md#1-genome-assembly), we know the current _T. dalmanni_ ref is ~0.383 Gb and 3 chromosomes 
 
 ### Overview of pipeline: 
-![pipeline_1.png](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/lab_book/figures/pipeline_1.png)
+![pipeline_1.png](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/lab_book/figures/pipeline1.png)
 
 ### Samples & data
   ~~~
