@@ -2,6 +2,7 @@
 * Differences in coverage and heterozygosity can be used to identify the XY chromosomes
 * Illumina short read data for the three species, 5 individuals per sex
 * this pipeline will be initially run on whitei only
+* wilkinson et al 2023 reported the tdal X to be 97.2 Mbp
 
 ## **Trimming & QC**
 QC has already been done on the samples. Details of QC used by liverpool:
@@ -42,6 +43,10 @@ male:A06,A07,A08, A09, A10
 * symetrical outlier peaks on either side of the main peak are caused by regions with very low coverage, usually 1-4 per individual, symetry is determined by if its m or f coverage.
 * Currently, samples with coverage values below <4 are considered 0, this has remomved the peaks. Still need to decide on a less arbirary threshold
 
+### **X-autosomal cutoff**
+* I have a multi-modal density distribution that looks like two normal distributions stuck together. 
+* I essentially want to determine the probability that any given observation belongs to either peak, so I can set a justifiable cutoff
+* any ideas how I could do this. Preferably in R
 
 # **Y identification: Degenerate Region**
 * WHen mapping M and F reads to the M ref, regions where male read map only will be Y linked. This is done in a similar way to the F reads
