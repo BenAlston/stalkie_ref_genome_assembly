@@ -37,10 +37,10 @@ male:A06,A07,A08, A09, A10
 * In R, calculate log ratio of female to male coverage (per window) with dplyr
 * used this to identify the X-linked reads
 
-### **weird outlier peaks on the coverage graph**
+### **Low coverage cutoff**
 * [coverage histogram for whitei](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/lab_book/Data/sex_chr/whitei_cov_hist.jpg)
 * symetrical outlier peaks on either side of the main peak are caused by regions with very low coverage, usually 1-4 per individual, symetry is determined by if its m or f coverage.
-* peaks are removed when
+* Currently, samples with coverage values below <4 are considered 0, this has remomved the peaks. Still need to decide on a less arbirary threshold
 
 
 # **Y identification: Degenerate Region**
