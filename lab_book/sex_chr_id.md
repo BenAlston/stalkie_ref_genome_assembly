@@ -46,7 +46,7 @@ male:A06,A07,A08, A09, A10
 ### **X-autosomal cutoff**
 * I have a multi-modal density distribution that looks like two normal distributions stuck together. 
 * I essentially want to determine the probability that any given observation belongs to either peak, so I can set a justifiable cutoff
-* any ideas how I could do this. Preferably in R
+* doing this is kind of beyond me. I can fit models but have no idea if they are apropriate.
 
 # **Y identification: Degenerate Region**
 * WHen mapping M and F reads to the M ref, regions where male read map only will be Y linked. This is done in a similar way to the F reads
