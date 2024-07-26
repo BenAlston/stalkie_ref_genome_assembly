@@ -21,7 +21,8 @@ male:A06,A07,A08, A09, A10
 ~~~
 
 
-**# X chromosome Identification**
+# ** X chromosome Identification**
+
 ### **1. mapping with bowtie2**
 * Paired end reads: two .fastq.gz files per sample (R1 & R2) plus R0, an small file containing unpaired reads, disgarded.
 * Run bowtie2 with --mp 10000 (effectivley removes missmatches by setting a high penalty for them)
@@ -43,10 +44,12 @@ male:A06,A07,A08, A09, A10
 * symetrical outlier peaks on either side of the main peak are caused by regions with very low coverage, usually 1-4 per individual, symetry is determined by if its m or f coverage.
 * Currently, samples with coverage values below <4 are considered 0, this has remomved the peaks. Still need to decide on a less arbirary threshold
 
-### **X-autosomal cutoff**
+
+### **X-autosomal cutoff**
 * I have a multi-modal density distribution that looks like two normal distributions stuck together. 
 * I essentially want to determine the probability that any given observation belongs to either peak, so I can set a justifiable cutoff
 * doing this is kind of beyond me. I can fit models but have no idea if they are apropriate.
+
 
 # **Y identification: Degenerate Region**
 * WHen mapping M and F reads to the M ref, regions where male read map only will be Y linked. This is done in a similar way to the F reads
