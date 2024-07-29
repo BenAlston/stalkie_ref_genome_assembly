@@ -12,8 +12,7 @@
 #       Date:        jul 2024
 #########################################################################################
 
-module load GATK # load gatk, already installed onto the hpc
-
+module load GATK # load gatk/4.3.0.0 already installed onto the hpc
 
 #filepath variables
 WD=/mnt/parscratch/users/bip23bta/ref_genomes/whitei/04-sex_chromosomes
