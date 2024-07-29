@@ -50,6 +50,9 @@ male:A06,A07,A08, A09, A10
 * I essentially want to determine the probability that any given observation belongs to either peak, so I can set a justifiable cutoff
 * doing this is kind of beyond me. I can fit models but have no idea if they are apropriate.
 
+1. [Beatriz & Bachtrog et al (2015)](https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1002078) identify the autosomal peak, divide that by two, and select contigs in a +-0.1 range around this.
+2. The findZX pipeline doesn't say how they do this bit
+3. 
 
 # **Y identification: Degenerate Region**
 * WHen mapping M and F reads to the M ref, regions where male read map only will be Y linked. This is done in a similar way to the F reads
@@ -66,9 +69,24 @@ male:A06,A07,A08, A09, A10
 ### **3. Coverage ratio**
 * In R, calculate log ratio of female to male coverage (per window)
 
-# **Y identification PAR**
-* Remap to female ref with default mapping threshold (remove -mp 10000)
+# **Y identification±: Diverged Region**
+* Remap to female ref with default mapping threshold (remove -mp 10000) - running
 * SNP calling cross genome
+
+  # **1. prepare ref and split into 60 intervals**
+* This is required to make the snp calling pipeline run quicker
+* Created reference index and gatk dictionary files for the whitei_1 ref:
+
+~~~
+# samtools
+samtools faidx 1_primary.fa
+# gatk/4.3.0.0
+gatk CreateSequenceDictionary -R 1_primary.fa
+~~~
+
+* ran [gatk_interval.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/scripts/sex_chr_id)
+
 
 # **Coverage Ratio**
 * could do something like the mank lab did with [permutation tests](https://github.com/manklab/Darolti_etal_2022_guppy_sexchromo/blob/main/coverage_analysis/method_adapted_from_Bergero_etal_2019_PNAS/plot_coverage.R).
+  
