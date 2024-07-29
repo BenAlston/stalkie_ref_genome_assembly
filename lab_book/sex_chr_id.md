@@ -21,7 +21,7 @@ male:A06,A07,A08, A09, A10
 ~~~
 
 
-# ** X chromosome Identification**
+# **X chromosome Identification**
 
 ### **1. mapping with bowtie2**
 * Paired end reads: two .fastq.gz files per sample (R1 & R2) plus R0, an small file containing unpaired reads, disgarded.
