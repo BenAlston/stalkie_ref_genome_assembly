@@ -68,25 +68,26 @@ male:A06,A07,A08, A09, A10
 
 ### **3. Coverage ratio**
 * In R, calculate log ratio of female to male coverage (per window)
+* could do something like the mank lab did with [permutation tests](https://github.com/manklab/Darolti_etal_2022_guppy_sexchromo/blob/main/coverage_analysis/method_adapted_from_Bergero_etal_2019_PNAS/plot_coverage.R).
 
-# **Y identification±: Diverged Region**
+# **Y identification: Diverged Region**
 * Remap to female ref with default mapping threshold (remove -mp 10000) - running
 * SNP calling cross genome
 
-  # **1. prepare ref and split into 60 intervals**
+### **1. prepare ref and split into 60 intervals**
 * This is required to make the snp calling pipeline run quicker
 * Created reference index and gatk dictionary files for the whitei_1 ref:
-
 ~~~
 # samtools
 samtools faidx 1_primary.fa
 # gatk/4.3.0.0
 gatk CreateSequenceDictionary -R 1_primary.fa
 ~~~
+* ran [gatk_interval.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/scripts/sex_chr_id/gatk_interval.sh)
 
-* ran [gatk_interval.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/scripts/sex_chr_id)
-
-
-# **Coverage Ratio**
-* could do something like the mank lab did with [permutation tests](https://github.com/manklab/Darolti_etal_2022_guppy_sexchromo/blob/main/coverage_analysis/method_adapted_from_Bergero_etal_2019_PNAS/plot_coverage.R).
+### **2. Alignment With bowtie**
+* ran [bowtie2_alignment.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/bowtie2_alignment.sh) again but with the '--mp 10000' setting removed, to allow mismatches (since we want the male Y diverged reads to map  to the X).
+* Add read groups (picard)
+* Mark duplicates (picard)
+* generte flagstat index (samtools)
   
