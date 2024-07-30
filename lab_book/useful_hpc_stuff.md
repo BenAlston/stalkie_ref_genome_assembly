@@ -170,6 +170,15 @@ apptainer exec /users/bip24bta/busco_v5.6.1_cv1.sif busco -i $GENOME \
 -c 20
 
 ~~~
+Vim 
+~~~
+# comment/uncomment multiple lines
 
+# comment ----
+# Place cursor at start of block of code that you want to comment. Press ctr + v to enter visual mode, then select code, then shift + I, and type #. Press esc, # will be inserted at the start of all lines.
+
+# remmove
+ Place cursor at start of block of code that you want to comment. Press ctr + v to enter visual mode, then select start of code. Press x.
+~~~
 
 
