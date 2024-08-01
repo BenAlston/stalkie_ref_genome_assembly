@@ -115,15 +115,16 @@ whitei_1 pre and post purge_dups_manual.sh
 ![PB_1 cov](https://github.com/BenAlston/stalkie_ref_genome_assembly/assets/159305266/240949cb-0eae-4b67-a478-9ecd0d1e9c4a)
 * Default cutoffs seem sensible, valley between het and hom peaks has been identified, but I am unsure if the upper and lower cutoffs are in the correct places
 
-# 4. Next steps
-* [sex chromosome identification](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/lab_book/sex_chr_id.md)
-* Incorporate Omni-C and determine what qc still needs to be run
+# 4. Trying Different Assemblers
+* Trying different assemblers to see if these work better for my data
+* wtdbg2/2.5 (redbean), canu/2.2, flye/2.9.4
 
-### **Trimm adapters and reassemble?**
-* Hifi reads arent supposed to have adapter content. However, adapter contamination doesn't seen to be that uncommon, [see this paper](https://bmcgenomics.biomedcentral.com/articles/10.1186/s12864-022-08375-1).
-* Unfortunatley, the paper above suggests that removing adapter contamination likely wont solve my issues
-* Adapter content is in excess of 30% for some of my samples
-
+| assembler | species  | sample_prefix | sex    | jellyfish_est_size | primary_assembly_size | busco_completeness | busco_dup | contigs | N50_Kb |
+| --------- | -------- | ------------- | ------ | ------------------ | --------------------- | ------------------ | --------- | ------- | ------ |
+| hifiasm/0.16.1   | dalmanni | 7             | female | 533280821          | 609130602             | 97.3               | 4.9       | 2425    | 998    |
+| redbean/2.5   | dalmanni | 7             | female | 533280821          | 510304972             | 96.5               | 1.1       | 3741    | 673    |
+| canu/2.2,   | dalmanni | 7             | female | 533280821          |              |                |        |    |     |
+| flye/2.9.4   | dalmanni | 7             | female | 533280821          |              |               |       |    |    |
 
 
 
