@@ -25,14 +25,10 @@ From [Alex's pipeline](https://github.com/alexjvr1/T.dalmanni_Genomics_of_meioti
 * Ran [hifiasm.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/hifiasm.sh) (Hifiasm V 0.16.1), takes ~10-12 hrs
 * Made hifiasm_hic.sh, for when Omni-C arrives
 
-### **Initial Hifiasm Assemblies**
-* [output files documentation](https://hifiasm.readthedocs.io/en/latest/interpreting-output.html)
-* duplication looks very high across the board, not very contiguous, also a lot larger than expected
-
 ### **BUSCO**
 * Ran [busco.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/busco.sh), takes ~10-20 mins
 * See [busco output](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/lab_book/Data/BUSCO_output)
-* very high duplication across all species, completeness is ok
+* duplication looks very high across the board, not very contiguous, also a lot larger than expected
 
 **Table 1:** Assembly number corresponds with the identifier in the hifi read filenames (e.g., assembly 6 is derived from 200437_6-Cell1, which contains _T. dalmanni_ male reads). Est size from jellyfish.
 | species | assembly | info         | est_size         | primary_assembly_size | busco_completeness | busco_dup | contigs | N50 (Kb) |
@@ -46,7 +42,6 @@ From [Alex's pipeline](https://github.com/alexjvr1/T.dalmanni_Genomics_of_meioti
 |dalmanni | 7 | female       |        533280821 | 609130602             | 97.3               | 4.9       | 2425    | 998 |
 
 ### **Checking Coverage is as Expected**
-* _Putting the below issue on hold as it'll likely be fixed by the Omni-C data_
 * Check hifiasm correctly identifies the homozygous and heterozygous peaks in the kmer plots, compare this to the jellyfish kmer plots as a sanity check.
   - This is true for meigenii_4, dalmanni_7
 * Issue with meigenii_5 and dalmanni_6:  "peak_hom: 23; peak_het: -1"
