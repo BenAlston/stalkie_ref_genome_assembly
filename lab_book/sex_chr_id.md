@@ -52,7 +52,6 @@ male:A06,A07,A08, A09, A10
 
 1. [Beatriz & Bachtrog et al (2015)](https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1002078) identify the autosomal peak, divide that by two, and select contigs in a +-0.1 range around this.
 2. The findZX pipeline doesn't say how they do this bit
-3. 
 
 # **Y identification: Degenerate Region**
 * WHen mapping M and F reads to the M ref, regions where male read map only will be Y linked. This is done in a similar way to the F reads
