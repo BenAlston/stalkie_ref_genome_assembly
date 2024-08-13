@@ -85,8 +85,11 @@ gatk CreateSequenceDictionary -R 1_primary.fa
 * ran [gatk_interval.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/scripts/sex_chr_id/gatk_interval.sh)
 
 ### **2. Alignment With bowtie**
-* ran [bowtie2_alignment.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/bowtie2_alignment.sh) again but with the '--mp 10000' setting removed, to allow mismatches (since we want the male Y diverged reads to map  to the X).
-* Add read groups (picard)
-* Mark duplicates (picard)
-* generte flagstat index (samtools)
+* Ran [read_groups.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/read_groups.sh)
+  - aligns reads of each sample to the female ref with bowtie (outputting a sorted .bam). This needs to be done again seperately from the X coverage step as this time we allow missmatches (i.e., '--mp 1000' is removed).
+  - runs picard AddOrReplaceReadGroups 
+  - runs MarkDuplicates
+
+* generate flagstat index (samtools)
+  
   
