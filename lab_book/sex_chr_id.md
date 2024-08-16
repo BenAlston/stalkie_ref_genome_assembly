@@ -89,7 +89,8 @@ gatk CreateSequenceDictionary -R 1_primary.fa
   - aligns reads of each sample to the female ref with bowtie (outputting a sorted .bam). This needs to be done again seperately from the X coverage step as this time we allow missmatches (i.e., '--mp 1000' is removed).
   - runs picard AddOrReplaceReadGroups 
   - runs MarkDuplicates
-
-* generate flagstat index (samtools)
+  - indexes with samtools
+ 
+  * issues with generation of vcf files due to mismatches between the length of the contigs on the ref. The ref for the bowtie alignment was generated from the purge dups ref whereas the vcf step specified the initial hifiasm ref. Rerun with the correct ref in the vcf script.
   
   
