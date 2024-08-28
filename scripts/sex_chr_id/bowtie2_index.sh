@@ -22,7 +22,7 @@ ASSEMBLY=1
 
 #filepaths
 OUTPUT_DIR=/mnt/parscratch/users/bip23bta/ref_genomes/whitei/04-sex_chromosomes/index_1
-REF=/mnt/parscratch/users/bip23bta/ref_genomes/whitei/03-QC/purge_dups/1_primary/round_2/purged.fa
+REF=/mnt/parscratch/users/bip23bta/ref_genomes/whitei/02-hifiasm/1_hifiasm_output/1_primary.fa
 
 mkdir $OUTPUT_DIR
 cd $OUTPUT_DIR
