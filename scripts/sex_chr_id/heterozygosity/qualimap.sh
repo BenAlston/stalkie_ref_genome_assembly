@@ -7,7 +7,7 @@
 
 #########################################################################################
 #       Script Name: qualimap
-#       Descrption:  aligment with minimap2 and quality assesment with qualimap
+#       Descrption:  quality assesment with qualimap
 #       Author:      Ben Alston
 #       Date:        Jul 2024
 #########################################################################################
