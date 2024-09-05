@@ -119,12 +119,14 @@ whitei_1 pre and post purge_dups_manual.sh
 * Trying different assemblers to see if these work better for my data
 * wtdbg2/2.5 (redbean), canu/2.2, flye/2.9.4
 
-| assembler | species  | sample_prefix | sex    | jellyfish_est_size | primary_assembly_size | busco_completeness | busco_dup | contigs | N50_Kb |
-| --------- | -------- | ------------- | ------ | ------------------ | --------------------- | ------------------ | --------- | ------- | ------ |
-| hifiasm/0.16.1   | dalmanni | 7             | female | 533280821          | 609130602             | 97.3               | 4.9       | 2425    | 998    |
-| redbean/2.5   | dalmanni | 7             | female | 533280821          | 510304972             | 96.5               | 1.1       | 3741    | 673    |
-| canu/2.2,   | dalmanni | 7             | female | 533280821          |              |                |        |    |     |
-| flye/2.9.4   | dalmanni | 7             | female | 533280821          |              |               |       |    |    |
+| assembler  | species  | sample_prefix | sex    | jellyfish_est_size_gb | primary_assembly_size_gb | busco_completeness | busco_dup | contigs | N50_mb |
+|------------|----------|---------------|--------|-----------------------|--------------------------|--------------------|-----------|---------|--------|
+| hifiasm    | dalmanni | 7             | female | 0.533                 | 0.609                    | 97.3               | 4.9       | 2425    | 0.998  |
+| redbean    | dalmanni | 7             | female | 0.533                 | 0.510                    | 96.5               | 1.1       | 3741    | 0.673  |
+| flye_draft | dalmanni | 7             | female | 0.533                 | 0.760                    | 95.6               | 38.0      | 3067    | 0.568  |
+| flye_final | dalmanni | 7             | female | 0.533                 | 2.119                    | 16.8               | 4.5       | 2524    | 1.741  |
+| canu       | dalmanni | 7             | female | 0.533                 | 0.017                    | 2.3                | 0.1       | 872     | 0.019  |
+
 
 
 
