@@ -92,5 +92,6 @@ gatk CreateSequenceDictionary -R 1_primary.fa
   - indexes with samtools
  
   * issues with generation of vcf files due to mismatches between the length of the contigs on the ref. The ref for the bowtie alignment was generated from the purge dups ref whereas the vcf step specified the initial hifiasm ref. Rerun with the correct ref in the vcf script.
+  *  rerunnning read groups on female samples with the initial female ref
   
   
