@@ -110,7 +110,7 @@ ${SLURM_ARRAY_TASK_ID} # corresponds to the current array job running, e.g., 1 o
 #SBATCH --array 0-3%4 # change depending on how many tasks you need doing
 #SBATCH -e error.txt
 
-inputs=('in1' 'in2' 'in3' 'in4')
+inputs=('in1' 'in2' 'in3' 'in4') # can also be a text file containing filenames
 
 for task in ${inputs[$SLURM_ARRAY_TASK_ID]}
 do
