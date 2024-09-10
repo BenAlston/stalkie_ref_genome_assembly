@@ -153,6 +153,9 @@ Docker/apptainer
 # make the apptainer image (downloads a .sif file to wd):
 apptainer pull  docker://ezlabgva/busco:v5.6.1_cv1# equivalent to creating a conda env
 
+# also works with quay.io, from bioconda
+apptainer pull docker://quay.io/biocontainers/bcftools:1.20--h8b25389_1
+
 # load image. Analagous to <conda activate $env>:
 apptainer shell /path/to/$image.sif
 
