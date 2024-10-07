@@ -189,4 +189,12 @@ terminal cmds
 fg
 ~~~
 
+Mac terminal usage
+~~~
+# delete whole words
+esc + del
+
+# scroll whole words
+alt + leftarrow/rightarrow
+~~~
 
