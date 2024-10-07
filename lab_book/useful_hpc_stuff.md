@@ -37,6 +37,9 @@ squeue -u(user) or -–job(jobnumber)
 scancel -u or –-job
 # check job resource use
 seff $jobid # can use this and trial and error to work out how many resources a job should be using when the developers decide not to give any guidance
+# pause and release jobs:
+scontrol hold/release $jobid
+
 ~~~
 Download from HPC to local machine:
 ~~~
