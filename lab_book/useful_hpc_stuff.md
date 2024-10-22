@@ -15,6 +15,8 @@ Download files directly to HPC:
 Start interactive session in stanage/bessimer: 
 ~~~
 srun --pty bash -i
+# optional control of memory and cores
+srun --mem 10GB -c 2 bash -i
 ~~~
 Fastdata: 
 ~~~
