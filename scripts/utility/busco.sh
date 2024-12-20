@@ -3,8 +3,8 @@
 #SBATCH --mem=10G
 #SBATCH -c 20
 #SBATCH --time=24:00:00
-#SBATCH -e reports/error.%j_busco.txt
-#SBATCH -o reports/output.%j_busco.txt
+#SBATCH -e reports/error.busco.txt
+#SBATCH -o reports/output.busco.txt
 
 #########################################################################################
 #       Script Name: busco.sh
@@ -14,7 +14,7 @@
 #########################################################################################
 
 # BUSCO/5.6.1
-busco ='apptainer exec /users/bip23bta/busco_v5.6.1_cv1.sif busco'
+busco='apptainer exec /users/bip23bta/busco_5.7.1--pyhdfd78af_1.sif busco'
 
 # Paths
 export PATH="/path/to/AUGUSTUS/augustus-3.2.3/bin:$PATH"
@@ -30,8 +30,8 @@ mkdir $OUT
 $busco
   -i ${GENOME} \
   -l diptera_odb10 \
-  -o /$OUT \
+  -o /${OUT} \
   -m genome \
   -f \
--c 20
+  -c 20
 
