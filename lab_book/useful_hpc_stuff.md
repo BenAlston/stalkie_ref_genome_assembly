@@ -9,7 +9,7 @@ Download files directly to HPC:
  # fix:
  wget -r https://cgr.liv.ac.uk/pbio/200437_987ddbd846f6fba3/ --header "cgr.liv.ac.uk" -P /shared/wright_lab_hpc/Shared/2024_Stalkie_PacBio_HiFi/
  # couldn't tell you why 
- # wget has also started ignoring the output directory, so had to set the target dir as working directory instead, again the reason escapes me
+ # wget has also started ignoring the output directory, so had to set the target dir as working directory instead
 ~~~
 
 Start interactive session in stanage/bessimer: 
