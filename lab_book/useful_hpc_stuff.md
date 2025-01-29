@@ -202,4 +202,14 @@ esc + del
 # scroll whole words
 alt + leftarrow/rightarrow
 ~~~
+For loop from file
+~~~
+cat scaffold_names.txt | while read scaffold 
+> do 
+> echo $scaffold
+> done
 
+Chr_X
+Chr_2
+Chr_1
+~~~
