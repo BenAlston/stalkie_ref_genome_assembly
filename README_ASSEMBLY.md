@@ -25,6 +25,11 @@ From [Alex's pipeline](https://github.com/alexjvr1/T.dalmanni_Genomics_of_meioti
 * Ran [hifiasm.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/hifiasm.sh) (Hifiasm V 0.16.1), takes ~10-12 hrs
 * Made hifiasm_hic.sh, for when Omni-C arrives
 
+## incorporating Hi-C
+* hifiasm is able to integrate Hi-C directly into the assembly, but lots of manual curration is still needed
+* going to run all on the tdal ref for simplicity
+
+
 ### **BUSCO**
 * Ran [busco.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/busco.sh), takes ~10-20 mins
 * See [busco output](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/lab_book/Data/BUSCO_output)
