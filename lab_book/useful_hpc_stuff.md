@@ -180,6 +180,9 @@ apptainer exec /users/bip24bta/busco_v5.6.1_cv1.sif busco -i $GENOME \
 ~~~
 Vim 
 ~~~
+# find and replace ---
+:%s/pattern/replacement/g
+
 # comment/uncomment multiple lines ----
 
 # comment ----
