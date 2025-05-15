@@ -29,6 +29,19 @@ From [Alex's pipeline](https://github.com/alexjvr1/T.dalmanni_Genomics_of_meioti
 * hifiasm is able to integrate Hi-C directly into the assembly, but lots of manual curration is still needed
 * going to run all on the tdal ref for simplicity
 
+### Haphic
+Make a big fasta from both phased haps
+awk '/^S/{print ">"$2"\n"$3}' ${hap1}.gfa  | fold > ${ASSEMBLY}_phasedhaps.fa
+awk '/^S/{print ">"$2"\n"$3}' ${hap2}.gfa  | fold >> ${ASSEMBLY}_phasedhaps.fa
+
+align the omni-c reads to this ref
+[bwa_align.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/haphic/bwa_align.sh) aligns the hic reads to the phased ref
+[bam_filter.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/haphic/bam_filter.sh) calls a haphic script to filter the bam
+
+run the haphic pipline:
+[haphic.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/haphic/haphic.sh)
+
+this also generates a juicebox.sh script to make the input files for visualisation with juicebox.
 
 ### **BUSCO**
 * Ran [busco.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/busco.sh), takes ~10-20 mins
