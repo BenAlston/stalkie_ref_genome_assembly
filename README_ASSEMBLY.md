@@ -30,10 +30,16 @@ From [Alex's pipeline](https://github.com/alexjvr1/T.dalmanni_Genomics_of_meioti
 * going to run all on the tdal ref for simplicity
 
 ### Haphic
+gfa to fasta
+~~~bash
+awk '/^S/{print ">"$2"\n"$3}' $input_file | fold > $output_file
+~~~
+
 Make a big fasta from both phased haps
+~~~bash
 awk '/^S/{print ">"$2"\n"$3}' ${hap1}.gfa  | fold > ${ASSEMBLY}_phasedhaps.fa
 awk '/^S/{print ">"$2"\n"$3}' ${hap2}.gfa  | fold >> ${ASSEMBLY}_phasedhaps.fa
-
+~~~
 align the omni-c reads to this ref
 [bwa_align.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/haphic/bwa_align.sh) aligns the hic reads to the phased ref
 [bam_filter.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/haphic/bam_filter.sh) calls a haphic script to filter the bam
