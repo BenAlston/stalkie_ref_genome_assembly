@@ -27,4 +27,4 @@ HAP2_GFA=/mnt/parscratch/users/bip23bta/ref_genomes/dalmanni/02-hifiasm/6_omni-c
 cd /mnt/parscratch/users/bip23bta/ref_genomes/dalmanni/02-hifiasm/haphic/dalmanni_6/
 
 $HAPHIC pipeline $REF $BAM 4 --gfa "$HAP1_GFA,$HAP2_GFA"
-# 3 = number of chrs
+# 4 = number of chrs
