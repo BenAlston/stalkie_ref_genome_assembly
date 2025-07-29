@@ -64,6 +64,15 @@ male:A06,A07,A08, A09, A10
 ### **2. extract per site coverage**
 * [cov_calc.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/cov_calc.sh) 
 * Calculated coverage across the genome in 5kb windows in exactly the same manner as the female ref alignment
+* Add id column to each file:
+~~~bash
+for Sample in *_male_cov.tsv
+do
+echo $Sample
+name=$(basename -s _cov.tsv $Sample)
+awk -F'\t' -v OFS='\t' -v sample="$name" '{print $0, sample}' $Sample > male/$Sample
+done
+~~~
 
 ### **3. Coverage ratio**
 * In R, calculate log ratio of female to male coverage (per window)
