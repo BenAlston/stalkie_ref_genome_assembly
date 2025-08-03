@@ -6,11 +6,12 @@ From [Alex's pipeline](https://github.com/alexjvr1/T.dalmanni_Genomics_of_meioti
 ### Overview of pipeline: 
 ![pipeline_1.png](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/lab_book/figures/pipeline1.png)
 
-### Samples & data
+### Samples & data for assembly
   ~~~
-  - sequence data for 6 individuals, 1M, 1F per species.
+
   - Assemblies should be generated for each sex, so 6 ssemblies total, enabling sex chromosome identification
-  - Two HiFi .fastq.gz files per individual
+  - HiFi and HI-C data for 1M and 1F per species
+  - 5 illumina DNA-seq per species 
   ~~~
 
 # 1. **Genome Size Estimation with Jellyfish**
@@ -29,25 +30,13 @@ From [Alex's pipeline](https://github.com/alexjvr1/T.dalmanni_Genomics_of_meioti
 * hifiasm is able to integrate Hi-C directly into the assembly, but lots of manual curration is still needed
 * going to run all on the tdal ref for simplicity
 
-### Haphic
+### Yahs
 gfa to fasta
 ~~~bash
 awk '/^S/{print ">"$2"\n"$3}' $input_file | fold > $output_file
 ~~~
-
-Make a big fasta from both phased haps
-~~~bash
-awk '/^S/{print ">"$2"\n"$3}' ${hap1}.gfa  | fold > ${ASSEMBLY}_phasedhaps.fa
-awk '/^S/{print ">"$2"\n"$3}' ${hap2}.gfa  | fold >> ${ASSEMBLY}_phasedhaps.fa
-~~~
-align the omni-c reads to this ref
-[bwa_align.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/haphic/bwa_align.sh) aligns the hic reads to the phased ref
-[bam_filter.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/haphic/bam_filter.sh) calls a haphic script to filter the bam
-
-run the haphic pipline:
-[haphic.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/haphic/haphic.sh)
-
-this also generates a juicebox.sh script to make the input files for visualisation with juicebox.
+* Mapping hic reads with the arima pipeline (one of the ones recomended by yahs)
+* Then run [yahs.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/scaffolding/yahs/yahs.sh)
 
 ### **BUSCO**
 * Ran [busco.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/busco.sh), takes ~10-20 mins
