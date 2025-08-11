@@ -27,7 +27,7 @@ From [Alex's pipeline](https://github.com/alexjvr1/T.dalmanni_Genomics_of_meioti
 * Made hifiasm_hic.sh, for when Omni-C arrives
 
 ## incorporating Hi-C
-* hifiasm is able to integrate Hi-C directly into the assembly, but lots of manual curration is still needed
+* hifiasm is able to integrate Hi-C directly into the assembly, but scaffolding and manual curation is still needed
 * going to run all on the tdal ref for simplicity
 
 ### Yahs
@@ -35,8 +35,9 @@ gfa to fasta
 ~~~bash
 awk '/^S/{print ">"$2"\n"$3}' $input_file | fold > $output_file
 ~~~
-* Mapping hic reads with the arima pipeline (one of the ones recomended by yahs)
-* Then run [yahs.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/scaffolding/yahs/yahs.sh)
+* Mapping hic reads with the arima pipeline (one of the ones recomended by yahs): [1_mapping](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/scaffolding/yahs/1_mapping.sh)
+* Then run [2_yahs.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/scaffolding/yahs/2_yahs.sh)
+* This will output a scaffolded assembly and juicer input files for manual curation
 
 ### **BUSCO**
 * Ran [busco.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/busco.sh), takes ~10-20 mins
