@@ -18,15 +18,16 @@ _The reads are further trimmed using Sickle version 1.200 with a minimum window 
 
 
 # **X chromosome Identification with coverage**
-**mapping**
+**Mapping**
 * Ran **mapping** script [01_mapping_bwa.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/coverage/01_mapping_bwa.sh), mapping each individual to the female ref. Stringent parameters to remove multi-mapping and retain only primary alignments.
 
-**extract coverage**
+**Extract Coverage**
 * A bed file is produced from all samples in order to extract coverage from bam files. This is needed so the resultant coverage files are uniform accross samples.
 * Produce bed files for each sample [02_bam_2_bed.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/coverage/02_bam_2_bed.sh)
-* generated merged .bed file with [03_bed_merge.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/coverage/03_bed_merge.sh), with 5kb genomic windows
-* Extraced coverage from the bam files with [04_bam_2_cov.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/coverage/04_bam_2_cov.sh)
-
+* Bed files are merged across samples and split into 5kb genomic windows: [03_bed_merge.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/coverage/03_bed_merge.sh)
+* The resultant merged bed file is used to extract coverage from the original bam files with [04_bam_2_cov.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/coverage/04_bam_2_cov.sh)
+* A sample ID col was then added to each of the resultant coverage TSV (tab separated) files manually in bash. These files were then collated and read into R.
+* 
 ### **3. Coverage ratio**
 * In R, calculate log ratio of female to male coverage (per window) with dplyr
 * used this to identify the X-linked reads
