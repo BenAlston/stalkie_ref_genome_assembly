@@ -1,6 +1,6 @@
 # **Sex Chromosome Identification**
 * Differences in coverage and heterozygosity can be used to identify the XY chromosomes
-* Illumina short read data for the three species, 5 individuals per sex
+* Illumina short read data for the three species, 5 individuals per sex 
 * this pipeline will be initially run on dalmanni
 * wilkinson et al 2023 reported the tdal X to be 97.2 Mbp
 
@@ -14,10 +14,9 @@ _The reads are further trimmed using Sickle version 1.200 with a minimum window 
 * Ran trimmomatic ([trim.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/QC/trim.sh)) with read cuttoff of 50
 * [Multiqc report](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/lab_book/Data/multiqc_reports)
 
-* coverage and patterns of divergence suggest that samples A10 and A11 are potentially contaminated with eachother. These have been removed from furthur analysis
+* Coverage and patterns of divergence suggest that samples A10 and A11 are potentially contaminated with eachother. These have been binned.
 
-
-# **X chromosome Identification with coverage**
+## **X chromosome Identification**
 **Mapping**
 * Ran **mapping** script [01_mapping_bwa.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/coverage/01_mapping_bwa.sh), mapping each individual to the female ref. Stringent parameters to remove multi-mapping and retain only primary alignments.
 
@@ -27,10 +26,10 @@ _The reads are further trimmed using Sickle version 1.200 with a minimum window 
 * Bed files are merged across samples and split into 5kb genomic windows: [03_bed_merge.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/coverage/03_bed_merge.sh)
 * The resultant merged bed file is used to extract coverage from the original bam files with [04_bam_2_cov.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/coverage/04_bam_2_cov.sh)
 * A sample ID col was then added to each of the resultant coverage TSV (tab separated) files manually in bash. These files were then collated and read into R.
-* 
-### **3. Coverage ratio**
-* In R, calculate log ratio of female to male coverage (per window) with dplyr
-* used this to identify the X-linked reads
+  
+## **Coverage ratio**
+* In R, calculated mean cov per sex and the M:F cov ratio
+* used this to identify the X-linked contigs
 
 ### **Low coverage cutoff**
 * [coverage histogram for whitei](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/lab_book/Data/sex_chr/whitei_cov_hist.jpg)
