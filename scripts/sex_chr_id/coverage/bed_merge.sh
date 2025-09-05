@@ -1,12 +1,12 @@
 #!/bin/bash
-#SBATCH --job-name=intersect_bed
+#SBATCH --job-name=bed_merge
 #SBATCH --mem=16G
 #SBATCH -c 4
-#SBATCH --time=96:00:00
+#SBATCH --time=24:00:00
 #SBATCH -o reports/bed.merge.txt
 
 #########################################################################################
-#       Script Name: bed_merge.sh
+#       Script Name: 03_bed_merge.sh
 #       Description: merges all individual .bed files into one then seperates this into 5kb genomic windows.                                
 #       Author:      Ben Alston                                                 
 #       Date:        Jun 2024                                                    
@@ -16,13 +16,13 @@
 module load Anaconda3
 source activate cov_calc
 
+WD=/mnt/parscratch/users/bip23bta/ref_genomes/dalmanni/05-sex_chr_id/01_X_ID/
+
 # set wd
-cd /mnt/parscratch/users/bip23bta/ref_genomes/whitei/04-sex_chromosomes/
+cd $WD 
 
-bedtools multiinter -i females/*_sorted.bam.bed males/*_sorted.bam.bed > males/merged_all.sorted.bed
+bedtools multiinter -i F/*.bed M/*.bed > all.bed
 
-bedtools merge -i males/merged_all.sorted.bed > males/merged_all.sorted.2.bed
+bedtools merge -i all.bed > all.merged.bed
 
-bedtools makewindows -b males/merged_all.sorted.2.bed -w 5000 > males/merged_all.windows.2.bed
-
-#cp males/merged_all.windows.bed  females/merged_all.windows.bed
+bedtools makewindows -b all.merged.bed -w 5000 > all.merged.5kbwindows.bed
