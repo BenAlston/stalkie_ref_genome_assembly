@@ -17,17 +17,15 @@ _The reads are further trimmed using Sickle version 1.200 with a minimum window 
 * coverage and patterns of divergence suggest that samples A10 and A11 are potentially contaminated with eachother. These have been removed from furthur analysis
 
 
-# **X chromosome Identification**
+# **X chromosome Identification with coverage**
+**mapping**
+* Ran **mapping** script [01_mapping_bwa.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/coverage/01_mapping_bwa.sh), mapping each individual to the female ref. Stringent parameters to remove multi-mapping and retain only primary alignments.
 
-### **1. mapping with bwa mem**
-* Mapped each the individual seperately to the female ref
-* Runnning bwa mem with parameters to remove missmatches, also filtering supplementary alignments with samtools
-* 
- 
-### **2. extract per site coverage**
-* [cov_calc.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/cov_calc.sh) (ongoing)
-* Averaged across 5 kb windows using bedtools multicov
-* generated merged .bed file with [bed_merge.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/bed_merge.sh)
+**extract coverage**
+* A bed file is produced from all samples in order to extract coverage from bam files. This is needed so the resultant coverage files are uniform accross samples.
+* Produce bed files for each sample [02_bam_2_bed.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/coverage/02_bam_2_bed.sh)
+* generated merged .bed file with [03_bed_merge.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/coverage/03_bed_merge.sh), with 5kb genomic windows
+* Extraced coverage from the bam files with [04_bam_2_cov.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/coverage/04_bam_2_cov.sh)
 
 ### **3. Coverage ratio**
 * In R, calculate log ratio of female to male coverage (per window) with dplyr
