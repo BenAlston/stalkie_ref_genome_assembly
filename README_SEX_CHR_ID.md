@@ -26,16 +26,19 @@ _The reads are further trimmed using Sickle version 1.200 with a minimum window 
 * Bed files are merged across samples and split into 5kb genomic windows: [03_bed_merge.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/coverage/03_bed_merge.sh)
 * The resultant merged bed file is used to extract coverage from the original bam files with [04_bam_2_cov.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/coverage/04_bam_2_cov.sh)
 * A sample ID col was then added to each of the resultant coverage TSV (tab separated) files manually in bash. These files were then collated and read into R.
-  
-## **Coverage ratio**
-* In R, calculated mean cov per sex and the M:F cov ratio
-* used this to identify the X-linked contigs
+~~~bash
+for Sample in *_male_cov.tsv
+do
+echo $Sample
+name=$(basename -s _cov.tsv $Sample)
+awk -F'\t' -v OFS='\t' -v sample="$name" '{print $0, sample}' $Sample > male/$Sample
+done
+~~~
 
 ### **Low coverage cutoff**
 * [coverage histogram for whitei](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/lab_book/Data/sex_chr/whitei_cov_hist.jpg)
 * symetrical outlier peaks on either side of the main peak are caused by regions with very low coverage, usually 1-4 per individual, symetry is determined by if its m or f coverage.
 * Currently, samples with coverage values below <4 are considered 0, this has remomved the peaks. Still need to decide on a less arbirary threshold
-
 
 ### **X-autosomal cutoff**
 * I have a multi-modal density distribution that looks like two normal distributions stuck together. 
@@ -46,53 +49,9 @@ _The reads are further trimmed using Sickle version 1.200 with a minimum window 
 2. The findZX pipeline doesn't say how they do this bit
 
 # **Y identification: Degenerate Region**
-* WHen mapping M and F reads to the M ref, regions where male read map only will be Y linked. This is done in a similar way to the F reads
-
-### **1. mapping with bowtie2**
-* Ran [bowtie2_indexer.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/bowtie2_index.sh) on male ref
-* Ran [bowtie2_alignment](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/bowtie2_alignment.sh)
-* mapped each of the individuals seperately to the male ref
- 
-### **2. extract per site coverage**
-* [cov_calc.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/cov_calc.sh) 
-* Calculated coverage across the genome in 5kb windows in exactly the same manner as the female ref alignment
-* Add id column to each file:
-~~~bash
-for Sample in *_male_cov.tsv
-do
-echo $Sample
-name=$(basename -s _cov.tsv $Sample)
-awk -F'\t' -v OFS='\t' -v sample="$name" '{print $0, sample}' $Sample > male/$Sample
-done
-~~~
-
-### **3. Coverage ratio**
-* In R, calculate log ratio of female to male coverage (per window)
-* could do something like the mank lab did with [permutation tests](https://github.com/manklab/Darolti_etal_2022_guppy_sexchromo/blob/main/coverage_analysis/method_adapted_from_Bergero_etal_2019_PNAS/plot_coverage.R).
+* When mapping M and F reads to the M ref, regions where male read map only will be Y linked. Using the same scripts and parameters as the X
+* Contigs with Ordinary male coverage and 0/near-0 female coverage can be considered X linked
 
 # **Y identification: Diverged Region**
-* Remap to female ref with default mapping threshold (remove -mp 10000) - running
-* SNP calling cross genome
-
-### **1. prepare ref and split into 60 intervals**
-* This is required to make the snp calling pipeline run quicker
-* Created reference index and gatk dictionary files for the whitei_1 ref:
-~~~
-# samtools
-samtools faidx 1_primary.fa
-# gatk/4.3.0.0
-gatk CreateSequenceDictionary -R 1_primary.fa
-~~~
-* ran [gatk_interval.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/scripts/sex_chr_id/gatk_interval.sh)
-
-### **2. Alignment With bowtie**
-* Ran [read_groups.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/read_groups.sh)
-  - aligns reads of each sample to the female ref with bowtie (outputting a sorted .bam). This needs to be done again seperately from the X coverage step as this time we allow missmatches (i.e., '--mp 1000' is removed).
-  - runs picard AddOrReplaceReadGroups 
-  - runs MarkDuplicates
-  - indexes with samtools
- 
-  * issues with generation of vcf files due to mismatches between the length of the contigs on the ref. The ref for the bowtie alignment was generated from the purge dups ref whereas the vcf step specified the initial hifiasm ref. Rerun with the correct ref in the vcf script.
-  *  rerunnning read groups on female samples with the initial female ref
-  
-  
+* Extract SNP density per KB from female alignments, this can be done with VCFtools
+* Need to run gatk on the F genome to get a vcf
