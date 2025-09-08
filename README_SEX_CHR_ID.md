@@ -27,11 +27,11 @@ _The reads are further trimmed using Sickle version 1.200 with a minimum window 
 * The resultant merged bed file is used to extract coverage from the original bam files with [04_bam_2_cov.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/coverage/04_bam_2_cov.sh)
 * A sample ID col was then added to each of the resultant coverage TSV (tab separated) files manually in bash. These files were then collated and read into R.
 ~~~bash
-for Sample in *_male_cov.tsv
+for Sample in *_cov.tsv
 do
 echo $Sample
 name=$(basename -s _cov.tsv $Sample)
-awk -F'\t' -v OFS='\t' -v sample="$name" '{print $0, sample}' $Sample > male/$Sample
+awk -F'\t' -v OFS='\t' -v sample="$name" '{print $0, sample}' $Sample > ${name}_labeled.cov.tsv
 done
 ~~~
 
