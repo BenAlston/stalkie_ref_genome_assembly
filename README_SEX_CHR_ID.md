@@ -35,6 +35,11 @@ awk -F'\t' -v OFS='\t' -v sample="$name" '{print $0, sample}' $Sample > ${name}_
 done
 ~~~
 
+Get fasta seq lengths:
+~~~
+cat file.fa | awk '$0 ~ ">" {if (NR > 1) {print c;} c=0;printf substr($0,2,100) "\t"; } $0 !~ ">" {c+=length($0);} END { print c; }'
+~~~
+
 ### **Low coverage cutoff**
 * [coverage histogram for whitei](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/lab_book/Data/sex_chr/whitei_cov_hist.jpg)
 * symetrical outlier peaks on either side of the main peak are caused by regions with very low coverage, usually 1-4 per individual, symetry is determined by if its m or f coverage.
