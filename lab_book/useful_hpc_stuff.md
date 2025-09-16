@@ -216,3 +216,14 @@ Chr_X
 Chr_2
 Chr_1
 ~~~
+bash appending a column onto a file
+~~~bash
+# comes up more often than you'd think
+
+for file in snpdensity/*.g.rb.vcf.gz
+do
+basename -s .g.rb.vcf.gz $file >> tmp.map
+awk -F'\t' -v val="$(realpath $file)" '{print $0 "\t" val}' tmp.map > samples.map
+done
+rm tmp.map
+~~~
