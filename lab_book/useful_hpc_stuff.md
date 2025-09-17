@@ -220,10 +220,8 @@ bash appending a column onto a file
 ~~~bash
 # comes up more often than you'd think
 
-for file in snpdensity/*.g.rb.vcf.gz
+for file in snpdensity/02_call_haplotypes/*.g.rb.vcf.gz
 do
-basename -s .g.rb.vcf.gz $file >> tmp.map
-awk -F'\t' -v val="$(realpath $file)" '{print $0 "\t" val}' tmp.map > samples.map
+  echo -e "$(basename -s .g.rb.vcf.gz "$file")\t$(realpath "$file")" >> samples.map
 done
-rm tmp.map
 ~~~
