@@ -24,7 +24,7 @@ GENOME=dal_7_chrsizes.g
 # set wd
 cd $WD 
 
-# make file containing scaffold names and sizes
+# make a GENOME file containing scaffold names and sizes from reference fasta (a required input of bedtools makewindows)
 cat ../refs/dal_7_scaffolded.fa | awk '$0 ~ ">" {if (NR > 1) {print c;} c=0;printf substr($0,2,100) "\t"; } $0 !~ ">" {c+=length($0);} END { print c; }' > $GENOME
 
 # use this file to generate a bed file of 100kb windows in which to calculate coverage
