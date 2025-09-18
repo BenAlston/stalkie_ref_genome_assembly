@@ -16,24 +16,23 @@ _The reads are further trimmed using Sickle version 1.200 with a minimum window 
 
 * Coverage and patterns of divergence suggest that samples A10 and A11 are potentially contaminated with eachother. These have been binned.
 
-## **X chromosome Identification**
-**Mapping**
-* Ran **mapping** script [01_mapping_bwa.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/coverage/01_mapping_bwa.sh), mapping each individual to the female ref. Stringent parameters to remove multi-mapping and retain only primary alignments.
-
-**Extract Coverage**
-* A bed file is produced from all samples in order to extract coverage from bam files. This is needed so the resultant coverage files are uniform accross samples.
-* Generate a bed file with 100kb windows [02_bedtools_windows.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/coverage/02_bedtools_windows.sh)
-* Extract coverage for each sample with the resultant bam and bed files [03_bam_2_cov.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/coverage/03_bam_2_cov.sh)
-* A sample ID col was then added to each of the resultant coverage TSV (tab separated) files manually in bash. These files were then collated and read into R.
+## **X chromosome Identification (MF Coverage Ratio)**
+* Mapped to the female reference with bwa [01_mapping_bwa.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/coverage/01_mapping_bwa.sh). Stringent parameters to remove multi-mapping and retain only primary alignments.
+* Generated a bed file with 100kb windows [02_bedtools_windows.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/coverage/02_bedtools_windows.sh)
+* Use the resultant bam and bed files to extract coverage with for each sample with bedtools [03_bam_2_cov.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/coverage/03_bam_2_cov.sh)
+* A sample ID col was then added to each of the resultant coverage TSV (tab separated) files manually in bash. These files were then collated and read into R:
 ~~~bash
+# add a sample name column to the end of each coverage file:
 for Sample in *_cov.tsv
 do
 echo $Sample
 name=$(basename -s _cov.tsv $Sample)
 awk -F'\t' -v OFS='\t' -v sample="$name" '{print $0, sample}' $Sample > ${name}_labeled.cov.tsv
 done
-~~~
 
+# collate all files:
+cat *_labeled.cov.tsv >> dal_7_cov_raw.tsv
+~~~
 Get fasta seq names and lengths (for plotting):
 ~~~bash
 cat file.fa | awk '$0 ~ ">" {if (NR > 1) {print c;} c=0;printf substr($0,2,100) "\t"; } $0 !~ ">" {c+=length($0);} END { print c; }' > contigs.tsv
