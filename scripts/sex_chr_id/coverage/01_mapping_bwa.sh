@@ -9,7 +9,7 @@
 #########################################################################################
 #       Script Name: 1_mapping.sh
 #       Description: Aligns short reads to a ref, runs picard addorreplacereadgroups and markduplicates
-#                    outputs a_sorted.dedup.bam file. Cov from resultant files will be used to id sex-linked contigs
+#                    outputs a sorted.dedup.bam file. Coverage from resultant files will be used to id sex-linked contigs
 #       Author:      Ben Alston
 #       Date:        Sep 2025
 #########################################################################################
@@ -29,13 +29,13 @@ READS_1=/mnt/parscratch/users/bip23bta/ref_genomes/*/data/short_read/Trimmed/${F
 READS_2=/mnt/parscratch/users/bip23bta/ref_genomes/*/data/short_read/Trimmed/${FILENAME}/*_L001_R2_001.fastq.gz
 REF_INDEX=/mnt/parscratch/users/bip23bta/ref_genomes/dalmanni/05-sex_chr_id/refs/dal_7_scaffolded.fa
 
-#################
-# bwa mem align #
-#################
+
+# ---- align with bwa mem align ---- #
 mkdir -p $WD
 cd $WD
 
-# reads are mapped strignently to eliminate multi mapping.
+# reference should be indexed prior to running this script
+# reads are mapped strignently to eliminate multi mapping, supplementary alignments are also removed with samtools
 $bwa mem -t 4 -B 40 -O 60 -E 10 -L 100 $REF_INDEX $READS_1 $READS_2 | $samtools view -b -f 2 -F 2316 | $samtools sort -o ${FILENAME}_sorted.bam
 # -- BWA parameters
 # -B = missmatch penalty
@@ -45,9 +45,19 @@ $bwa mem -t 4 -B 40 -O 60 -E 10 -L 100 $REF_INDEX $READS_1 $READS_2 | $samtools 
 # Samtools parameters
 # -F 2316 = Exclude reads with flags 2317 (Read unmapped, mate unmapped, not primary alignment, supplementary alignment)
 
-###############################
-# GATK addorreplacereadgroups #
-###############################
+
+# the next two GATK commands just add read group info to the bam file and remove pcr duplicates
+# I've kept them in as this mapping script was modified from a variant calling pipeline in made, for which these commands are definatley necessary 
+# Probably worth doing, but can be skipped if it creates issues.
+
+# ---- GATK addorreplacereadgroups ---- #
+
+# the next two GATK commands just add read group info to the bam file and remove pcr duplicates
+# I've kept them in as this mapping script was modified from a variant calling pipeline in made, for which these commands are definatley necessary 
+# Probably worth doing, but can be skipped if it creates issues.
+
+
+# load GATK/4.3.0
 module load GATK
 
 RGID=$(zcat ${READS_1} | head -n1 | sed 's/:/_/g' |cut -d "_" -f1,2,3,4) # Extract RGID from read header
@@ -68,10 +78,8 @@ gatk AddOrReplaceReadGroups \
         --CREATE_INDEX TRUE
 
 
-#########################
-# Picard MarkDuplicates #
-#########################
 
+# --- Picard MarkDuplicates ---- #
 mkdir -p TMP
 
 gatk MarkDuplicates \
@@ -84,8 +92,7 @@ gatk MarkDuplicates \
  -O ${FILENAME}_sorted.dedup.bam \
  -M ${FILENAME}_marked_dedup_metrics.txt
 
- ---- Index bam ---- #
-
+# ---- Index bam ---- #
 $samtools index ${FILENAME}_sorted.dedup.bam
 
 # ---- Remove unwanted Bams to save space ---- #
