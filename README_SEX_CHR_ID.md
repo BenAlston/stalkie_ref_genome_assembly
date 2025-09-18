@@ -21,6 +21,7 @@ _The reads are further trimmed using Sickle version 1.200 with a minimum window 
 * Generated a bed file with 100kb windows [02_bedtools_windows.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/coverage/02_bedtools_windows.sh)
 * Use the resultant bam and bed files to extract coverage with for each sample with bedtools [03_bam_2_cov.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/coverage/03_bam_2_cov.sh)
 * A sample ID col was then added to each of the resultant coverage TSV (tab separated) files manually in bash. These files were then collated and read into R:
+
 ~~~bash
 # add a sample name column to the end of each coverage file:
 for Sample in *_cov.tsv
@@ -32,10 +33,6 @@ done
 
 # collate all files:
 cat *_labeled.cov.tsv >> dal_7_cov_raw.tsv
-~~~
-Get fasta seq names and lengths (for plotting):
-~~~bash
-cat file.fa | awk '$0 ~ ">" {if (NR > 1) {print c;} c=0;printf substr($0,2,100) "\t"; } $0 !~ ">" {c+=length($0);} END { print c; }' > contigs.tsv
 ~~~
 
 ### **Low coverage cutoff**
