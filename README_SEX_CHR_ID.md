@@ -22,9 +22,8 @@ _The reads are further trimmed using Sickle version 1.200 with a minimum window 
 
 **Extract Coverage**
 * A bed file is produced from all samples in order to extract coverage from bam files. This is needed so the resultant coverage files are uniform accross samples.
-* Produce bed files for each sample [02_bam_2_bed.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/coverage/02_bam_2_bed.sh)
-* Bed files are merged across samples and split into 5kb genomic windows: [03_bed_merge.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/coverage/03_bed_merge.sh)
-* The resultant merged bed file is used to extract coverage from the original bam files with [04_bam_2_cov.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/coverage/04_bam_2_cov.sh)
+* Generate a bed file with 100kb windows [02_bedtools_windows.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/coverage/02_bedtools_windows.sh)
+* Extract coverage for each sample with the resultant bam and bed files [03_bam_2_cov.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/coverage/03_bam_2_cov.sh)
 * A sample ID col was then added to each of the resultant coverage TSV (tab separated) files manually in bash. These files were then collated and read into R.
 ~~~bash
 for Sample in *_cov.tsv
@@ -35,9 +34,9 @@ awk -F'\t' -v OFS='\t' -v sample="$name" '{print $0, sample}' $Sample > ${name}_
 done
 ~~~
 
-Get fasta seq lengths:
-~~~
-cat file.fa | awk '$0 ~ ">" {if (NR > 1) {print c;} c=0;printf substr($0,2,100) "\t"; } $0 !~ ">" {c+=length($0);} END { print c; }'
+Get fasta seq names and lengths (for plotting):
+~~~bash
+cat file.fa | awk '$0 ~ ">" {if (NR > 1) {print c;} c=0;printf substr($0,2,100) "\t"; } $0 !~ ">" {c+=length($0);} END { print c; }' > contigs.tsv
 ~~~
 
 ### **Low coverage cutoff**
