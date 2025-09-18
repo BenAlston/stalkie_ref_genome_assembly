@@ -7,7 +7,7 @@
 
 #########################################################################################
 #       Script Name: bed_windows.sh
-#       Description: make bed file of n kb windows, needed to generate coverage in windows
+#       Description: make bed file of n kb windows, required by bedtools multicov, to specify windows to generate coverage across
 #       Author:      Ben Alston                                                 
 #       Date:        Sep 2025                                                    
 #########################################################################################
@@ -16,6 +16,7 @@
 module load Anaconda3
 source activate cov_calc
 
+# --- filepaths ---- #
 WD=/mnt/parscratch/users/bip23bta/ref_genomes/dalmanni/05-sex_chr_id/01_X_ID/
 REF=/mnt/parscratch/users/bip23bta/ref_genomes/dalmanni/05-sex_chr_id/refs/dal_7_scaffolded.fa
 GENOME=dal_7_chrsizes.g
