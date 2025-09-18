@@ -36,4 +36,4 @@ cd $WD
 
 # ---- run bedtools multicov ---- #
 # counts the number of alignments that overlap with the intervals specified by the .bed file
-bedtools multicov -bams $BAM -bed $BED > ${FILENAME}_${1}_cov.tsv
+bedtools multicov -bams $BAM -bed $BED > ${FILENAME}_cov.tsv
