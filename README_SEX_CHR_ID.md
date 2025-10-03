@@ -13,7 +13,6 @@ _The reads are further trimmed using Sickle version 1.200 with a minimum window 
 * Redoing qc so read length cuttoff can be 50
 * Ran trimmomatic ([trim.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/QC/trim.sh)) with read cuttoff of 50
 * [Multiqc report](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/lab_book/Data/multiqc_reports)
-
 * Coverage and patterns of divergence suggest that samples A10 and A11 are potentially contaminated with eachother. These have been binned.
 
 ## **X chromosome Identification (MF Coverage Ratio)**
