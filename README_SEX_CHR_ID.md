@@ -49,12 +49,8 @@ renaming an assembly fasta:
 # renaming an assembly:
 # the newnames.tsv file is a tab sep file with the format "old name"	"new name", (no header)
 
-cat dal_7_scaffolded.fa > dal_7_renamed.fa
-cat dal_7_newnames.tsv | while read a b
-do
-echo $a "to" $b
-sed -i "s/\b${a}\b/${b}/" dal_7_renamed.fa
-done
+awk -F'\t' '{print "s/\\b" $1 "\\b/" $2 "/g"}' dal_7_newnames.tsv > rename.sed
+sed -f rename.sed dal_7_scaffolded.fa > dal_7_renamed.fa
 ~~~~
 
 # **Y identification: Degenerate Region**
