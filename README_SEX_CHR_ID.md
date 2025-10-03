@@ -48,11 +48,12 @@ renaming an assembly fasta:
 ~~~~bash
 # renaming an assembly:
 # the newnames.tsv file is a tab sep file with the format "old name"	"new name", (no header)
+
 cat dal_7_scaffolded.fa > dal_7_renamed.fa
 cat dal_7_newnames.tsv | while read a b
 do
 echo $a "to" $b
-sed -i 's/$a/$b/' dal_7_renamed.fa
+sed -i "s/\b${a}\b/${b}/" dal_7_renamed.fa
 done
 ~~~~
 
