@@ -35,23 +35,31 @@ done
 cat *_labeled.cov.tsv >> dal_7_cov_raw.tsv
 ~~~
 
-### **Low coverage cutoff**
-* [coverage histogram for whitei](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/lab_book/Data/sex_chr/whitei_cov_hist.jpg)
-* symetrical outlier peaks on either side of the main peak are caused by regions with very low coverage, usually 1-4 per individual, symetry is determined by if its m or f coverage.
-* Currently, samples with coverage values below <4 are considered 0, this has remomved the peaks. Still need to decide on a less arbirary threshold
-
 ### **X-autosomal cutoff**
-* I have a multi-modal density distribution that looks like two normal distributions stuck together. 
-* I essentially want to determine the probability that any given observation belongs to either peak, so I can set a justifiable cutoff
-* doing this is kind of beyond me. I can fit models but have no idea if they are apropriate.
+* identify the X linked peak, then set an arbirary cutoff, 100kb windows within this cutoff will be considered X-linked. Rscript: [peak_id_final.R](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/coverage/peak_id_final.R)
 
-1. [Beatriz & Bachtrog et al (2015)](https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1002078) identify the autosomal peak, divide that by two, and select contigs in a +-0.1 range around this.
-2. The findZX pipeline doesn't say how they do this bit
+stringency table:
+| cutoff | num of contigs | total size (mb) | median size (mb) |
+| ------ | -------------- | --------------- | ---------------- |
+| \-0.1  | 45             | 2.93            | 0.03             |
+| \-0.15 | 59             | 3.7             | 0.06             |
+| \-0.2  | 75             | 4.34            | 0.03             |
+
+renaming an assembly fasta:
+~~~~bash
+# renaming an assembly:
+# the newnames.tsv file is a tab sep file with the format "old name"	"new name", (no header)
+cat dal_7_scaffolded.fa > dal_7_renamed.fa
+cat dal_7_newnames.tsv | while read a b
+do
+echo $a "to" $b
+sed -i 's/$a/$b/' dal_7_renamed.fa
+done
+~~~~
 
 # **Y identification: Degenerate Region**
 * When mapping M and F reads to the M ref, regions where male read map only will be Y linked. Using the same scripts and parameters as the X
-* Contigs with Ordinary male coverage and 0/near-0 female coverage can be considered X linked
+* Mapped with high strincency, same as X coverage id, same [coverage](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/scripts/sex_chr_id/coverage) scripts are used
 
 # **Y identification: Diverged Region**
 * Extract SNP density per KB from female alignments, this can be done with VCFtools
-* Need to run gatk on the F genome to get a vcf
