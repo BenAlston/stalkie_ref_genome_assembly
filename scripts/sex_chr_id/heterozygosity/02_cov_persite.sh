@@ -6,8 +6,9 @@
 #SBATCH -o reports/cov_persite.txt
 
 #########################################################################################
-#       Script Name: bed_windows.sh
+#       Script Name: 02_cov_persite.sh
 #       Description: calculate coverage per site across the genome for each sample
+#                    used in het calculations 
 #       Author:      Ben Alston                                                 
 #       Date:        Sep 2025                                                    
 #########################################################################################
