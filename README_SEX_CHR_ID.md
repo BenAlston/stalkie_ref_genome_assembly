@@ -59,4 +59,3 @@ sed -f rename.sed dal_7_scaffolded.fa > dal_7_renamed.fa
 
 # **Y identification: Diverged Region**
 * Map M & F reads to M ref with less stringend parameters and call snps with [these scripts](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/heterozygosity)
-
