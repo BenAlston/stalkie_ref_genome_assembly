@@ -1,3 +1,9 @@
+####################################################################################
+#  name: 03_het_invar_join.R
+#  desc: Joins het sites from script 01 and joins them to the list of all sites >10 cov identified in script 02
+#  date: sept 2025
+####################################################################################
+
 library(tidyverse)
 library(ggpubr)
 
