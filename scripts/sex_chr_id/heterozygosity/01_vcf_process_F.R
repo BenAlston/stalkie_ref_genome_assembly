@@ -1,3 +1,11 @@
+####################################################################################
+#  name: 01_vcf_process_F
+#  desc: takes a filtered multi sample vcf file and calls het/hom sites agnostic to the ref or allele
+#        subsequent scripts use this to calculate per window het. Seperate scripts for M and F
+#  date: sept 2025
+####################################################################################
+
+# packages
 library(vcfR)
 library(tidyverse)
 
