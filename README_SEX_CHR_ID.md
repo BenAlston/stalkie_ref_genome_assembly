@@ -18,5 +18,12 @@ intitially run on dalmanni only
 * [SNP calling with GATK](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/scripts/sex_chr_id/heterozygosity/snp_calling)
 * Not confident in the above workflow, needs redoing
 * Now need to calculate the number of variant sites :
+The problem:
+- need a file containing number of het sites and number of called sites (inc invariant ones). In windows and per contig
+- variant sites should be 'ref agnostic'
+- currently extract all variant sites in R (sites where each allele is different). Then divide this by the total number of sites with >10 coverage in that window (same filter for snp calling)
+- yaccine suggests just getting the raw number of het sites per window per individual, could factor in the total number of covered sites per ind if thats needed
+
+
   - keep the R script?
   - find a better way of calculating snp density. Maybe endit the vcf through R, then calc snpdensity with vcftools, if it can be determined that all called sites would be used in this calculation
