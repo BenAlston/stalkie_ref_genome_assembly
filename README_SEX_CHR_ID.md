@@ -17,4 +17,6 @@ intitially run on dalmanni only
 ### **Het**
 * [SNP calling with GATK](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/scripts/sex_chr_id/heterozygosity/snp_calling)
 * Not confident in the above workflow, needs redoing
-* Now need to calculate the number of variant sites 
+* Now need to calculate the number of variant sites :
+  - keep the R script?
+  - find a better way of calculating snp density. Maybe endit the vcf through R, then calc snpdensity with vcftools, if it can be determined that all called sites would be used in this calculation
