@@ -16,12 +16,7 @@ intitially run on dalmanni only
 
 ### **Het**
 * [SNP calling with GATK](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/scripts/sex_chr_id/heterozygosity/snp_calling)
-1. SNPS are called with gatk, joint calling male and female samples seperatley. MAF = 0.1, nmissing = 0.9, mindepth = 10, maxdepth = 60 (depth is per sample per site)
-
-2. From resultant vcfs, every het site is counted
-3. coverage is calculated per site per sample and filtered (only sites with 10 cov across all samples are retained)
-4. number of het sites and number of total sites are used to work out het per contig
-
+* Not confident in the above workflow, needs redoing
 * Now need to calculate the number of variant sites :
 The problem:
 - need a file containing number of het sites and number of called sites (inc invariant ones). In windows and per contig
