@@ -1,44 +1,41 @@
 #!/bin/bash
-#SBATCH --job-name=hifiasm_whitei
+#SBATCH --job-name=hifiasm
 #SBATCH --mem=180G
-#SBATCH -c 48
-#SBATCH --time=96:00:00
-#SBATCH -e reports/error.%j_hifiasm.txt
-#SBATCH -o reports/output.%j_hifiasm.txt
-
+#SBATCH -c 32
+#SBATCH --time=48:00:00
+#SBATCH -o reports/output.hifiasm.meigenii_4.txt
 
 #########################################################################################
-#	Script Name: hifiasm
-#	Description: genome assembly with hifiasm
-#	Author:      Ben Alston
-#	Date:        April 2024
+#       Script Name: Hifiasm
+#       Description: genome assembly with hifiasm
+#       Author:      Ben Alston
+#       Date:        APR 2024 
 #########################################################################################
 
-# uses Hifiasm/0.16.1-r375
+# uses Hifiasm v0.16.1-r375
 module load Anaconda3
 source activate hifiasm
 
 # Variables
-WD=/mnt/parscratch/users/bip23bta/ref_genomes
-SPECIES=dalmanni
-ASSEMBLY=7
-DATA=${WD}/$SPECIES/data/long_read/*${ASSEMBLY}-Cell?/*.fastq.gz
+SPECIES=meigenii
+ASSEMBLY=4
+SEX=Female
+WD=/mnt/parscratch/users/bip23bta/ref_genomes/$SPECIES/02-hifiasm/${ASSEMBLY}_omni-c_hifiasm_output_final
+
+# files
+HIFI_READS=/mnt/parscratch/users/bip23bta/ref_genomes/${SPECIES}/data/long_read/200437_${ASSEMBLY}-Cell?/*.fastq.gz
+HI_C_READS_1=/mnt/parscratch/users/bip23bta/ref_genomes/${SPECIES}/data/omni_c/*-${SEX}_R1_001.fastq.gz
+HI_C_READS_2=/mnt/parscratch/users/bip23bta/ref_genomes/${SPECIES}/data/omni_c/*-${SEX}_R2_001.fastq.gz
 
 # ------------ script ------------ #
-cd ${WD}/$SPECIES/02-hifiasm
-
-# make and set dirs -----------
-mkdir ${WD}/$SPECIES/02-hifiasm/${ASSEMBLY}_hifiasm_output
-
-cd ${WD}/$SPECIES/02-hifiasm/${ASSEMBLY}_hifiasm_output
+mkdir -p $WD 
+cd $WD 
 
 # symbolic links to input reads - for some reason it wont run if the input reads aren't in the wd
-bash -c "ln -s ${DATA} ./"
+bash -c "ln -fs ${HIFI_READS} ./"
+bash -c "ln -fs ${HI_C_READS_1} ./"
+bash -c "ln -fs ${HI_C_READS_2} ./"
 
-# run hifiasm ----------
-hifiasm -o ${SPECIES}_${ASSEMBLY}.asm -t 48 $DATA
-# if hifiasm fails to detect the hom_peak (output looks like: peak_hom: 81; peak_het: -1) run with the argument: -k 19
+# hifiasm ----------
 
-
-# convert .gfa to .fa
-awk '/^S/{print ">"$2"\n"$3}' ${SPECIES}_${ASSEMBLY}.asm.bp.p_ctg.gfa  | fold > ${ASSEMBLY}_primary.fa
+hifiasm -o ${SPECIES}_${ASSEMBLY}_omni-c.asm -t 32 --h1 $HI_C_READS_1 --h2 $HI_C_READS_2 $HIFI_READS
