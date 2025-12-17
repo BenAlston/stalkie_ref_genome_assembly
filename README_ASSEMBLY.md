@@ -45,15 +45,14 @@ awk '/^S/{print ">"$2"\n"$3}' $input_file | fold > $output_file
 * Ran [busco.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/utility/busco.sh)
 * Looks good, except female dalmanni is highl duplicated
 
-# 3. Cleaning Assemblies
-* Remove contamination using blobtoolkit, then remove duplicated haplotigs using purge_dups
-
 # **4. polishing**
+
+## **filter contanimants with blobtoolkit**
 * [Blobtoolkit v3.1.6 ](https://github.com/blobtoolkit/blobtoolkit)
 * Essentially takes blast output, coverage, and busco output, and filters the dataset for contamination
 * Needs:
-  - blast.out file (generated in [blast_par.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/blobtoolkit/blast_par.sh)
-  - coverage (generated in [blobtoolkit.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/blobtoolkit/blobtoolkit.sh)
+  - blast info (generated in [blast_par.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/blobtoolkit/blast_par.sh))
+  - coverage info (generated in [blobtoolkit.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/blobtoolkit/blobtoolkit.sh))
 
 ### **Blast**
 **Installing local blast database**
@@ -61,8 +60,8 @@ awk '/^S/{print ">"$2"\n"$3}' $input_file | fold > $output_file
 * Even with the local blast nt db, blasting my highly contiguous assemblies will take too long unless it is parallelised
 
 **Parallelising Blast**
-* Split my assembly fasta into 500 smaller files: ran [fasta_splitter.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/blobtoolkit/fasta_splitter.sh)
-* ran blast on each using an array script, [blast_par.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/blobtoolkit/blast_par.sh)
+* Split assembly fasta into 500 smaller files: ran [fasta_splitter.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/blobtoolkit/fasta_splitter.sh)
+* ran blast on each using the script, [blast_par.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/blobtoolkit/blast_par.sh)
 * Then I condensed these blast output files into a single file:
 ~~~
 cat out/* >> all_blast.out
@@ -88,7 +87,7 @@ cat out/* >> all_blast.out
 
 * Metazoan and no blast matches seem to be the most sensible contigs to retain.
 
-## **Purge Dups**
+## **Removing Dups with Purge Dups**
 * [purge_dups v1.2.5](https://github.com/dfguan/purge_dups)
 * ran [purge_dups_all.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/purge_dups/purge_dups_all.sh)
 * Purges haplotigs using coverage and sequence similarity info
