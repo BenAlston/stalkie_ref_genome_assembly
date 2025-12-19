@@ -47,7 +47,8 @@ awk '/^S/{print ">"$2"\n"$3}' $input_file | fold > $output_file
 
 # **4. polishing**
 
-## **filter contanimants with blobtoolkit**
+## **filter contanimants with blobtoolkit**
+
 * [Blobtoolkit v3.1.6 ](https://github.com/blobtoolkit/blobtoolkit)
 * Essentially takes blast output, coverage, and busco output, and filters the dataset for contamination
 * Needs:
@@ -67,7 +68,7 @@ awk '/^S/{print ">"$2"\n"$3}' $input_file | fold > $output_file
 cat out/* >> all_blast.out
 ~~~
 
-## **Blobtoolkit pipeline:**
+### **Blobtoolkit pipeline:**
 * Ran [blobtoolkit.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/edit/main/scripts/blobtoolkit/blobtoolkit.sh)
 * This script calculates coverage, takes the blast output I just generated, and the busco output from [busco.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/edit/main/scripts/utility/busco.sh). It then filters the assembly for contamination, I am able to specify which taxanomic rank blast matches I want removed.
 * **Important: generating coverage using minimap2 does not work for dalmanni_6, this is likely an issue to to with the HiFi reads being to long.**
@@ -76,15 +77,6 @@ cat out/* >> all_blast.out
 #### **Setting Filter Parameters**
 * Need to select appropriate taxanomic level to filter
 * The below table was generated with: --param bestsum_$clade_rank--keys=no-hit,$clade # this keeps only reads with blast hits from that clade, and reads with no blast hits
-
-| Clade      | Size (Gb) | Contigs | Completeness | Duplication|
-|------------|-----------|---------|--------------|------------|
-| Unfiltered | 0.762     | 7598    | 95.8         | 35.6       |
-| Eukaryota  | 0.748     |  7481   | 95.7         | 35.6       |
-| Metazoa    | 0.742     | 7368    | 95.6         | 35.5       |
-| Arthropoda | 0.742     | 7363    | 95.6         | 35.5       |
-| Diptera    | 0.715     | 6933    | 95.3         | 35.3       | 
-
 * Metazoan and no blast matches seem to be the most sensible contigs to retain.
 
 ## **Removing Dups with Purge Dups**
