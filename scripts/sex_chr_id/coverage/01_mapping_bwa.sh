@@ -3,7 +3,7 @@
 #SBATCH --mem=16G
 #SBATCH -c 4
 #SBATCH --time=24:00:00
-#SBATCH -o reports/X_run/%J_mapping.txt
+#SBATCH -o reports/Y_run/%J_mapping.txt
 #SBATCH --array 0-8%9
 
 #########################################################################################
@@ -24,26 +24,21 @@ readarray -t array < $FILEPREFIXES # a file containing a list of file prefixes
 FILENAME="${array[$SLURM_ARRAY_TASK_ID]}"
 
 # ----filepaths ---- #
-WD=/mnt/parscratch/users/bip23bta/ref_genomes/dalmanni/05-sex_chr_id/01_X_ID
+WD=/mnt/parscratch/users/bip23bta/ref_genomes/dalmanni/05-sex_chr_id/02_Y_ID/coverage_new_params/01_mapping
 READS_1=/mnt/parscratch/users/bip23bta/ref_genomes/*/data/short_read/Trimmed/${FILENAME}/*_L001_R1_001.fastq.gz
 READS_2=/mnt/parscratch/users/bip23bta/ref_genomes/*/data/short_read/Trimmed/${FILENAME}/*_L001_R2_001.fastq.gz
-REF_INDEX=/mnt/parscratch/users/bip23bta/ref_genomes/dalmanni/05-sex_chr_id/refs/dal_7_scaffolded.fa
-
+REF_INDEX=/mnt/parscratch/users/bip23bta/ref_genomes/dalmanni/05-sex_chr_id/refs/dal_6_blobtools_scaffolded.fa
 
 # ---- align with bwa mem align ---- #
 mkdir -p $WD
 cd $WD
 
 # reference should be indexed prior to running this script
-# reads are mapped strignently to eliminate multi mapping, supplementary alignments are also removed with samtools
-$bwa mem -t 4 -B 40 -O 60 -E 10 -L 100 $REF_INDEX $READS_1 $READS_2 | $samtools view -b -f 2 -F 2316 | $samtools sort -o ${FILENAME}_sorted.bam
+# findzx uses no bwa params and does all sorting with samtools view
+$bwa mem -t 4 $REF_INDEX $READS_1 $READS_2 | $samtools view -bf 0x2 -F 260 -q 20 | $samtools sort -o ${FILENAME}_sorted.bam
 # -- BWA parameters
-# -B = missmatch penalty
-# -O = Gap open penalty
-# -E = Gap extension penalty
-# -L = Clipping penalty
 # Samtools parameters
-# -F 2316 = Exclude reads with flags 2317 (Read unmapped, mate unmapped, not primary alignment, supplementary alignment)
+# -F 260 = exclude read unmapped & not primary alignment
 
 
 # the next two GATK commands just add read group info to the bam file and remove pcr duplicates
@@ -55,7 +50,6 @@ $bwa mem -t 4 -B 40 -O 60 -E 10 -L 100 $REF_INDEX $READS_1 $READS_2 | $samtools 
 # the next two GATK commands just add read group info to the bam file and remove pcr duplicates
 # I've kept them in as this mapping script was modified from a variant calling pipeline in made, for which these commands are definatley necessary 
 # Probably worth doing, but can be skipped if it creates issues.
-
 
 # load GATK/4.3.0
 module load GATK
@@ -98,9 +92,3 @@ $samtools index ${FILENAME}_sorted.dedup.bam
 # ---- Remove unwanted Bams to save space ---- #
 rm ${FILENAME}_sorted.RG.bam
 rm ${FILENAME}_sorted.bam
-
-
-
-
-
-
