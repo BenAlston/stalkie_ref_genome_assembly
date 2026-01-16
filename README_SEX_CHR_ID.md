@@ -5,25 +5,16 @@ intitially run on dalmanni only
 * 5M 5F per species
 * Trimmed with trimmomatic [trim.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/QC/trim.sh)
 
+## **Mapping**
+* Mapping with bwa: [01_mapping_bwa.sh](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/coverage/01_mapping_bwa.sh).
+  - Samflags 260, 0x2 (proper pair), -q 20
+* This is run on both the female ref (X id) and male ref (Y id)
 
 ## **X ID**
-* ran [coverage scripts](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/scripts/sex_chr_id/coverage) to calculate mean coverage per contig and classify each unplaced contig in as X, autosomal or unknown
+* ran [coverage scripts](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/scripts/sex_chr_id/coverage) 02-04 to calculate mean coverage per contig and classify each unplaced contig in as X, autosomal or unknown
 * Used to modify contig names
 
 ## **Y ID**
 ### **Coverage**
-* ran [coverage scripts](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/scripts/sex_chr_id/coverage) on the male ref to rule out Y and autosomal linked contigs
-
-### **Het**
-* [SNP calling with GATK](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/scripts/sex_chr_id/heterozygosity/snp_calling)
-* Not confident in the above workflow, needs redoing
-* Now need to calculate the number of variant sites :
-The problem:
-- need a file containing number of het sites and number of called sites (inc invariant ones). In windows and per contig
-- variant sites should be 'ref agnostic'
-- currently extract all variant sites in R (sites where each allele is different). Then divide this by the total number of sites with >10 coverage in that window (same filter for snp calling)
-- yaccine suggests just getting the raw number of het sites per window per individual, could factor in the total number of covered sites per ind if thats needed
-
-
-  - keep the R script?
-  - find a better way of calculating snp density. Maybe endit the vcf through R, then calc snpdensity with vcftools, if it can be determined that all called sites would be used in this calculation
+* ran [coverage scripts](https://github.com/BenAlston/stalkie_ref_genome_assembly/tree/main/scripts/sex_chr_id/coverage)
+* Ran [y_id.R](https://github.com/BenAlston/stalkie_ref_genome_assembly/blob/main/scripts/sex_chr_id/coverage/y_id.R) on the output
